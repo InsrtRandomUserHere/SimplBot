@@ -1,29 +1,34 @@
 import keep_alive
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import asyncio
 import os
 from datetime import datetime
 import reddit
 import random
-
 from random import randint
+#Just importing some modules
 
 
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
+#The color for embeds
+
 intents = discord.Intents.default()
-intents.members = True
+
+
 
 client = commands.Bot(command_prefix="sb/", intents=discord.Intents.all())
+
+#Getting uptime
 client.launch_time = datetime.utcnow()
+
+#Removing default help command
 client.remove_command('help')
 
+#Globals for snipe command
 snipe_message_content = None
 snipe_message_author = None
-
-messages = joined = 0
-
 
 
 
@@ -40,6 +45,7 @@ async def on_message_delete(message):
     snipe_message_content = None
 
 
+#For loading in some cogs
 @client.command()
 @commands.is_owner()
 async def load(ctx, extension):
@@ -66,8 +72,9 @@ for file in os.listdir("cogs"):
     if file.endswith(".py"):
         name = file[:-3]
         client.load_extension(f"cogs.{name}")
+#End of loading of cogs
 
-
+#Owner Help Menu
 @client.command()
 @commands.is_owner()
 async def help2(ctx):
@@ -84,6 +91,7 @@ async def help2(ctx):
     await ctx.send(embed=embed)
 
 
+#Owner only subreddit comand
 @client.command()
 @commands.is_owner()
 async def subred(ctx, *, sub):
@@ -106,14 +114,14 @@ async def subred(ctx, *, sub):
 
     await ctx.send(embed=em)
 
-
+#leave command
 @client.command()
 @commands.has_permissions(kick_members=True)
 async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
 
-
+#Snipe command
 @client.command()
 async def snipe(message):
     if snipe_message_content == None:
@@ -125,12 +133,12 @@ async def snipe(message):
         await message.channel.send(embed=embed)
         return
 
-
+# Rickroll command
 @client.command()
 async def rr(ctx):
     await ctx.author.send("https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
 
-
+#reminder command 
 @client.command(case_insensitive=True, aliases=["remind", "remindme", "remind_me"])
 @commands.bot_has_permissions(attach_files=True, embed_links=True)
 async def reminder(ctx, time, *, reminder):
@@ -178,7 +186,7 @@ async def reminder(ctx, time, *, reminder):
         return
     await ctx.send(embed=embed)
 
-
+#hack command that im too lazy to put in a cog
 # Obviously this command does not hack anybody
 @client.command()
 async def hack(ctx, member: discord.Member = None):
@@ -223,13 +231,14 @@ async def hack(ctx, member: discord.Member = None):
             await ctx.send(
                 f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The hack command is just a joke")
 
-
+#Shutdown command
 @client.command()
 @commands.is_owner()
 async def shutdown(ctx):
     await ctx.send("Now shutting down")
     await client.logout()
 
+#Shoot command
 @client.command()
 async def shoot(ctx, *, member : discord.Member=None):
 	scenarios=["dodges", "Survived", "ShooterGetsArrested"]
@@ -264,6 +273,7 @@ async def shoot(ctx, *, member : discord.Member=None):
 
 # @client.event stuff------------------------------------------------------------------------------------------
 
+#Command Error Handlers
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
@@ -297,20 +307,20 @@ async def on_command_error(ctx, error):
         embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
         await ctx.send(embed=embed)
 
-
-@client.event
-async def on_message(msg):
-    global messages
-    messages += 1
-    await client.process_commands(msg)
+#Just incase i need this
+"""@client.event
+async def on_message(msg):"""
 
 
+#This too
+"""
 @client.event
 async def on_member_join(member):
     global joined
     joined += 1
+"""
 
-
+#Main Brain
 keep_alive.keep_alive()
 token = os.environ.get("Token")
 client.run(token)
