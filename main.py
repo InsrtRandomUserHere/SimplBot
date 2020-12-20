@@ -25,22 +25,6 @@ snipe_message_author = None
 messages = joined = 0
 
 
-async def update_stats():
-    await client.wait_until_ready()
-    global messages, joined
-
-    while not client.is_closed():
-        try:
-            with open("stats.txt", "a") as f:
-                f.write(f"Messages: {messages}, Members Joined: {joined}\n")
-
-            messages = 0
-            joined = 0
-
-            await asyncio.sleep(6000)
-        except Exception as e:
-            print(e)
-            await asyncio.sleep(5)
 
 
 @client.event
@@ -329,5 +313,4 @@ async def on_member_join(member):
 
 keep_alive.keep_alive()
 token = os.environ.get("Token")
-client.loop.create_task(update_stats())
 client.run(token)
