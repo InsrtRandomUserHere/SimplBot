@@ -7,6 +7,7 @@ from datetime import datetime
 import reddit
 import random
 from random import randint
+from PIL import Image, ImageDraw, ImageFont
 #Just importing some modules
 
 
@@ -267,6 +268,42 @@ async def shoot(ctx, *, member : discord.Member=None):
 		await message.edit(content=f"{member.mention} **" + randomDeathMessage + f"** {author.mention} after seeing {author.mention} get arrested")
 		await asyncio.sleep(3)
 		await ctx.send(f"After being in jail for a while, {author.mention} found out that an admin of this server saw the scene and called the police")
+
+
+#Image commands that im gonna put in a cog soon
+@client.command()
+async def wendys(ctx, *, thought):
+	x = thought
+	x = x.split()
+	for i in range(len(x)):
+		if i%4 == 0 and i != 0:
+			x.insert(i, '\n')
+
+	e = ' '.join(map(str, x))
+	img = Image.open("wendys.jpg")
+	font = ImageFont.truetype("arial.ttf", 50)
+	draw = ImageDraw.Draw(img)
+
+	draw.text((520,110), e, (0,0,0), font=font, align='center')
+	img.save("sir_this_is_a_wendys.jpg")
+	await ctx.send(file=discord.File("sir_this_is_a_wendys.jpg"))
+
+@client.command()
+async def logic(ctx, *, thought):
+	x = thought
+	x = x.split()
+	for i in range(len(x)):
+		if i%6 == 0 and i != 0:
+			x.insert(i, '\n')
+
+	e = ' '.join(map(str, x))
+	img = Image.open("logic.png").convert("RGB")
+	font = ImageFont.truetype("arial.ttf", 50)
+	draw = ImageDraw.Draw(img)
+
+	draw.text((5,10), e, (0,0,0), font=font, align='left')
+	img.save("what_is_the_logic.png")
+	await ctx.send(file=discord.File("what_is_the_logic.png"))
 
 
 

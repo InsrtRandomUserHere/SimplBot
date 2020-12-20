@@ -25,6 +25,11 @@ class Help(commands.Cog):
                 embed.add_field(name="» Fun «",
                                 value="`8b`, `coinflip`, `chat`, `y/n`, `hack`\n`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror` « Text Commands",
                                 inline=False)
+
+                embed.add_field(name="» Image «",
+                                value="`wendys`, `logic`",
+                                inline=False)
+
                 embed.add_field(name="» Utility «",
                                 value="`invite`, `guildcount`, `support`, `report`, `snipe`, `remind`",
                                 inline=False)
@@ -32,6 +37,8 @@ class Help(commands.Cog):
                 embed.add_field(name="» Moderation «",
                                 value="`ban`, `kick`, `clear`, `slowmode`",
                                 inline=False)
+
+								
 
                 embed.add_field(name="» Stats «", value="`userinfo`, `serverstats`, `channelstats`, `stats`",
                                 inline=False)
@@ -607,6 +614,41 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(
                     name='Command:', value=f'```sb/hack <member>```', inline=False)
+
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def wendys(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Sir, This is a Wendy\'s', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Puts your thought in the \"Sir, this is a Wendy's\" Meme",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/wendys <thought>```', inline=False)
+                embed.set_image(
+                    url="https://preview.redd.it/hebnnjrr53h41.jpg?auto=webp&s=12c85c1862c21e422d762a7b6507f4510b5cff10")
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def logic(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Intense Logic Thinking', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Wonder what their logic is",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/logic <NotALogic>```', inline=False)
+                embed.set_image(
+                    url="https://i0.wp.com/boingboing.net/wp-content/uploads/2016/11/bcf.png?fit=680%2C445&ssl=1")
 
                 await ctx.send(embed=embed)
 
