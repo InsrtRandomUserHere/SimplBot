@@ -285,13 +285,13 @@ async def wendys(ctx, *, thought):
 				x.insert(i, '\n')
 
 		e = ' '.join(map(str, x))
-		img = Image.open("wendys.jpg")
-		font = ImageFont.truetype("arial.ttf", 50)
+		img = Image.open("MemeTemplates/wendys.jpg", 'r')
+		font = ImageFont.truetype("Fonts/arial.ttf", 50)
 		draw = ImageDraw.Draw(img)
 
 		draw.text((520,110), e, (0,0,0), font=font, align='center')
-		img.save("sir_this_is_a_wendys.jpg")
-		await ctx.send(file=discord.File("sir_this_is_a_wendys.jpg"))
+		img.save("MemeOutputs/sir_this_is_a_wendys.jpg")
+		await ctx.send(file=discord.File("MemeOutputs/sir_this_is_a_wendys.jpg"))
 
 	elif len(x) >= 36:
 		await ctx.send("Woah, that's too much. Go under the 36 character limit")
@@ -308,13 +308,14 @@ async def logic(ctx, *, notalogic):
 				x.insert(i, '\n')
 
 		e = ' '.join(map(str, x))
-		img = Image.open("logic.png").convert("RGB")
-		font = ImageFont.truetype("arial.ttf", 50)
+		img = Image.open("MemeTemplates/logic.png").convert("RGB")
+		
+		font = ImageFont.truetype("Fonts/arial.ttf", 50)
 		draw = ImageDraw.Draw(img)
 
 		draw.text((5,10), e, (0,0,0), font=font, align='left')
-		img.save("what_is_the_logic.png")
-		await ctx.send(file=discord.File("what_is_the_logic.png"))
+		img.save("MemeOutputs/what_is_the_logic.png")
+		await ctx.send(file=discord.File("MemeOutputs/what_is_the_logic.png"))
 
 	elif len(x) >= 36:
 		await ctx.send("Woah, that's too much. Go under the 36 character limit")
@@ -330,13 +331,13 @@ async def burn(ctx, *, thought):
 			if i%3 == 0 and i != 0:
 				x.insert(i, '\n')
 		e = ' '.join(map(str, x))
-		img = Image.open("burn.jpg").convert("RGB")
-		font = ImageFont.truetype("arial.ttf", 25)
+		img = Image.open("MemeTemplates/burn.jpg", "r")
+		font = ImageFont.truetype("Fonts/arial.ttf", 25)
 		draw = ImageDraw.Draw(img)
 
 		draw.text((70,100), e, (0,0,0), font=font, align='center')
-		img.save("lets_burn_this.png")
-		await ctx.send(file=discord.File("lets_burn_this.png"))
+		img.save("MemeOutputs/lets_burn_this.png")
+		await ctx.send(file=discord.File("MemeOutputs/lets_burn_this.png"))
 
 	elif len(x) >= 36:
 		await ctx.send("Woah, that's too much. Go under the 36 character limit")
@@ -354,16 +355,16 @@ async def worthless(ctx, *, thing):
 				x.insert(i, '\n')
 
 		e = ' '.join(map(str, x))
-		img = Image.open("worthless.jpg").convert("RGB")
-		font = ImageFont.truetype("arial.ttf", 25)
+		img = Image.open("MemeTemplates/worthless.jpg", 'r')
+		font = ImageFont.truetype("Fonts/arial.ttf", 25)
 		draw = ImageDraw.Draw(img)
 
 		draw.text((61,74), e, (0,0,0), font=font, align='center')
-		img.save("woah_this_is_worthless.png")
-		await ctx.send(file=discord.File("woah_this_is_worthless.png"))
+		img.save("MemeOutputs/woah_this_is_worthless.png")
+		await ctx.send(file=discord.File("MemeOutputs/woah_this_is_worthless.png"))
 	
 	elif len(x) >= 36:
-		await ctx.send("Your sentence is longer than 50 characters. Go under that limit!")
+		await ctx.send("Your sentence is longer than 36 characters. Go under that limit!")
 
 @client.command()
 @commands.cooldown(1, 5, BucketType.user)
@@ -376,13 +377,13 @@ async def sleep(ctx, *, thing):
 				x.insert(i, '\n')
 
 		e = ' '.join(map(str, x))
-		img = Image.open("sleep.jpg").convert("RGB")
-		font = ImageFont.truetype("arial.ttf", 25)
+		img = Image.open("MemeTemplates/sleep.jpg", "r")
+		font = ImageFont.truetype("Fonts/arial.ttf", 25)
 		draw = ImageDraw.Draw(img)
 
 		draw.text((27,338), e, (0,0,0), font=font, align='center')
-		img.save("are_you_going_to_sleep.png")
-		await ctx.send(file=discord.File("are_you_going_to_sleep.png"))
+		img.save("MemeOutputs/are_you_going_to_sleep.png")
+		await ctx.send(file=discord.File("MemeOutputs/are_you_going_to_sleep.png"))
 	
 	elif len(x) >= 36:
 		await ctx.send("Your sentence is longer than 50 characters. Go under that limit!")
@@ -392,12 +393,12 @@ async def ID(ctx, user : discord.Member=None):
 	if user == None:
 		user = ctx.author
 	
-	ID = Image.open("DiscordUserIDTemplate.png")
+	ID = Image.open("OtherImages/Template/DiscordUserIDTemplate.png")
 	asset = user.avatar_url_as(size=128)
 	data = BytesIO(await asset.read())
 	pfp = Image.open(data)
 	pfp = pfp.resize((264,264))
-	font = ImageFont.truetype("arlrdbd.ttf", 40)
+	font = ImageFont.truetype("Fonts/arlrdbd.ttf", 40)
 	draw = ImageDraw.Draw(ID)
 
 	draw.text((313,135), user.name, (255,255,255), font=font, align='left')
@@ -405,13 +406,9 @@ async def ID(ctx, user : discord.Member=None):
 	draw.text((313,355), str(user.id), (255,255,255), font=font, align='left')
 	draw.text((313,468), str(user.created_at.date()), (255,255,255), font=font, align='left')
 	ID.paste(pfp, (17,102))
-	ID.save("MemberID.png")
-	await ctx.send(file=discord.File("MemberID.png"))
+	ID.save("OtherImages/Output/MemberID.png")
+	await ctx.send(file=discord.File("OtherImages/Output/MemberID.png"))
 
-
-
-
-# @client.event stuff------------------------------------------------------------------------------------------
 
 #Command Error Handlers
 @client.event
