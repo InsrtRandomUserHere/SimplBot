@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import datetime
+import asyncio
 
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
@@ -33,7 +34,7 @@ class UtilityCmds(commands.Cog):
             await ctx.send(
                 f'Cleared {amount} messages for {ctx.message.author.mention}!', delete_after=1.5)
 
-    @commands.command(aliases=['y/n'])
+    @commands.command(aliases=['y/n', 'poll'])
     async def yn(self, ctx, *, question):
         embed = discord.Embed(title="Yes/No Poll", description=question, color=embedColor, timestamp=datetime.datetime.utcnow())
         embed.set_footer(text=f"Question by: {ctx.message.author.name}")
@@ -52,7 +53,7 @@ class UtilityCmds(commands.Cog):
             value='[Invite me by clicking this link](https://discord.com/api/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=bot)')
         await ctx.send(embed=em)
 
-    @commands.command(aliases=["Guildcount", "GuildCount", "GUILDCOUNT"])
+    @commands.command()
     async def guildcount(self, ctx):
         try:
             embed = discord.Embed(
@@ -137,7 +138,53 @@ class UtilityCmds(commands.Cog):
         await ctx.channel.edit(slowmode_delay=seconds)
         await ctx.send(embed=embed)
 
+    @commands.command(case_insensitive=True, aliases=["remind", "remindme", "remind_me"])
+    @commands.bot_has_permissions(attach_files=True, embed_links=True)
+    async def reminder(self, ctx, time, *, reminder):
+        print(time)
+        print(reminder)
+        user = ctx.message.author
+        embed = discord.Embed(color=embedColor, timestamp=datetime.utcnow())
+        seconds = 0
+        if reminder is None:
+            embed.add_field(name='Warning',
+                            value='Please specify what do you want me to remind you about.')  # Error message
+        if time.lower().endswith("d"):
+            seconds += int(time[:-1]) * 60 * 60 * 24
+            counter = f"{seconds // 60 // 60 // 24} days"
+        if time.lower().endswith("h"):
+            seconds += int(time[:-1]) * 60 * 60
+            counter = f"{seconds // 60 // 60} hours"
+        elif time.lower().endswith("m"):
+            seconds += int(time[:-1]) * 60
+            counter = f"{seconds // 60} minutes"
+        elif time.lower().endswith("s"):
+            seconds += int(time[:-1])
+            counter = f"{seconds} seconds"
+        if seconds == 0:
+            embed.add_field(name='Warning',
+                            value='Please specify a proper duration, send `sb/help reminder` for more information.')
+            embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
+        elif seconds < 300:
+            embed.add_field(name='Warning',
+                            value='You have specified a too short duration!\nMinimum duration is 5 minutes.')
+            embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
+        elif seconds > 7776000:
+            embed.add_field(name='Warning',
+                            value='You have specified a too long duration!\nMaximum duration is 90 days.')
+            embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
+        else:
+            await ctx.send(f"Alright, I will remind you about {reminder} in {counter}.")
+            await asyncio.sleep(seconds)
+            try:
+                await ctx.message.author.send(
+                    f"Hi, you asked me to remind you about **{reminder}** in **{ctx.message.guild}** **{counter}** ago.")
 
+            except:
+                await ctx.send(
+                    f"Hey {ctx.message.author.mention}, you asked me to remind you about **{reminder}** in this server **{counter}** ago.")
+            return
+        await ctx.send(embed=embed)
 
 
 def setup(client):
