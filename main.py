@@ -9,6 +9,7 @@ import reddit
 import random
 from random import randint
 from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
 #Just importing some modules
 
 
@@ -386,7 +387,26 @@ async def sleep(ctx, *, thing):
 	elif len(x) >= 36:
 		await ctx.send("Your sentence is longer than 50 characters. Go under that limit!")
 
+@client.command()
+async def ID(ctx, user : discord.Member=None):
+	if user == None:
+		user = ctx.author
+	
+	ID = Image.open("DiscordUserIDTemplate.png")
+	asset = user.avatar_url_as(size=128)
+	data = BytesIO(await asset.read())
+	pfp = Image.open(data)
+	pfp = pfp.resize((264,264))
+	font = ImageFont.truetype("arlrdbd.ttf", 40)
+	draw = ImageDraw.Draw(ID)
 
+	draw.text((313,135), user.name, (255,255,255), font=font, align='left')
+	draw.text((313,240), user.discriminator, (255,255,255), font=font, align='left')
+	draw.text((313,355), str(user.id), (255,255,255), font=font, align='left')
+	draw.text((313,468), str(user.created_at.date()), (255,255,255), font=font, align='left')
+	ID.paste(pfp, (17,102))
+	ID.save("MemberID.png")
+	await ctx.send(file=discord.File("MemberID.png"))
 
 
 
