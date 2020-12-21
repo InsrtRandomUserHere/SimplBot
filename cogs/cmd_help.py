@@ -27,7 +27,7 @@ class Help(commands.Cog):
                                 inline=False)
 
                 embed.add_field(name="» Image «",
-                                value="`wendys`, `logic`",
+                                value="`wendys`, `logic`, `worthless`, `burn`, `sleep`",
                                 inline=False)
 
                 embed.add_field(name="» Utility «",
@@ -650,6 +650,57 @@ class Help(commands.Cog):
                 embed.set_image(
                     url="https://i0.wp.com/boingboing.net/wp-content/uploads/2016/11/bcf.png?fit=680%2C445&ssl=1")
 
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def burn(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Hmmm, nah', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Puts your thought in the Spongbob burning paper meme",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/burn <thought>```', inline=False)
+                embed.set_image(
+                    url="https://i.imgflip.com/2bc2vf.jpg")
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def worthless(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Woah. This is worthless!', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Puts your thought in the \"Woah. This is worthless\" meme",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/worthless <worthlessThing>```', inline=False)
+                embed.set_image(
+                    url="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/4d3/template-this-is-worthless-0c6db91aec9c.jpg")
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def sleep(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Are you going to sleep?', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Puts your thought in the \"Are you going to sleep?\" meme",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/sleep <thought>```', inline=False)
+                embed.set_image(
+                    url="https://i.pinimg.com/originals/28/98/b9/2898b938072b51bcb319c6fbe1721381.jpg")
                 await ctx.send(embed=embed)
 
 def setup(client):
