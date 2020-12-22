@@ -128,6 +128,29 @@ class economy(commands.Cog):
         await self.update_bank(ctx.author, -1*amount, 'bank')
         await ctx.send(f"You withdrew {amount} coins!")
 
+    @commands.command()
+    async def deposit(self, ctx, *, amount=None):
+        await self.open_account(ctx.author)
+        if amount == None:
+            responses = random.choice(['You sure you gon seposit nothin?', 'aight, time to deposit 0 coins then '])
+            await ctx.send(responses)
+            return
+
+        bal = await self.update_bank(ctx.author)
+        amount = int(amount)
+
+        if amount > bal[1]:
+            await ctx.send("Dude, you don't have that much money in your wallet")
+            return
+
+        if amount < 0:
+            await ctx.send("You can't deposit negative money, come on")
+            return
+
+        await self.update_bank(ctx.author, -1*amount)
+        await self.update_bank(ctx.author, amount, 'bank')
+        await ctx.send(f"You withdrew {amount} coins!")
+
 
 
 
