@@ -23,11 +23,11 @@ class Help(commands.Cog):
                     value='`ping`, `membercount`, `calculate`', inline=False)
 
                 embed.add_field(name="» Fun «",
-                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`\n`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror` « Text Commands",
+                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought` \n`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror` « Text Commands",
                                 inline=False)
 
                 embed.add_field(name="» Image «",
-                                value="`wendys`, `logic`, `worthless`, `burn`, `sleep`",
+                                value="`wendys`, `logic`, `worthless`, `burn`, `sleep`, `ID`",
                                 inline=False)
 
                 embed.add_field(name="» Utility «",
@@ -702,6 +702,55 @@ class Help(commands.Cog):
                 embed.set_image(
                     url="https://i.pinimg.com/originals/28/98/b9/2898b938072b51bcb319c6fbe1721381.jpg")
                 await ctx.send(embed=embed)
+
+
+    @_help.command(case_insensitive=True)
+    async def ID(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Discord User ID', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Makes an ID for a user you mention",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/ID <member>```', inline=False)
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def meme(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Meme', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Sends a random meme from r/memes",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/meme```', inline=False)
+                await ctx.send(embed=embed)
+
+    @_help.command(case_insensitive=True)
+    async def showerthought(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Shower Thought', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Sends a thought from r/showerthoughts",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/showerthoughts```', inline=False)
+                embed.add_field(
+                    name='Aliases', value=f'```st```', inline=False)
+                await ctx.send(embed=embed)
+
 
 def setup(client):
 	client.add_cog(Help(client))

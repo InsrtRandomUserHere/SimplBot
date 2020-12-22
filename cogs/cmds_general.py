@@ -3,16 +3,8 @@ from discord.ext import commands
 import math
 import random
 import asyncio
-import praw
-import wikipedia
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
-reddit = praw.Reddit(
-    client_id='3GX8CbOHEm6h4A',
-    client_secret='pFL2Iixqbd8O1yu_2KqpYvEDp14',
-    username='InsrtBotUsage',
-    password='discord.py',
-    user_agent='pythonpraw')
 
 
 class GenCmds(commands.Cog):
@@ -55,25 +47,6 @@ class GenCmds(commands.Cog):
         await asyncio.sleep(0.6)
         await msg.edit(content=f'{random.choice(responses)}')
 
-    @commands.command(aliases=['st'])
-    async def showerthought(self, ctx):
-        subreddit = reddit.subreddit('showerthoughts')
-        all_subs = []
-
-        hot = subreddit.hot(limit=250)
-
-        for submission in hot:
-            all_subs.append(submission)
-
-        random_sub = random.choice(all_subs)
-        name = random_sub.title
-        url = random_sub.url
-
-        em = discord.Embed(description=f"[**{name}**]({url})", colour=discord.Colour.blue())
-
-        message_ = await ctx.send(embed=em)
-        await message_.add_reaction('<:upvote:765210506494607420>')
-        await message_.add_reaction('<:downvote:765210534613352458>')
 
     @commands.command()
     async def chat(self, ctx, *, message):

@@ -7,13 +7,9 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 discord = "^1.0.1"
-praw = "^7.1.0"
 Flask = "^1.1.2"
 pyfiglet = "^0.8.post1"
-wikipedia = "^1.4.0"
-redditcli = "^2.1.0"
 timestamp = "^0.0.1"
-pydictionary = "^2.0.1"
 youtube-dl = "^2020.12.7"
 
 [tool.poetry.dev-dependencies]

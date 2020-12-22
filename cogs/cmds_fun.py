@@ -50,7 +50,7 @@ class FunCmds(commands.Cog):
         if snipe_message_content == None:
             await message.channel.send("Theres nothing to snipe.")
         else:
-            embed = discord.Embed(description=f"{snipe_message_content}", timestamp=datetime.utcnow(), color=embedColor)
+            embed = discord.Embed(description=f"{snipe_message_content}", timestamp=datetime.datetime.utcnow(), color=embedColor)
             embed.set_author(name=f"{snipe_message_author}", icon_url=snipe_message_author.avatar_url)
 
             await message.channel.send(embed=embed)
@@ -62,7 +62,8 @@ class FunCmds(commands.Cog):
             await ctx.author.send("https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
 
         else:
-            await member.send
+            await member.send(f"https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
+            await member.send(f"You were rickrolled by **{ctx.message.author}**!")		
 
     # hack command that im too lazy to put in a cog
     # Obviously this command does not hack anybody
@@ -156,6 +157,21 @@ class FunCmds(commands.Cog):
         em.set_image(url=image_url)
         em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=em)
+
+    @commands.command(aliases=["st"])
+    async def showerthought(self, ctx):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"https://www.reddit.com/r/showerthoughts/hot.json") as response:
+                j = await response.json()
+
+        data = j["data"]["children"][random.randint(0, 25)]["data"]
+        image_url = data["url"]
+        title = data["title"]
+        em = discord.Embed(title=title, color=embedColor)
+        em.set_image(url=image_url)
+        em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=em)
+
 
 
 def setup(client):

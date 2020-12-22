@@ -13,44 +13,33 @@ class TextFilter(commands.Cog):
         cool_text = Figlet(font='slant')
         return str(cool_text.renderText(text))
 
-    def print_cool2(self, text):
-        cool_text = Figlet()
-        return str(cool_text.renderText(text))
-
     def print_cool3(self, text):
         cool_text = Figlet(font="3-d")
         return str(cool_text.renderText(text))
 
-    def print_cool4(text):
+    def print_cool4(self, text):
         cool_text = Figlet(font="3x5")
         return str(cool_text.renderText(text))
 
-    def print_cool5(text):
+    def print_cool5(self, text):
         cool_text = Figlet(font="alligator")
         return str(cool_text.renderText(text))
 
-    def print_cool6(text):
+    def print_cool6(self, text):
         cool_text = Figlet(font="dotmatrix")
         return str(cool_text.renderText(text))
 
-    def print_cool7(text):
+    def print_cool7(self, text):
         cool_text = Figlet(font="bubble")
         return str(cool_text.renderText(text))
 
-    def print_cool8(text):
+    def print_cool8(self, text):
         cool_text = Figlet(font="digital")
         return str(cool_text.renderTexttext)
 
     @commands.command()
     async def slant(self, ctx, *, word):
         fontoutput = self.print_cool1(word)
-        await ctx.channel.purge(limit=1)
-        await ctx.send(
-            f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
-
-    @commands.command()
-    async def font(self, ctx, *, word):
-        fontoutput = self.print_cool2(word)
         await ctx.channel.purge(limit=1)
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')

@@ -70,7 +70,7 @@ class ImageCmds(commands.Cog):
             font = ImageFont.truetype("arial.ttf", 25)
             draw = ImageDraw.Draw(img)
 
-            draw.text((70, 100), e, (0, 0, 0), font=font, align='center')
+            draw.text((70, 100), e, (0, 0, 0), font=font, align='left')
             img.save("MemeOutputs/lets_burn_this.png")
             await ctx.send(file=discord.File("MemeOutputs/lets_burn_this.png"))
 
@@ -126,7 +126,7 @@ class ImageCmds(commands.Cog):
     async def petition(self, ctx, *, petition):
         x = petition
         x = x.split()
-        if len(x) <= 45:
+        if int(len(x)) <= 100:
             for i in range(len(x)):
                 if i % 6 == 0 and i != 0:
                     x.insert(i, '\n')
@@ -140,7 +140,7 @@ class ImageCmds(commands.Cog):
             img.save("MemeOutputs/lisa_petition.png")
             await ctx.send(file=discord.File("MemeOutputs/lisa_petition.png"))
 
-        elif len(x) >= 45:
+        elif int(len(x)) >= 100:
             await ctx.send("Your sentence is longer than 50 characters. Go under that limit!")
 
     @commands.command(case_insensitive=True)
@@ -164,6 +164,27 @@ class ImageCmds(commands.Cog):
         ID.save("OtherImages/Output/MemberID.png")
         await ctx.send(file=discord.File("OtherImages/Output/MemberID.png"))
 
+    @commands.command()
+    @commands.cooldown(1, 5, BucketType.user)
+    async def imagetest(self, ctx, *, thing):
+        x = thing
+        x = x.split()
+        if int(len(x)) <= 2:
+            for i in range(len(x)):
+                if i % 4 == 0 and i != 0:
+                    x.insert(i, '\n')
+
+            e = ' '.join(map(str, x))
+            img = Image.open("MemeTemplates/worthless.jpg", 'r')
+            font = ImageFont.truetype("arial.ttf", 25)
+            draw = ImageDraw.Draw(img)
+
+            draw.text((61, 74), e, (0, 0, 0), font=font, align='center')
+            img.save("MemeOutputs/woah_this_is_worthless.png")
+            await ctx.send(file=discord.File("MemeOutputs/woah_this_is_worthless.png"))
+
+        elif int(len(x)) >= 2:
+            await ctx.send("Your sentence is longer than 36 characters. Go under that limit!")
 
 def setup(client):
     client.add_cog(ImageCmds(client))

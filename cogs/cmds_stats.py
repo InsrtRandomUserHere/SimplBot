@@ -3,8 +3,8 @@ from discord.ext import commands
 import datetime
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
-lastUpdate = "November 20 2020\n10:45 am PST"
-version = "1.10.6"
+lastUpdate = "December 21 2020\n8:00 pm PST"
+version = "1.10.7"
 """Version Guide:
 Major build number: This indicates a major milestone in the game, increment this when going from beta to release, from release to major updates.
 

@@ -5,11 +5,7 @@ from discord.ext.commands import BucketType
 import asyncio
 import os
 from datetime import datetime
-import random
-from random import randint
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
-import aiohttp
+
 #Just importing some modules
 
 
@@ -21,7 +17,7 @@ intents = discord.Intents.default()
 
 
 
-client = commands.Bot(command_prefix="sb/", intents=discord.Intents.all(), case_insensitive=True)
+client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "sb!"), intents=discord.Intents.all(), case_insensitive=True)
 
 #Getting uptime
 client.launch_time = datetime.utcnow()
@@ -88,9 +84,18 @@ async def leave(ctx):
 @commands.is_owner()
 async def shutdown(ctx):
     await ctx.send("Now shutting down")
+    offlinelog = client.get_channel(790619786672734249)
+    await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
 
+@client.command()
+@commands.is_owner()
+async def char(ctx, *, x):
+	await ctx.send(len(x))
 
+@client.command()
+async def owo(ctx, *, phrase):
+	await ctx.send(phrase.replace("l", "w"))
 
 #Command Error Handlers
 @client.event
@@ -142,6 +147,10 @@ async def on_member_join(member):
     global joined
     joined += 1
 """
+
+
+
+
 
 #Main Brain
 keep_alive.keep_alive()
