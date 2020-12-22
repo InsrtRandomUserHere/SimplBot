@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import BucketType
+from discord.ext.commands import cooldown, BucketType
 import json
 from random import randint
 import random
@@ -13,62 +13,73 @@ class economy(commands.Cog):
         self.client = client
 
     async def open_account(self, user):
-        with open("json_files/mainbank.json", "r") as f:
-            users = json.load(f)
+        users = await self.get_bank_data()
 
         if str(user.id) in users:
             return False
-
         else:
             users[str(user.id)] = {}
-            users[str(user.id)]["wallet"] = 100
-            users[str(user.id)]["wallet"] = 0
+            users[str(user.id)]['wallet'] = 0
+            users[str(user.id)]['bank'] = 0
 
-        with open("json_files/mainbank.json", "w") as f:
-            json.dump(users,f)
+        with open('./data/mainbank.json', 'w') as f:
+            json.dump(users, f)
         return True
 
+
     async def get_bank_data(self):
-        with open("json_files/mainbank.json", "r") as f:
+        with open('./data/mainbank.json', 'r') as f:
             users = json.load(f)
 
         return users
 
-    async def add_to_bank_data(self, users):
-        with open("json_files/mainbank.json", "w") as f:
-            json.dump(users,f)
 
-
-    @commands.command(aliases=["bal"])
-    async def balance(self, ctx, member:discord.Member=None):
+    async def update_bank(self, user, change = 0,mode='wallet'):
         users = await self.get_bank_data()
-        wallet_amt = users[str(self.user.id)][self.wallet]
-        bank_amt = users[str(self.user.id)][self.bank]
 
+        users[str(user.id)][mode] += change
+
+        with open('./data/mainbank.json', 'w') as f:
+            json.dump(users, f)
+
+        bal = [users[str(user.id)]['wallet'], users[str(user.id)]['bank']]
+        return bal
+
+    @commands.command(aliases=['bal'])
+    @cooldown(1, 3, BucketType.user)
+    async def balance(self, ctx, *, member: discord.Member = None):
         if member == None:
+            await self.open_account(ctx.author)
             user = ctx.author
-            await self.open_account(user)
-            wallet_amt = users[str(self.user.id)][self.wallet]
-            bank_amt = users[str(self.user.id)][self.bank]
-			
+            users = await self.get_bank_data()
 
+            wallet_amt = users[str(user.id)]['wallet']
+            bank_amt = users[str(user.id)]['bank']
+            total_amt = wallet_amt + bank_amt
 
-            em = discord.Embed(title=f"{user.display_name}'s Balance", color=embedColor)
-            em.add_field(name="Wallet:", value=wallet_amt)
-            em.add_field(name="Bank:", value=bank_amt)
+            em = discord.Embed(title=f"{ctx.author.name}'s Balance",color=embedColor)
+            em.add_field(name='Wallet Balance',value = (wallet_amt), inline=False)
+            em.add_field(name='Bank Balance',value = (bank_amt), inline=False)
+            em.add_field(name='Total Balance',value = (total_amt), inline=False)
+            em.set_thumbnail(url = ctx.author.avatar_url)
+            em.set_footer(icon_url = ctx.author.avatar_url, text = (f'Requested by {ctx.author}'))
             await ctx.send(embed=em)
 
         else:
             await self.open_account(member)
-            wallet_amt = users[str(self.user.id)][self.wallet]
-            bank_amt = users[str(self.user.id)][self.bank]
             user = member
+            users = await self.get_bank_data()
 
+            wallet_amt = users[str(user.id)]['wallet']
+            bank_amt = users[str(user.id)]['bank']
+            total_amt = wallet_amt + bank_amt
 
-            em = discord.Embed(title=f"{member.display_name}'s Balance", color=embedColor)
-            em.add_field(name="Wallet:", value=wallet_amt)
-            em.add_field(name="Bank:", value=bank_amt)
+            em = discord.Embed(title=f"{member.name}'s Balance",color=embedColor)
+            em.add_field(name='Wallet Balance',value = (wallet_amt), inline=False)
+            em.add_field(name='Bank Balance',value = (bank_amt), inline=False)
+            em.add_field(name='Total Balance',value = (total_amt), inline=False)
             await ctx.send(embed=em)
+
 
     @commands.command()
     async def beg(self, ctx):
@@ -85,9 +96,8 @@ class economy(commands.Cog):
         if answer == 'yes':
             await ctx.send(f"{person} has gave you {earnings}")
             users[str(user.id)][self.wallet] += earnings
-            await self.add_to_bank_data()
-
-        wallet_amt = users[str(user.id)][self.wallet]
+            with open('./data/mainbank.json', 'w') as f:
+                json.dump(users, f)
 
 
 
