@@ -132,7 +132,7 @@ class economy(commands.Cog):
     async def deposit(self, ctx, *, amount=None):
         await self.open_account(ctx.author)
         if amount == None:
-            responses = random.choice(['You sure you gon seposit nothin?', 'aight, time to deposit 0 coins then '])
+            responses = random.choice(['You sure you gon deposit nothin?', 'aight, time to deposit 0 coins then '])
             await ctx.send(responses)
             return
 
@@ -150,6 +150,35 @@ class economy(commands.Cog):
         await self.update_bank(ctx.author, -1*amount)
         await self.update_bank(ctx.author, amount, 'bank')
         await ctx.send(f"You deposited {amount} coins!")
+
+    @commands.command(aliases=['send'])
+    async def donate(self, ctx, member : discord.Member=None, *, amount=None):
+        await self.open_account(ctx.author)
+        await self.open_account(member)
+        if amount == None:
+            responses = random.choice(['You sure you gon deposit nothin?', 'aight, time to send 0 coins then '])
+            await ctx.send(responses)
+            return
+
+        if member == None:
+            await ctx.send("Who are you gonna send the money to?")
+            return
+
+        bal = await self.update_bank(ctx.author)
+        amount = int(amount)
+
+        if amount > bal[1]:
+            await ctx.send("Dude, you don't have that much money in your wallet")
+            return
+
+        if amount < 0:
+            await ctx.send("You can't send negative money, come on")
+            return
+
+        await self.update_bank(ctx.author, -1*amount)
+        await self.update_bank(member, amount)
+        await ctx.send(f"You gave {member} {amount} coins!")
+
 
 
 
