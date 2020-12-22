@@ -48,6 +48,9 @@ class economy(commands.Cog):
         if member == None:
             user = ctx.author
             await self.open_account(user)
+            wallet_amt = users[str(self.user.id)][self.wallet]
+            bank_amt = users[str(self.user.id)][self.bank]
+			
 
 
             em = discord.Embed(title=f"{user.display_name}'s Balance", color=embedColor)
@@ -57,6 +60,11 @@ class economy(commands.Cog):
 
         else:
             await self.open_account(member)
+            wallet_amt = users[str(self.user.id)][self.wallet]
+            bank_amt = users[str(self.user.id)][self.bank]
+            user = member
+
+
             em = discord.Embed(title=f"{member.display_name}'s Balance", color=embedColor)
             em.add_field(name="Wallet:", value=wallet_amt)
             em.add_field(name="Bank:", value=bank_amt)
