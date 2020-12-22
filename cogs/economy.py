@@ -149,7 +149,7 @@ class economy(commands.Cog):
 
         await self.update_bank(ctx.author, -1*amount)
         await self.update_bank(ctx.author, amount, 'bank')
-        await ctx.send(f"You withdrew {amount} coins!")
+        await ctx.send(f"You deposited {amount} coins!")
 
 
 
