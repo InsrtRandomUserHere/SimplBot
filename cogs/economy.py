@@ -167,7 +167,7 @@ class economy(commands.Cog):
         bal = await self.update_bank(ctx.author)
         amount = int(amount)
 
-        if amount > bal[1]:
+        if amount > bal[0]:
             await ctx.send("Dude, you don't have that much money in your bank")
             return
 
