@@ -168,15 +168,15 @@ class economy(commands.Cog):
         amount = int(amount)
 
         if amount > bal[1]:
-            await ctx.send("Dude, you don't have that much money in your wallet")
+            await ctx.send("Dude, you don't have that much money in your bank")
             return
 
         if amount < 0:
             await ctx.send("You can't send negative money, come on")
             return
 
-        await self.update_bank(ctx.author, -1*amount)
-        await self.update_bank(member, amount)
+        await self.update_bank(ctx.author, -1*amount, 'bank')
+        await self.update_bank(member, amount, 'bank')
         await ctx.send(f"You gave {member} {amount} coins!")
 
 
