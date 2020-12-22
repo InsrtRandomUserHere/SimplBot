@@ -109,7 +109,7 @@ class economy(commands.Cog):
     async def withdraw(self, ctx, *, amount=None):
         await self.open_account(ctx.author)
         if amount == None:
-            responses = ['You sure you gon withdraw nothin?', 'aight, time to withdraw 0 coins then ']
+            responses = random.choice(['You sure you gon withdraw nothin?', 'aight, time to withdraw 0 coins then '])
             await ctx.send(responses)
             return
 
