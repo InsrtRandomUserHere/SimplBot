@@ -80,6 +80,7 @@ class economy(commands.Cog):
 
 
     @commands.command()
+    @cooldown(1, 20, BucketType.user)
     async def beg(self, ctx):
         users = await self.get_bank_data()
         user = ctx.author
@@ -90,9 +91,9 @@ class economy(commands.Cog):
         answer = random.choice(['yes', 'no'])
         person = random.choice(['PewDiePie', 'Felix Kjellberg', 'MrBeast', 'Some guy with a hat', ])
         noResponse = random.choice(["I don't have any money right now", 
-		"Uhhh. no",
-		"just why?",
-		"I'll come back later"])
+        "Uhhh. no",
+        "just why?",
+        "I'll come back later"])
         earnings = randint(0, 101)
 
         if answer == 'yes':
@@ -103,6 +104,30 @@ class economy(commands.Cog):
 
         if answer == 'no':
             await ctx.send(f"**{person}**: {noResponse}")
+
+    @commands.command()
+    async def withdraw(self, ctx, *, amount=None):
+        await self.open_account(ctx.author)
+        if amount == None:
+            responses = ['You sure you gon withdraw nothin?', 'aight, time to withdraw 0 coins then ']
+            await ctx.send(responses)
+            return
+
+        bal = await self.update_bank(ctx.author)
+        amount = int(amount)
+
+        if amount > bal[1]:
+            await ctx.send("Dude, you don't have that much money in your account")
+            return
+
+        if amount < 0:
+            await ctx.send("You can't withdraw negative money, come on")
+            return
+
+        await self.update_bank(ctx.author, amount)
+        await self.update_bank(ctx.author, -1*amount, 'bank')
+        await ctx.send(f"You withdrew {amount} coins!")
+
 
 
 
