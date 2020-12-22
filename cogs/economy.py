@@ -61,8 +61,6 @@ class economy(commands.Cog):
             em.add_field(name='Wallet Balance',value = (wallet_amt), inline=False)
             em.add_field(name='Bank Balance',value = (bank_amt), inline=False)
             em.add_field(name='Total Balance',value = (total_amt), inline=False)
-            em.set_thumbnail(url = ctx.author.avatar_url)
-            em.set_footer(icon_url = ctx.author.avatar_url, text = (f'Requested by {ctx.author}'))
             await ctx.send(embed=em)
 
         else:
@@ -90,14 +88,21 @@ class economy(commands.Cog):
 
 
         answer = random.choice(['yes', 'no'])
-        person = random.choice(['PewDiePie', 'Felix Kjellberg', 'MrBeast'])
+        person = random.choice(['PewDiePie', 'Felix Kjellberg', 'MrBeast', 'Some guy with a hat', ])
+        noResponse = random.choice(["I don't have any money right now", 
+		"Uhhh. no",
+		"just why?",
+		"I'll come back later"])
         earnings = randint(0, 101)
 
         if answer == 'yes':
-            await ctx.send(f"{person} has gave you {earnings}")
-            users[str(user.id)][self.wallet] += earnings
+            await ctx.send(f"**{person}** has gave you {earnings} coins!")
+            users[str(user.id)]['wallet'] += earnings
             with open('./data/mainbank.json', 'w') as f:
                 json.dump(users, f)
+
+        if answer == 'no':
+            await ctx.send(f"**{person}**: {noResponse}")
 
 
 
