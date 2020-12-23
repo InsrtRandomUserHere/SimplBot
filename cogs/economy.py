@@ -211,7 +211,7 @@ class economy(commands.Cog):
             await ctx.send(f"You won {2*amount} coins!")
         else:
             await self.update_bank(ctx.author, -1*amount)
-            await ctx.send(f"You lost {-1 * amount} coins")
+            await ctx.send(f"You lost {1 * amount} coins")
 
 
 
