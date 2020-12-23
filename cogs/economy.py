@@ -206,14 +206,6 @@ class economy(commands.Cog):
         await self.update_bank(ctx.author, -1*amount)
 
 
-
-
-
-
-
-
-
-
         
 
 def setup(client):
