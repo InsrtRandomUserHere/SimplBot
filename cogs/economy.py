@@ -12,6 +12,7 @@ class economy(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+
     async def open_account(self, user):
         users = await self.get_bank_data()
 
@@ -214,9 +215,27 @@ class economy(commands.Cog):
             await ctx.send(f"You lost {1 * amount} coins")
 
 
-
-
         await self.update_bank(ctx.author, -1*amount)
+
+
+
+    @commands.command()
+    async def shop(self, ctx):
+        embed = discord.Embed(title="Shop", colour=embedColor)
+        mainshop = [{"name": "Item", "price": 100, "description": "remember to take this out of the bot"},
+                    {"name": "Item1", "price": 100, "description": "remember to take this out of the bot"},
+                    {"name": "Item2", "price": 100, "description": "remember to take this out of the bot"},
+                    {"name": "Item3", "price": 100, "description": "remember to take this out of the bot"},
+                    {"name": "Item4", "price": 100, "description": "remember to take this out of the bot"}]
+
+        for item in mainshop:
+            name = item["name"]
+            price = item["price"]
+            desc = item["description"]
+            embed.add_field(name=name, value=f"{price} coins | {desc}")
+
+        await ctx.send(embed=embed)
+
 
 
         
