@@ -183,7 +183,7 @@ class economy(commands.Cog):
     async def slots(self, ctx, *, amount=None):
         await self.open_account(ctx.author)
         if amount == None:
-            responses = random.choice(['You sure you gon deposit nothin?', 'aight, time to deposit 0 coins then '])
+            responses = random.choice(['how much money you gon put into this?'])
             await ctx.send(responses)
             return
 
@@ -200,7 +200,20 @@ class economy(commands.Cog):
 
         final = []
         for i in range(3):
-            emojis = ['🍒',]
+            emojis = ['<:HouseOfBravery:791309903212838952>', '<:balance:791309928052686888>',
+                      '<:HouseOfBrilliance:791310012030255115>', '<a:blurplehypesquad:791311003065384991>',
+                      '<a:hypesquad:791311097760055326>', '<a:HypesquadEvents:791311131041464320>']
+            a = random.choice(emojis)
+            final.append(a)
+        await ctx.send(str(final))
+        if final[0] == final[1] or final[0] == final[2] or final[2] == final[1]:
+            await self.update_bank(ctx.author, 2*amount)
+            await ctx.send(f"You won {2*amount} coins!")
+        else:
+            await self.update_bank(ctx.author, -1*amount)
+            await ctx.send(f"You lost {-1 * amount} coins")
+
+
 
 
         await self.update_bank(ctx.author, -1*amount)
