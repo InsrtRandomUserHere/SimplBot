@@ -156,7 +156,7 @@ class economy(commands.Cog):
         await self.open_account(ctx.author)
         await self.open_account(member)
         if amount == None:
-            responses = random.choice(['You sure you gon deposit nothin?', 'aight, time to send 0 coins then '])
+            responses = random.choice(['You sure you gon donate nothin?', 'aight, time to send 0 coins then '])
             await ctx.send(responses)
             return
 
@@ -178,6 +178,32 @@ class economy(commands.Cog):
         await self.update_bank(ctx.author, -1*amount, 'bank')
         await self.update_bank(member, amount, 'bank')
         await ctx.send(f"You gave {member.mention} {amount} coins!")
+
+    @commands.command()
+    async def slots(self, ctx, *, amount=None):
+        await self.open_account(ctx.author)
+        if amount == None:
+            responses = random.choice(['You sure you gon deposit nothin?', 'aight, time to deposit 0 coins then '])
+            await ctx.send(responses)
+            return
+
+        bal = await self.update_bank(ctx.author)
+        amount = int(amount)
+
+        if amount > bal[1]:
+            await ctx.send("Dude, you don't have that much money in your wallet")
+            return
+
+        if amount < 0:
+            await ctx.send("You can't deposit negative money, come on")
+            return
+
+        final = []
+        for i in range(3):
+            emojis = ['🍒',]
+
+
+        await self.update_bank(ctx.author, -1*amount)
 
 
 
