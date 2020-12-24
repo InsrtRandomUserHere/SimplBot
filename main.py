@@ -97,6 +97,20 @@ async def char(ctx, *, x):
 async def owo(ctx, *, phrase):
 	await ctx.send(phrase.replace("l", "w"))
 
+@client.command()
+async def vote(ctx):
+	embed = discord.Embed(title="Vote for me on some websites!",
+		description="[Vote for me on Top.gg here](https://top.gg/bot/759052573884809246/vote)\n"
+		"[Vote for me on DiscordBotList!](https://discordbotlist.com/bots/simple-bot/upvote)\n",
+		color=embedColor
+	)
+	await ctx.send(embed=embed)
+
+@client.command()
+async def commandcount(ctx):
+	commandsTotal = len(client.commands)
+	await ctx.send(f"{commandsTotal} commands!")
+
 #Command Error Handlers
 @client.event
 async def on_command_error(ctx, error):
