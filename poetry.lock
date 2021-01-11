@@ -67,18 +67,26 @@ version = "1.0.1"
 
 [[package]]
 category = "main"
+description = "Simple Discord Slash Command extension for discord.py."
+name = "discord-py-slash-command"
+optional = false
+python-versions = ">=3.6"
+version = "1.0.7"
+
+[[package]]
+category = "main"
 description = "A Python wrapper for the Discord API"
 name = "discord.py"
 optional = false
 python-versions = ">=3.5.3"
-version = "1.5.0"
+version = "1.6.0"
 
 [package.dependencies]
-aiohttp = ">=3.6.0,<3.7.0"
+aiohttp = ">=3.6.0,<3.8.0"
 
 [package.extras]
-docs = ["sphinx (1.8.5)", "sphinxcontrib-trio (1.1.1)", "sphinxcontrib-websupport"]
-voice = ["PyNaCl (1.3.0)"]
+docs = ["sphinx (3.0.3)", "sphinxcontrib-trio (1.1.2)", "sphinxcontrib-websupport"]
+voice = ["PyNaCl (>=1.3.0,<1.5)"]
 
 [[package]]
 category = "main"
@@ -194,7 +202,7 @@ python-versions = "*"
 version = "2020.12.7"
 
 [metadata]
-content-hash = "7f87580881b3605ca65ceec3da03b8f56a5ca55ec4bba8926b411774bf92e10a"
+content-hash = "867980e43c6ec340a1c14fe4e86f53f48e9b5afd766be5d929f514fbf67a90bf"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -233,9 +241,13 @@ discord = [
     {file = "discord-1.0.1-py3-none-any.whl", hash = "sha256:9d4debb4a37845543bd4b92cb195bc53a302797333e768e70344222857ff1559"},
     {file = "discord-1.0.1.tar.gz", hash = "sha256:ff6653655e342e7721dfb3f10421345fd852c2a33f2cca912b1c39b3778a9429"},
 ]
+discord-py-slash-command = [
+    {file = "discord-py-slash-command-1.0.7.tar.gz", hash = "sha256:9e3c4b0afbf86f47cc9780e461a02691cf4c71b9e6f0823ed8b2270c00b1cf2b"},
+    {file = "discord_py_slash_command-1.0.7-py3-none-any.whl", hash = "sha256:dced6ad336c4d47e1acb7d526de2937e916e7bb964078297a12c3d7e4f26d474"},
+]
 "discord.py" = [
-    {file = "discord.py-1.5.0-py3-none-any.whl", hash = "sha256:3acb61fde0d862ed346a191d69c46021e6063673f63963bc984ae09a685ab211"},
-    {file = "discord.py-1.5.0.tar.gz", hash = "sha256:e71089886aa157341644bdecad63a72ff56b44406b1a6467b66db31c8e5a5a15"},
+    {file = "discord.py-1.6.0-py3-none-any.whl", hash = "sha256:3df148daf6fbcc7ab5b11042368a3cd5f7b730b62f09fb5d3cbceff59bcfbb12"},
+    {file = "discord.py-1.6.0.tar.gz", hash = "sha256:ba8be99ff1b8c616f7b6dcb700460d0222b29d4c11048e74366954c465fdd05f"},
 ]
 flask = [
     {file = "Flask-1.1.2-py2.py3-none-any.whl", hash = "sha256:8a4fdd8936eba2512e9c85df320a37e694c93945b33ef33c89946a340a238557"},

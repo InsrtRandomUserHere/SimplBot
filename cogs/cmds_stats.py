@@ -116,7 +116,7 @@ class Stats(commands.Cog):
         embed.add_field(name=f"{User} Users:", value=f"{len(self.client.users)} Users")
     
         embed.add_field(name=f"{Downlaod} Last Updated:", value=lastUpdate, inline=False)
-        embed.add_field(name=f"{Crown} Owner/Creator:", value="InsrtRandomUserHere#0001", inline=False)
+        embed.add_field(name=f"{Crown} Owner/Creator:", value="InsrtRandomUserHere#4562", inline=False)
         embed.add_field(name=f"{API} API/Library:", value=f"discord.py {discord.__version__}", inline=False)
     
     

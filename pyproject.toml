@@ -11,6 +11,8 @@ Flask = "^1.1.2"
 pyfiglet = "^0.8.post1"
 timestamp = "^0.0.1"
 youtube-dl = "^2020.12.7"
+discord-py-slash-command = "^1.0.7"
+"discord.py" = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
 

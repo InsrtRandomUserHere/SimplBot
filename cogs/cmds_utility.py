@@ -144,7 +144,7 @@ class UtilityCmds(commands.Cog):
         print(time)
         print(reminder)
         user = ctx.message.author
-        embed = discord.Embed(color=embedColor, timestamp=datetime.utcnow())
+        embed = discord.Embed(color=embedColor, timestamp=datetime.datetime.utcnow())
         seconds = 0
         if reminder is None:
             embed.add_field(name='Warning',

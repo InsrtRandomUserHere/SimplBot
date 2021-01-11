@@ -57,6 +57,16 @@ class FunCmds(commands.Cog):
             return
 
     @commands.command()
+    @commands.is_owner()
+    async def fsnipe(self, ctx, member:discord.Member, *, mes):
+            await ctx.message.channel.purge(limit=1)
+            embed = discord.Embed(description=f"{mes}", timestamp=datetime.datetime.utcnow(), color=embedColor)
+            embed.set_author(name=f"{member}", icon_url=member.avatar_url)
+
+            await ctx.send(embed=embed)
+
+
+    @commands.command()
     async def rr(self, ctx, member : discord.Member=None):
         if member == None:
             await ctx.author.send("https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")

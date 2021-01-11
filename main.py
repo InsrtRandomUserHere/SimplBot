@@ -4,7 +4,13 @@ from discord.ext import commands
 from discord.ext.commands import BucketType
 import asyncio
 import os
+from discord_slash import cog_ext
+from discord_slash import SlashCommand
+from discord_slash import SlashContext
 from datetime import datetime
+import random
+
+
 
 #Just importing some modules
 
@@ -17,7 +23,8 @@ intents = discord.Intents.default()
 
 
 
-client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "sb!"), intents=discord.Intents.all(), case_insensitive=True)
+client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
+slash = SlashCommand(client)
 
 #Getting uptime
 client.launch_time = datetime.utcnow()
@@ -162,8 +169,44 @@ async def on_member_join(member):
     joined += 1
 """
 
+@client.command()
+async def credits(ctx):
+	embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
+	embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
+	embed.add_field(name="Command Ideas:", value="ItzHatsu#2515")
+	embed.add_field(name="Quotes Source:", value="[braintancy](https://www.briantracy.com/blog/personal-success/26-motivational-quotes-for-success/)")
+	await ctx.send(embed=embed)
+
+@client.command()
+async def quote(ctx):
+	quotes = [
+		"“The Best Way To Get Started Is To Quit Talking And Begin Doing.”\n\n– Walt Disney",
+		"“The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty.”\n\n– Winston Churchill",
+		"“Don’t Let Yesterday Take Up Too Much Of Today.”\n\n– Will Rogers",
+		"“You Learn More From Failure Than From Success. Don’t Let It Stop You. Failure Builds Character.”\n\n– Unknown",
+		"“It’s Not Whether You Get Knocked Down, It’s Whether You Get Up.”\n\n– Vince Lombardi"
+	]
+	await ctx.send(random.choice(quotes))
 
 
+
+
+@client.command(name="eval")
+@commands.is_owner()
+async def evl(ctx, *, mes):
+	await ctx.send(eval(mes))
+
+@client.command(aliases=["av", "pfp"])
+async def avatar(ctx, *, member:discord.Member=None):
+	if member == None:
+		embed = discord.Embed(title=f"{ctx.author}'s Avatar", color=embedColor)
+		embed.set_image(url=ctx.author.avatar_url)
+
+	else:
+		embed = discord.Embed(title=f"{member}'s Avatar", color=embedColor)
+		embed.set_image(url=member.avatar_url)
+
+	await ctx.reply(embed=embed)
 
 
 #Main Brain

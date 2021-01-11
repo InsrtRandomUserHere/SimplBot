@@ -44,7 +44,7 @@ class Help(commands.Cog):
                                 inline=False)
                 embed.set_footer(text=f'Send: sb/help <command>')
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def ping(self, ctx):
@@ -62,7 +62,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(name='Command:', value=f'```sb/ping```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def membercount(self, ctx):
@@ -80,7 +80,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(name='Command:', value=f'```sb/membercount```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def calculate(self, ctx):
@@ -99,7 +99,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/calc <equation>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(aliases=['8b'], case_insensitive=True)
     async def _8b(self, ctx):
@@ -116,7 +116,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/8b <question>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def coinflip(self, ctx):
@@ -131,7 +131,7 @@ class Help(commands.Cog):
                 embed.add_field(name='Info:', value='Flips a coin', inline=False)
                 embed.add_field(name='Command:', value=f'```sb/coinflip```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def chat(self, ctx):
@@ -150,7 +150,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/chat <message>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def clear(self, ctx):
@@ -174,7 +174,7 @@ class Help(commands.Cog):
                     'You need to have the `manage messages` permission to do this command'
                 )
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(aliases=['y/n'], case_insensitive=True)
     async def yn(self, ctx):
@@ -193,7 +193,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/y/n <question>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def invite(self, ctx):
@@ -212,7 +212,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(name='Command:', value=f'```sb/invite```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def guildcount(self, ctx):
@@ -228,7 +228,7 @@ class Help(commands.Cog):
                     name='Info:', value="Sends how many servers I'm in", inline=False)
                 embed.add_field(name='Command:', value=f'```sb/guildcount```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def support(self, ctx):
@@ -246,7 +246,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(name='Command:', value=f'```sb/support```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def report(self, ctx):
@@ -265,7 +265,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/report <bug>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def kick(self, ctx):
@@ -289,7 +289,7 @@ class Help(commands.Cog):
                     'You need to have the `Kick Members` permission to do this command'
                 )
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def ban(self, ctx):
@@ -313,7 +313,7 @@ class Help(commands.Cog):
                     'You need to have the `Ban Members` permission to do this command'
                 )
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def userinfo(self, ctx):
@@ -332,7 +332,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/userinfo <user>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def serverstats(self, ctx):
@@ -351,7 +351,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/serverstats```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def channelstats(self, ctx):
@@ -370,7 +370,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/channelstats```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def stats(self, ctx):
@@ -389,7 +389,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/stats```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def slant(self, ctx):
@@ -408,7 +408,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/slant <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True, aliases=['3d'])
     async def _3d(self, ctx):
@@ -427,7 +427,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/3d <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def hastag(self, ctx):
@@ -446,7 +446,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/hashtag <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def fade(self, ctx):
@@ -465,7 +465,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/fade <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def dot(self, ctx):
@@ -484,7 +484,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/dot <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def bubble(self, ctx):
@@ -503,7 +503,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/bubble <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def digital(self, ctx):
@@ -522,7 +522,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/digital <text>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def setprefix(self, ctx):
@@ -545,7 +545,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Aliases:', value=f'`changeprefix`, `set_prefix`', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def slowmode(self, ctx):
@@ -567,7 +567,7 @@ class Help(commands.Cog):
                     name='Note:', value=f'You need to have the `Manage Messages` permission to use this command', inline=False)
 			
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def snipe(self, ctx):
@@ -583,7 +583,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/snipe```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def mirror(self, ctx):
@@ -599,7 +599,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/mirror <phrase>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def hack(self, ctx):
@@ -615,7 +615,7 @@ class Help(commands.Cog):
                 embed.add_field(
                     name='Command:', value=f'```sb/hack <member>```', inline=False)
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def wendys(self, ctx):
@@ -632,7 +632,7 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/wendys <thought>```', inline=False)
                 embed.set_image(
                     url="https://preview.redd.it/hebnnjrr53h41.jpg?auto=webp&s=12c85c1862c21e422d762a7b6507f4510b5cff10")
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def logic(self, ctx):
@@ -650,7 +650,7 @@ class Help(commands.Cog):
                 embed.set_image(
                     url="https://i0.wp.com/boingboing.net/wp-content/uploads/2016/11/bcf.png?fit=680%2C445&ssl=1")
 
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def burn(self, ctx):
@@ -667,7 +667,7 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/burn <thought>```', inline=False)
                 embed.set_image(
                     url="https://i.imgflip.com/2bc2vf.jpg")
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def worthless(self, ctx):
@@ -684,7 +684,7 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/worthless <worthlessThing>```', inline=False)
                 embed.set_image(
                     url="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/4d3/template-this-is-worthless-0c6db91aec9c.jpg")
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def sleep(self, ctx):
@@ -701,7 +701,7 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/sleep <thought>```', inline=False)
                 embed.set_image(
                     url="https://i.pinimg.com/originals/28/98/b9/2898b938072b51bcb319c6fbe1721381.jpg")
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
 
     @_help.command(case_insensitive=True)
@@ -717,7 +717,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(
                     name='Command:', value=f'```sb/ID <member>```', inline=False)
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def meme(self, ctx):
@@ -732,7 +732,7 @@ class Help(commands.Cog):
                     inline=False)
                 embed.add_field(
                     name='Command:', value=f'```sb/meme```', inline=False)
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def showerthought(self, ctx):
@@ -749,7 +749,7 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/showerthoughts```', inline=False)
                 embed.add_field(
                     name='Aliases', value=f'```st```', inline=False)
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
 
 
 def setup(client):

@@ -140,7 +140,7 @@ class ImageCmds(commands.Cog):
             img.save("MemeOutputs/lisa_petition.png")
             await ctx.send(file=discord.File("MemeOutputs/lisa_petition.png"))
 
-        elif int(len(x)) >= 100:
+        elif int(len(x)) >= 50:
             await ctx.send("Your sentence is longer than 50 characters. Go under that limit!")
 
     @commands.command(case_insensitive=True)
