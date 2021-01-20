@@ -197,7 +197,7 @@ class ImageCmds(commands.Cog):
         data = BytesIO(await asset.read())
         pfp = Image.open(data)
         pfp = pfp.resize((255, 255))
-        draw = ImageDraw.Draw(ID)
+        draw = ImageDraw.Draw(Template)
 
         Template.paste(pfp, (200, 97))
         Template.save("OtherImages/Output/Wanted.png")
