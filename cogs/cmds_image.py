@@ -202,6 +202,8 @@ class ImageCmds(commands.Cog):
         Template.paste(pfp, (200, 97))
         Template.save("OtherImages/Output/Wanted.png")
 
+        await ctx.reply(file=discord.File("OtherImages/Output/Wanted.png"))
+
 
 
 
