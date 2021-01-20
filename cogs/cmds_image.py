@@ -188,7 +188,7 @@ class ImageCmds(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1,5, BucketType.user)
-    async def wanted(self, ctx, member: discord.Member):
+    async def wanted(self, ctx, user: discord.Member):
         if user == None:
             user = ctx.author
 
