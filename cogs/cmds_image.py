@@ -188,7 +188,7 @@ class ImageCmds(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1,5, BucketType.user)
-    async def wanted(self, ctx, user: discord.Member):
+    async def wanted(self, ctx, user: discord.Member=None):
         if user == None:
             user = ctx.author
 
@@ -199,7 +199,7 @@ class ImageCmds(commands.Cog):
         pfp = pfp.resize((255, 255))
         draw = ImageDraw.Draw(Template)
 
-        Template.paste(pfp, (200, 97))
+        Template.paste(pfp, (97, 200))
         Template.save("OtherImages/Output/Wanted.png")
 
         await ctx.reply(file=discord.File("OtherImages/Output/Wanted.png"))
