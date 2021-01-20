@@ -192,7 +192,7 @@ class ImageCmds(commands.Cog):
         if user == None:
             user = ctx.author
 
-        Template = Image.open("OtherImages/Template/DiscordUserIDTemplate.png")
+        Template = Image.open("OtherImages/Template/WantedTemplate.jpg")
         asset = user.avatar_url_as(size=128)
         data = BytesIO(await asset.read())
         pfp = Image.open(data)
