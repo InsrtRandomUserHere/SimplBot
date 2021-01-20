@@ -186,5 +186,27 @@ class ImageCmds(commands.Cog):
         elif int(len(x)) >= 2:
             await ctx.send("Your sentence is longer than 36 characters. Go under that limit!")
 
+    @commands.command()
+    @commands.cooldown(1,5, BucketType.user)
+    async def wanted(self, ctx, member: discord.Member):
+        if user == None:
+            user = ctx.author
+
+        Template = Image.open("OtherImages/Template/DiscordUserIDTemplate.png")
+        asset = user.avatar_url_as(size=128)
+        data = BytesIO(await asset.read())
+        pfp = Image.open(data)
+        pfp = pfp.resize((255, 255))
+        draw = ImageDraw.Draw(ID)
+
+        Template.paste(pfp, (200, 97))
+        Template.save("OtherImages/Output/Wanted.png")
+
+
+
+
+
+
+
 def setup(client):
     client.add_cog(ImageCmds(client))
