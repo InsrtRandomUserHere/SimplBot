@@ -7,7 +7,7 @@ embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 
 construction = ["Currenly under maintenance"]
-normal = ['sb/help']
+normal = ['sb/help', 'with fire']
 status = cycle(normal)
 
 
