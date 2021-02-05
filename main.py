@@ -9,7 +9,7 @@ from discord_slash import SlashCommand
 from discord_slash import SlashContext
 from datetime import datetime
 import random
-import urbandictionary as ud
+
 
 
 
@@ -86,8 +86,6 @@ async def help2(ctx):
 async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
-@client.command()
-@commands.has_permissions(kick_members=True)
 
 
 #Shutdown command
@@ -99,25 +97,6 @@ async def shutdownee(ctx):
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
 
-#Shutdown command
-@client.command(name="shutdow")
-@commands.is_owner()
-async def shutdownee(ctx):
-    await ctx.send("Now shutting down")
-    offlinelog = client.get_channel(790619786672734249)
-    await offlinelog.send("🔴 Shutting down by command")
-    await client.logout()
-
-
-@client.command()
-@commands.is_owner()
-async def char(ctx, *, x):
-	await ctx.send(len(x))
-
-@client.command()
-@commands.is_owner()
-async def char(ctx, *, x):
-	await ctx.send(len(x))
 
 @client.command()
 async def owo(ctx, *, phrase):
@@ -207,6 +186,7 @@ async def credits(ctx):
 @commands.is_owner()
 async def evl(ctx, *, mes):
 	await ctx.send(eval(mes))
+
 
 @client.command(aliases=["av", "pfp"])
 async def avatar(ctx, *, member:discord.Member=None):
