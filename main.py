@@ -9,6 +9,7 @@ from discord_slash import SlashCommand
 from discord_slash import SlashContext
 from datetime import datetime
 import random
+import urbandictionary as ud
 
 
 
@@ -24,7 +25,9 @@ intents = discord.Intents.default()
 
 
 client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
-slash = SlashCommand(client)
+slash = SlashCommand(client, auto_register=True)
+
+#client.load_extension('jishaku')
 
 #Getting uptime
 client.launch_time = datetime.utcnow()
@@ -80,20 +83,36 @@ async def help2(ctx):
 
 
 #leave command
-@client.command()
-@commands.has_permissions(kick_members=True)
 async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
+@client.command()
+@commands.has_permissions(kick_members=True)
+
 
 #Shutdown command
-@client.command()
+@client.command(name="shutdow")
 @commands.is_owner()
-async def shutdown(ctx):
+async def shutdownee(ctx):
     await ctx.send("Now shutting down")
     offlinelog = client.get_channel(790619786672734249)
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
+
+#Shutdown command
+@client.command(name="shutdow")
+@commands.is_owner()
+async def shutdownee(ctx):
+    await ctx.send("Now shutting down")
+    offlinelog = client.get_channel(790619786672734249)
+    await offlinelog.send("🔴 Shutting down by command")
+    await client.logout()
+
+
+@client.command()
+@commands.is_owner()
+async def char(ctx, *, x):
+	await ctx.send(len(x))
 
 @client.command()
 @commands.is_owner()
@@ -128,13 +147,20 @@ async def on_command_error(ctx, error):
         await ctx.channel.purge(limit=1)
 
     elif isinstance(error, commands.CommandNotFound):
-        pass
+        await ctx.send("Yeah, no. That command doesn't exist *yet*. If you want to make a command suggestion, do `sb/suggest`")
 
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send("You don't have the permissions to do that")
 
     elif isinstance(error, commands.BotMissingPermissions):
-        await ctx.send("I don't have the permissions to do that")
+        missing = [perm.replace('_', ' ').replace('guild', 'server').title() for perm in error.missing_perms]
+        if len(missing) > 2:
+            fmt = '{}, and {}'.format("**, **".join(missing[:-1]), missing[-1])
+        else:
+            fmt = ' and '.join(missing)
+        _message = 'I need the **{}** permission(s) to run this command.'.format(fmt)
+        await ctx.send(_message)
+        return
 
     elif isinstance(error, commands.NotOwner):
         await ctx.send('You are not the owner. Only InsrtRandomUserHere#0001 can use this command')
@@ -144,7 +170,7 @@ async def on_command_error(ctx, error):
             'This channel is not marked as NSFW. This command can only be used in a channel that is marked as NSFW')
 
     elif isinstance(error, commands.MemberNotFound):
-        await ctx.send('That member cannot be found')
+        await ctx.send('I can\'t find that user :/')
 
     elif isinstance(error, commands.CommandOnCooldown):
         embed = discord.Embed(title="You are on cooldown!", description=f"Woah! Slow down there pal! You're using this command too fast! Try this command again in **{error.retry_after:,.2f}** seconds", color=embedColor)
@@ -173,23 +199,9 @@ async def on_member_join(member):
 async def credits(ctx):
 	embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
 	embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
-	embed.add_field(name="Command Ideas:", value="ItzHatsu#2515")
-	embed.add_field(name="Quotes Source:", value="[braintancy](https://www.briantracy.com/blog/personal-success/26-motivational-quotes-for-success/)")
+	embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
+
 	await ctx.send(embed=embed)
-
-@client.command()
-async def quote(ctx):
-	quotes = [
-		"“The Best Way To Get Started Is To Quit Talking And Begin Doing.”\n\n– Walt Disney",
-		"“The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty.”\n\n– Winston Churchill",
-		"“Don’t Let Yesterday Take Up Too Much Of Today.”\n\n– Will Rogers",
-		"“You Learn More From Failure Than From Success. Don’t Let It Stop You. Failure Builds Character.”\n\n– Unknown",
-		"“It’s Not Whether You Get Knocked Down, It’s Whether You Get Up.”\n\n– Vince Lombardi"
-	]
-	await ctx.send(random.choice(quotes))
-
-
-
 
 @client.command(name="eval")
 @commands.is_owner()
@@ -208,6 +220,44 @@ async def avatar(ctx, *, member:discord.Member=None):
 
 	await ctx.reply(embed=embed)
 
+
+@client.command()
+@commands.is_owner()
+async def whoisafurry(ctx):
+	await ctx.reply("<@647760649237037096> is! **owo** hi <@647760649237037096>-kun!", mention_author=False)
+
+@client.command()
+@commands.is_owner()
+async def annoy(ctx):
+	randm = random.choice([x for x in ctx.guild.members if not x.bot])
+	await ctx.message.channel.purge(limit=1)
+	await ctx.send(randm.mention, delete_after=0.5)
+
+@client.command()
+async def updatelog(ctx):
+	embed = discord.Embed(
+		description="""
+```diff
+Simple Bot Update Log!
+Last updated: Feb, 4. 2021
+
++Re-worked 8 Ball command! (sb/8b)
++Added Update log command, which is this
++Added Credits command to see who contributed to the bot (sb/credits)
++Added cooldowns to some commands
++Transferred "Text Commands" part in help command to its own section
++Added suggest command. If you have any suggestions to the bot, do "sb/suggest"!
+
+-Removed "membercount" command
+-Removed the deleting of command usage in text commands which caused errors```
+		"""
+	, color=embedColor)
+
+	await ctx.send(embed=embed)
+
+@slash.slash(name="ping")
+async def _slash(ctx): # Normal usage.
+    await ctx.send(content=f"Pong! (`{round(client.latency*1000)}`ms)")
 
 #Main Brain
 keep_alive.keep_alive()

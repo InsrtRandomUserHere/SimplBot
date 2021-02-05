@@ -3,8 +3,8 @@ from discord.ext import commands
 import datetime
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
-lastUpdate = "December 21 2020\n8:00 pm PST"
-version = "1.10.7"
+lastUpdate = "February 4 2021"
+version = "1.11.7"
 """Version Guide:
 Major build number: This indicates a major milestone in the game, increment this when going from beta to release, from release to major updates.
 
@@ -30,11 +30,16 @@ class Stats(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['userinfo'])
-    async def whois(self, ctx, member: discord.Member):
+    async def whois(self, ctx, member: discord.Member=None):
+        if member == None:
+            member = ctx.author
+
         roles = [role for role in member.roles]
         user = ctx.message.author
         hype = [i[0].replace("_", " ").title() for i in user.public_flags
                 if i[1] and "hypesquad" in i[0]]
+
+
 
         embed = discord.Embed(colour=embedColor, timestamp=datetime.datetime.utcnow())
 
@@ -51,16 +56,12 @@ class Stats(commands.Cog):
         embed.add_field(
             name='Nickname in server:', value=member.display_name, inline=False)
 
-        embed.add_field(name='Status: (Desktop)', value=member.desktop_status)
-        embed.add_field(name='Status: (Mobile App)', value=member.mobile_status)
-        embed.add_field(name='Status: (Website)', value=member.web_status)
+        embed.add_field(name='Status: (Desktop)', value=str(member.desktop_status).replace("dnd", "Do not disturb"))
+        embed.add_field(name='Status: (Mobile App)', value=str(member.mobile_status).replace("dnd", "Do not disturb"))
+        embed.add_field(name='Status: (Website)', value=str(member.web_status).replace("dnd", "Do not disturb"))
 
         embed.add_field(
-            name='Represents Discord Officially?:',
-            value=member.system,
-            inline=False)
-        embed.add_field(
-            name='Animated Avatar?:', value=member.is_avatar_animated(), inline=False)
+            name='Animated Avatar?:', value=str(member.is_avatar_animated()).replace("False", "No").replace("True", "Yes"), inline=False)
 
         embed.add_field(
             name=f'Roles ({len(roles)})',
@@ -70,7 +71,7 @@ class Stats(commands.Cog):
         embed.add_field(
             name='Joined this server at:', value=member.joined_at.date(), inline=False)
 
-        embed.add_field(name='Bot?', value=member.bot, inline=False)
+        embed.add_field(name='Bot?', value=str(member.bot).replace("False", "No").replace("True", "Yes"), inline=False)
 
         await ctx.send(embed=embed)
 

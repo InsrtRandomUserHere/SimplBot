@@ -27,23 +27,14 @@ class GenCmds(commands.Cog):
             'Reply hazy, try again', 'Signs point to yes', 'Very doubtful',
             'Without a doubt', 'Yes', 'Yes – definitely', ' You may rely on it'
         ]
-        await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
+        await ctx.reply(f'{random.choice(responses)}\n\n ||Yes, this command has been re-worked. do sb/updatelog to see the complete list of updates||')
 
-    @commands.command()
-    async def membercount(self, ctx):
-        i = 0
-        for j in ctx.guild.members:
-            i = i + 1
-        embed = discord.Embed(
-            title="Member count",
-            description=f"There are {i} members in this server!",
-            colour=embedColor)
-        await ctx.send(embed=embed)
+
 
     @commands.command()
     async def coinflip(self, ctx):
         responses = [f'Heads!', 'Tails!']
-        msg = await ctx.send('Flipping...')
+        msg = await ctx.reply('Flipping...')
         await asyncio.sleep(0.6)
         await msg.edit(content=f'{random.choice(responses)}')
 

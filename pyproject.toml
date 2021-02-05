@@ -13,6 +13,7 @@ timestamp = "^0.0.1"
 youtube-dl = "^2020.12.7"
 discord-py-slash-command = "^1.0.7"
 "discord.py" = "^1.6.0"
+urbandictionary = "^1.1"
 
 [tool.poetry.dev-dependencies]
 

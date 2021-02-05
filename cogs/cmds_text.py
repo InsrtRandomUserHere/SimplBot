@@ -40,51 +40,55 @@ class TextFilter(commands.Cog):
     @commands.command()
     async def slant(self, ctx, *, word):
         fontoutput = self.print_cool1(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command(aliases=['3d'])
     async def _3d(self, ctx, *, word):
         fontoutput = self.print_cool3(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command()
     async def hashtag(self, ctx, *, word):
         fontoutput = self.print_cool4(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command()
     async def fade(self, ctx, *, word):
         fontoutput = self.print_cool5(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command()
     async def dot(self, ctx, *, word):
         fontoutput = self.print_cool6(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command()
     async def bubble(self, ctx, *, word):
         fontoutput = self.print_cool7(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
     @commands.command()
     async def digital(self, ctx, *, word):
         fontoutput = self.self.print_cool8(word)
-        await ctx.channel.purge(limit=1)
+
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
+
+    @commands.command()
+    async def mirror(self, ctx, *, phrase):
+        await ctx.reply(phrase[::-1])
 
 
 def setup(client):

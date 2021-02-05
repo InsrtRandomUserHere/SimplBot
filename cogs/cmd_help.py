@@ -20,18 +20,21 @@ class Help(commands.Cog):
 
                 embed.add_field(
                     name='» General «',
-                    value='`ping`, `membercount`, `calculate`', inline=False)
+                    value='`ping`, `calculate`', inline=False)
 
                 embed.add_field(name="» Fun «",
-                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought` \n`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror` « Text Commands",
+                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`",
                                 inline=False)
+
+                embed.add_field(name="» Text Commands «", 
+								value="`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror`")
 
                 embed.add_field(name="» Image «",
                                 value="`wendys`, `logic`, `worthless`, `burn`, `sleep`, `ID`",
                                 inline=False)
 
                 embed.add_field(name="» Utility «",
-                                value="`invite`, `guildcount`, `support`, `report`, `snipe`, `remind`",
+                                value="`invite`, `guildcount`, `support`, `report`, `snipe`, `avatar`",
                                 inline=False)
 
                 embed.add_field(name="» Moderation «",
@@ -749,6 +752,23 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/showerthoughts```', inline=False)
                 embed.add_field(
                     name='Aliases', value=f'```st```', inline=False)
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def avatar(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Avatar', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Sends the user's avatar",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/avatar <member>```', inline=False)
+                embed.add_field(
+                    name='Aliases', value=f'```\npfp\nav```', inline=False)
                 await ctx.reply(embed=embed, mention_author=False)
 
 

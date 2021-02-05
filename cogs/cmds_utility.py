@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands import BucketType
 import datetime
 import asyncio
 
@@ -90,6 +91,30 @@ class UtilityCmds(commands.Cog):
         await ctx.channel.purge(limit=1)
         await ctx.send(embed=embed2)
         await reportchannel.send(embed=embed)
+
+    @commands.command()
+    @commands.cooldown(1, 600, BucketType.user)
+    async def suggest(self, ctx, *, suggestion):
+        reportchannel = self.client.get_channel(806586944767000626)
+
+        embed = discord.Embed(
+            colour=embedColor, title='Suggestion')
+
+        embed.add_field(name='Suggestion:', value=f'{suggestion}')
+        embed.add_field(name='Requested by:', value=ctx.message.author.mention)
+
+
+        embed2 = discord.Embed(
+            description='Your suggestion has been sent successfully!', color=embedColor)
+        x = await reportchannel.send(embed=embed)
+        e = await ctx.send(embed=embed2)
+
+        await x.add_reaction("⬆️")
+        await x.add_reaction("⬇️")
+
+        embed2 = discord.Embed(
+            description='Your suggestion has been sent successfully!')
+
 
     @commands.command(aliases=["InsrtsTestCommand"], case_insensitive=True)
     async def test(self, ctx):

@@ -83,6 +83,9 @@ class FunCmds(commands.Cog):
         attempt = ["Success", "Fail"]
         guess = random.choice(attempt)
         author = ctx.message.author
+        name = member.name.replace(" ", "")
+
+
         if member == None:
             await ctx.send("Who are we hacking? Mention someone to hack")
 
@@ -106,7 +109,7 @@ class FunCmds(commands.Cog):
             await message.edit(content="Hack completed")
             await asyncio.sleep(1)
             await message.edit(
-                content=f"{member.name}'s Info:\nEmail: ||{member.name}42d15C0rD@gmail.com||\nPassword: ||6{reverse[::-1]}9||\nIP Address: ||{randint(110, 255)}.{randint(110, 255)}.69.420||")
+                content=f"{member.name}'s Info:\nEmail: ||{name}42d15C0rD@gmail.com||\nPassword: ||6{reverse[::-1]}9||\nIP Address: ||{randint(110, 255)}.{randint(110, 255)}.69.420||")
 
         elif member is not None and member is not author and guess == "Fail":
             message = await ctx.send(f"Attempting to hack {member}...")
@@ -122,6 +125,7 @@ class FunCmds(commands.Cog):
                     f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The hack command is just a joke")
 
     @commands.command()
+    @commands.cooldown(1, 15, BucketType.user)
     async def shoot(self, ctx, *, member: discord.Member = None):
         scenarios = ["dodges", "Survived", "ShooterGetsArrested"]
         outcome = random.choice(scenarios)
@@ -155,6 +159,7 @@ class FunCmds(commands.Cog):
                 f"After being in jail for a while, {author.mention} found out that an admin of this server saw the scene and called the police")
 
     @commands.command()
+    @commands.cooldown(1, 3, BucketType.user)
     async def meme(self, ctx):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://www.reddit.com/r/memes/hot.json") as response:
