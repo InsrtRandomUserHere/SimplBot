@@ -204,8 +204,32 @@ class ImageCmds(commands.Cog):
 
         await ctx.reply(file=discord.File("OtherImages/Output/Wanted.png"))
 
+    @commands.command()
+    @commands.cooldown(1,5, BucketType.user)
+    async def grave(self, ctx, user: discord.Member=None):
+        if user == None:
+            user = ctx.author
 
+        Template = Image.open("OtherImages/Template/grave.png")
+        asset = user.avatar_url_as(size=512)
+        data = BytesIO(await asset.read())
+        pfp = Image.open(data)
+        pfp = pfp.resize((150, 150))
+        draw = ImageDraw.Draw(Template)
 
+        Template.paste(pfp, (58, 60))
+        Template.save("OtherImages/Output/grave1.png")
+
+        await ctx.reply(file=discord.File("OtherImages/Output/grave1.png"))
+
+    @commands.command()
+    @commands.cooldown(1,5, BucketType.user)
+    async def wasted(self, ctx, user: discord.Member=None):
+        if user == None:
+            user = ctx.author
+
+		
+        await ctx.reply(f"https://some-random-api.ml/canvas/wasted/?avatar={user.avatar_url_as(format='png')}")
 
 
 

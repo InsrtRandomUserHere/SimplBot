@@ -51,7 +51,7 @@ class UtilityCmds(commands.Cog):
         em = discord.Embed(colour=embedColor)
         em.add_field(
             name='Invite me!',
-            value='[Invite me by clicking this link](https://discord.com/api/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=bot)')
+            value='[Invite me by clicking this link](https://discord.com/api/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=bot)\n[Click this one if you want slash commands!](https://discord.com/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=applications.commands%20bot)')
         await ctx.send(embed=em)
 
     @commands.command()

@@ -9,6 +9,10 @@ class TextFilter(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    def print_cool(self, text):
+        cool_text = Figlet()
+        return str(cool_text.renderText(text))
+
     def print_cool1(self, text):
         cool_text = Figlet(font='slant')
         return str(cool_text.renderText(text))
@@ -67,7 +71,7 @@ class TextFilter(commands.Cog):
 
     @commands.command()
     async def dot(self, ctx, *, word):
-        fontoutput = self.print_cool6(word)
+        fontoutput = self.print_cool6(word[:2000])
 
         await ctx.send(
             f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
@@ -89,6 +93,13 @@ class TextFilter(commands.Cog):
     @commands.command()
     async def mirror(self, ctx, *, phrase):
         await ctx.reply(phrase[::-1])
+
+    @commands.command()
+    async def ascii(self, ctx, *, word):
+        fontoutput = self.print_cool(word)
+
+        await ctx.send(
+            f'```\n{fontoutput}\n\nBy: @{ctx.message.author.name}```')
 
 
 def setup(client):
