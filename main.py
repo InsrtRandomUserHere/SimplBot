@@ -15,7 +15,6 @@ from random import randint
 import pyshorteners
 
 
-
 #Just importing some modules
 
 
@@ -86,6 +85,7 @@ async def help2(ctx):
     await ctx.send(embed=embed)
 
 
+<<<<<<< HEAD
 
 #Shutdown command
 @client.command(name="shutdown")
@@ -95,15 +95,25 @@ async def shutdownee(ctx):
     offlinelog = client.get_channel(790619786672734249)
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
+=======
+#leave command
+async def leave(ctx):
+    await ctx.send("Leaving Server")
+    await ctx.guild.leave()
+
+>>>>>>> origin/master
 
 
 
 @client.command()
+<<<<<<< HEAD
 @commands.is_owner()
 async def char(ctx, *, x):
 	await ctx.send(len(x))
 
 @client.command()
+=======
+>>>>>>> origin/master
 async def owo(ctx, *, phrase):
 	await ctx.send(phrase.replace("l", "w"))
 
@@ -196,6 +206,7 @@ async def credits(ctx):
 @commands.is_owner()
 async def evl(ctx, *, mes):
 	await ctx.send(eval(mes))
+
 
 @client.command(aliases=["av", "pfp"])
 async def avatar(ctx, *, member:discord.Member=None):
