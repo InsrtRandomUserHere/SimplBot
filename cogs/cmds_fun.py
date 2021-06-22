@@ -231,8 +231,8 @@ class FunCmds(commands.Cog):
         embed = discord.Embed(title="Truth or Dare", description="Send `Truth` or `T` for truth\nSend `Dare` or `D` for dare", color=embedColor)
         message = await ctx.send(embed=embed)
 
-        message.add_reaction("🇹")
-        message.add_reaction("🇩")
+        await message.add_reaction("🇹")
+        await message.add_reaction("🇩")
         channel = ctx.channel
         def check(reaction, user):
             return user == ctx.author and str(reaction.emoji)
