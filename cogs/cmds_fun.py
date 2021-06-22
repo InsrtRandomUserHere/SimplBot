@@ -328,9 +328,5 @@ class FunCmds(commands.Cog):
             except:
                 await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
-
-
-
-
 def setup(client):
     client.add_cog(FunCmds(client))
