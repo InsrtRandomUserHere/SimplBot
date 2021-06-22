@@ -234,16 +234,20 @@ class FunCmds(commands.Cog):
         def check(user):
             return user == ctx.author and ctx.channel == channel
 
-        ans = await self.client.wait_for('message', check=check, timeout=5.0)
+        ans = await self.client.wait_for('message', check=check, timeout=20.0)
 
-        if ans.lower == "t" or "truth":
-            await ctx.send("Random Question")
+        try:
+            if ans.lower == "t" or "truth":
+                await ctx.send("Random Question")
 
-        elif ans.lower == "d" or "dare":
-            await ctx.send("Random Dare")
+            elif ans.lower == "d" or "dare":
+                await ctx.send("Random Dare")
 
-        else:
-            await ctx.send("Sorry, that is not in the options. Valid options are `T`, `Truth`, `D`, `Dare`")
+            else:
+                await ctx.send("Sorry, that is not in the options. Valid options are `T`, `Truth`, `D`, `Dare`")
+
+        except asyncio.TimeoutError:
+            await ctx.send("You took too long to respond")
 
 
 
