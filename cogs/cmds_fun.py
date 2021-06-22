@@ -234,7 +234,7 @@ class FunCmds(commands.Cog):
         def check(m, user):
             return user == ctx.author and ctx.channel == channel and m.content
 
-        ans = await self.client.wait_for('message', check=check, timeout=20.0)
+        ans = await self.client.wait_for('message', check=check, timeout=20.0, user=ctx.author)
 
         try:
             if ans.lower == "t" or "truth":
