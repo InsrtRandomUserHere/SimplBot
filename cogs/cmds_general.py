@@ -38,13 +38,6 @@ class GenCmds(commands.Cog):
         await asyncio.sleep(0.6)
         await msg.edit(content=f'{random.choice(responses)}')
 
-
-    @commands.command()
-    async def chat(self, ctx, *, message):
-        embed = discord.Embed(description=message, color=embedColor)
-        embed.set_footer(text=f'Message by: {ctx.message.author.name}')
-        await ctx.send(embed=embed)
-
     @commands.command(aliases=['calculate'])
     async def calc(self, ctx, message):
         if '+' in message or '-' in message or '/' in message or '*' in message:

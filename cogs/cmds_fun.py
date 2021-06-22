@@ -67,6 +67,12 @@ class FunCmds(commands.Cog):
 
             await ctx.send(embed=embed)
 
+    @commands.command(aliases=["say"])
+    @commands.cooldown(1, 15, BucketType.user)
+    async def chat(self, ctx, *, message):
+        embed = discord.Embed(description=message, color=embedColor)
+        embed.set_footer(text=f'Message by: {ctx.message.author.name}')
+        await ctx.send(embed=embed)
 
     @commands.command()
     @commands.cooldown(1, 5, BucketType.user)
