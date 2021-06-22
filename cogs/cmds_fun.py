@@ -7,15 +7,16 @@ import random
 from random import randint
 import datetime
 
+
 snipe_message_content = None
 snipe_message_author = None
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 class FunCmds(commands.Cog):
 
-    def __init__(self, client, wait_for):
+    def __init__(self, client):
         self.client = client
-        self.wait_for = wait_for
+
 
 
     @commands.Cog.listener()
@@ -233,7 +234,7 @@ class FunCmds(commands.Cog):
         def check(m, user):
             return user == ctx.author and m.channel == channel
 
-        ans = await self.wait_for('message', check=check, timeout=5.0)
+        ans = await self.client.wait_for('message', check=check, timeout=5.0)
 
         if ans.lower == "t" or "truth":
             await ctx.send("Random Question")
