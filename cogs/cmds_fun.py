@@ -258,8 +258,24 @@ class FunCmds(commands.Cog):
         except asyncio.TimeoutError:
             await ctx.send("Sorry, you took to long to respond")
 
+    @commands.command()
+    async def math(self, ctx):
+        #funcs = random.choice(["+", "-", "/", "*"])
+        funcs = "+"
+        randint1 = randint(10, 100)
+        randint2 = randint(10, 100)
 
+        def check(m):
+            return m.content and m.channel == m.channel and m.author == m.author
 
+        if funcs == "+":
+            await ctx.send(f"{randint1} + {randint2} = ?")
+            m = await self.client.wait_for('message', check=check)
+            if int(m.content) == int(randint1 + randint2):
+                await ctx.send("You are correct!")
+
+            else:
+                await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
 
 
 
