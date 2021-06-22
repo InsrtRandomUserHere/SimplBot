@@ -266,14 +266,14 @@ class FunCmds(commands.Cog):
         randint2 = randint(10, 100)
 
         def check(m):
-            return m.content and m.channel == m.channel and m.author == m.author
+            return m.content and m.channel == m.channel and m.author == ctx.author
 
         if funcs == "+":
-            await ctx.send(f"{randint1} + {randint2} = ?")
+            await ctx.reply(f"{randint1} + {randint2} = ?")
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int(randint1 + randint2):
-                    await ctx.send("You are correct!")
+                    await m.reply("You are correct!")
 
             except:
                 await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
