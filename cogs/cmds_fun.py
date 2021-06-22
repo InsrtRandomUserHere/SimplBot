@@ -271,10 +271,11 @@ class FunCmds(commands.Cog):
         if funcs == "+":
             await ctx.send(f"{randint1} + {randint2} = ?")
             m = await self.client.wait_for('message', check=check)
-            if int(m.content) == int(randint1 + randint2):
-                await ctx.send("You are correct!")
+            try:
+                if int(m.content) == int(randint1 + randint2):
+                    await ctx.send("You are correct!")
 
-            else:
+            except:
                 await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
 
 
