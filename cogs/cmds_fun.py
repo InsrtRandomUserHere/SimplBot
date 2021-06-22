@@ -67,6 +67,7 @@ class FunCmds(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(1, 5, BucketType.user)
     async def rr(self, ctx, member : discord.Member=None):
         if member == None:
             await ctx.author.send("https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
@@ -127,7 +128,7 @@ class FunCmds(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 15, BucketType.user)
     async def shoot(self, ctx, *, member: discord.Member = None):
-        scenarios = ["dodges", "Survived", "ShooterGetsArrested"]
+        scenarios = ["dodges", "Survived", "ShooterGetsArrested", "shot"]
         outcome = random.choice(scenarios)
         author = ctx.message.author
 
@@ -158,6 +159,12 @@ class FunCmds(commands.Cog):
             await ctx.send(
                 f"After being in jail for a while, {author.mention} found out that an admin of this server saw the scene and called the police")
 
+        if member is not None and member is not author and outcome == "shot":
+            message = await ctx.send(f"{author.mention} shot {member}...")
+            await asyncio.sleep(3)
+            await message.edit(content=f"Looks like {member} didn't stood a chance against that bullet")
+
+
     @commands.command()
     @commands.cooldown(1, 3, BucketType.user)
     async def meme(self, ctx):
@@ -186,6 +193,19 @@ class FunCmds(commands.Cog):
         em.set_image(url=image_url)
         em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=em)
+
+    @commands.command()
+    async def rate(self, ctx, *, whattorate=None):
+        if whattorate == None:
+            await ctx.send("wait, what am i gonna rate? I can't rate nothing")
+
+        botrate = randint(0, 100)
+        responses = [f"I'd say about {botrate}/100",
+                     f"It's gonna be {botrate}/100 for me",
+                     f"idk about the others but for me, it's a solid {botrate}/100",
+                     f"That's a {botrate}/100 for me"]
+        if whattorate is not None:
+            await ctx.reply(random.choice(responses))
 
 
 

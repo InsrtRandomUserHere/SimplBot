@@ -23,7 +23,7 @@ class Help(commands.Cog):
                     value='`ping`, `calculate`', inline=False)
 
                 embed.add_field(name="» Fun «",
-                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`",
+                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`",
                                 inline=False)
 
                 embed.add_field(name="» Text Commands «", 
@@ -55,10 +55,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def ping(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Ping', colour=embedColor)
 
@@ -73,10 +70,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def membercount(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Member count', colour=embedColor)
 
@@ -91,10 +85,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def calculate(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Calculate', colour=embedColor)
 
@@ -110,10 +101,7 @@ class Help(commands.Cog):
     @_help.command(aliases=['8b'], case_insensitive=True)
     async def _8b(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='8 Ball', colour=embedColor)
 
@@ -127,10 +115,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def coinflip(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Coin flip', colour=embedColor)
 
@@ -142,10 +127,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def chat(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Chat', colour=embedColor)
 
@@ -161,10 +143,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def clear(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Clear', colour=embedColor)
 
@@ -185,10 +164,7 @@ class Help(commands.Cog):
     @_help.command(aliases=['y/n'], case_insensitive=True)
     async def yn(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Yes or No', colour=embedColor)
 
@@ -204,10 +180,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def invite(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Invite', colour=embedColor)
 
@@ -223,10 +196,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def guildcount(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Server Count', colour=embedColor)
 
@@ -239,10 +209,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def support(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Support Server', colour=embedColor)
 
@@ -257,10 +224,6 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def report(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
-
-                
                 embed = discord.Embed(
                     title='Report', colour=embedColor)
 
@@ -276,10 +239,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def kick(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Kick', colour=embedColor)
 
@@ -300,10 +260,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def ban(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='ban', colour=embedColor)
 
@@ -324,10 +281,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def userinfo(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='User Info', colour=embedColor)
 
@@ -343,10 +297,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def serverstats(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Server Stats', colour=embedColor)
 
@@ -362,10 +313,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def channelstats(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Channel Stats', colour=embedColor)
 
@@ -381,10 +329,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def stats(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Bot Stats', colour=embedColor)
 
@@ -400,10 +345,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def slant(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Slant', colour=embedColor)
 
@@ -419,10 +361,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True, aliases=['3d'])
     async def _3d(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='3D', colour=embedColor)
 
@@ -438,10 +377,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def hastag(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Hashtag', colour=embedColor)
 
@@ -457,10 +393,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def fade(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Fade', colour=embedColor)
 
@@ -476,10 +409,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def dot(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Dot', colour=embedColor)
 
@@ -495,10 +425,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def bubble(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Bubble', colour=embedColor)
 
@@ -514,10 +441,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def digital(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Digital', colour=embedColor)
 
@@ -533,10 +457,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def setprefix(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Set Prefix', colour=embedColor)
 
@@ -556,10 +477,7 @@ class Help(commands.Cog):
     @_help.command(case_insensitive=True)
     async def slowmode(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                
 
-                
                 embed = discord.Embed(
                     title='Set Slowmode', colour=embedColor)
 
@@ -772,6 +690,37 @@ class Help(commands.Cog):
                     name='Command:', value=f'```sb/avatar <member>```', inline=False)
                 embed.add_field(
                     name='Aliases', value=f'```\npfp\nav```', inline=False)
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def rate(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Rate', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Rates something that you say from 1-100",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/rate <anything>```', inline=False)
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def rr(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='???', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Why not try it? :) It's optional to also mention a member on it",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/rr <member>```', inline=False)
+
                 await ctx.reply(embed=embed, mention_author=False)
 
 

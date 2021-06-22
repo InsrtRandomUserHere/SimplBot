@@ -10,25 +10,17 @@ from discord_slash import SlashContext
 from discord_slash.utils import manage_commands
 from datetime import datetime
 import random
-import urbandictionary as ud
 from random import randint
 import pyshorteners
-
-
 #Just importing some modules
-
 
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 #The color for embeds
 
 intents = discord.Intents.default()
-
-
-
 client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
 slash = SlashCommand(client, auto_register=True)
-
 
 client.load_extension('jishaku')
 
@@ -37,7 +29,6 @@ client.launch_time = datetime.utcnow()
 
 #Removing default help command
 client.remove_command('help')
-
 
 #For loading in some cogs
 @client.command()
@@ -84,9 +75,6 @@ async def help2(ctx):
 
     await ctx.send(embed=embed)
 
-
-<<<<<<< HEAD
-
 #Shutdown command
 @client.command(name="shutdown")
 @commands.is_owner()
@@ -95,41 +83,18 @@ async def shutdownee(ctx):
     offlinelog = client.get_channel(790619786672734249)
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
-=======
 #leave command
+
+@client.command()
+@commands.has_permissions(kick_members=True)
 async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
 
->>>>>>> origin/master
-
-
-
-@client.command()
-<<<<<<< HEAD
-@commands.is_owner()
-async def char(ctx, *, x):
-	await ctx.send(len(x))
-
-@client.command()
-=======
->>>>>>> origin/master
-async def owo(ctx, *, phrase):
-	await ctx.send(phrase.replace("l", "w"))
-
-@client.command()
-async def vote(ctx):
-	embed = discord.Embed(title="Vote for me on some websites!",
-		description="[Vote for me on Top.gg here](https://top.gg/bot/759052573884809246/vote)\n"
-		"[Vote for me on DiscordBotList!](https://discordbotlist.com/bots/simple-bot/upvote)\n",
-		color=embedColor
-	)
-	await ctx.send(embed=embed)
-
 @client.command()
 async def commandcount(ctx):
-	commandsTotal = len(client.commands)
-	await ctx.send(f"{commandsTotal} commands!")
+    commandsTotal = len(client.commands)
+    await ctx.send(f"{commandsTotal} commands!")
 
 #Command Error Handlers
 @client.event
@@ -179,10 +144,10 @@ async def on_command_error(ctx, error):
 #Just incase i need this
 @client.event
 async def on_message(msg):
-	if msg.content == "F":
-		await msg.channel.send(f"{msg.author.mention} has paid respects")
+    if msg.content == "F":
+        await msg.channel.send(f"{msg.author.mention} has paid respects")
 
-	await client.process_commands(msg)
+    await client.process_commands(msg)
 
 
 #This too
@@ -195,48 +160,36 @@ async def on_member_join(member):
 
 @client.command()
 async def credits(ctx):
-	embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
-	embed.add_field(name="Main Developer/Creator", value="InsrtRandomUserHere#4562", inline=False)
-	embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
-	embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
+    embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
+    embed.add_field(name="Main Developer/Creator", value="InsrtRandomUserHere#4562", inline=False)
+    embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
+    embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
 
-	await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
 
 @client.command(name="eval")
 @commands.is_owner()
 async def evl(ctx, *, mes):
-	await ctx.send(eval(mes))
+    await ctx.send(eval(mes))
 
 
 @client.command(aliases=["av", "pfp"])
 async def avatar(ctx, *, member:discord.Member=None):
-	if member == None:
-		embed = discord.Embed(title=f"{ctx.author}'s Avatar", color=embedColor)
-		embed.set_image(url=ctx.author.avatar_url)
+    if member == None:
+        embed = discord.Embed(title=f"{ctx.author}'s Avatar", color=embedColor)
+        embed.set_image(url=ctx.author.avatar_url)
 
-	else:
-		embed = discord.Embed(title=f"{member}'s Avatar", color=embedColor)
-		embed.set_image(url=member.avatar_url)
+    else:
+        embed = discord.Embed(title=f"{member}'s Avatar", color=embedColor)
+        embed.set_image(url=member.avatar_url)
 
-	await ctx.reply(embed=embed)
+    await ctx.reply(embed=embed)
 
-
-@client.command()
-@commands.is_owner()
-async def whoisafurry(ctx):
-	await ctx.reply("<@647760649237037096> is! **owo** hi <@647760649237037096>-kun!", mention_author=False)
-
-@client.command()
-@commands.is_owner()
-async def annoy(ctx):
-	randm = random.choice([x for x in ctx.guild.members if not x.bot])
-	await ctx.message.channel.purge(limit=1)
-	await ctx.send(randm.mention, delete_after=0.5)
 
 @client.command()
 async def updatelog(ctx):
-	embed = discord.Embed(
-		description="""
+    embed = discord.Embed(
+        description="""
 ```diff
 Simple Bot Update Log!
 Last updated: Feb, 5. 2021
@@ -254,13 +207,12 @@ Major Update:
 
 -Removed "membercount" command
 -Removed the deleting of command usage in text commands which caused errors```
-		"""
-	, color=embedColor)
+        """
+    , color=embedColor)
 
-	await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
 
 guild_ids = [719972123879407678]
-
 @slash.slash(name="ping", description="Sends the bot's ping!")
 async def _slash(ctx):
     await ctx.send(content=f"Pong! (`{round(client.latency*1000)}`ms)")
@@ -270,26 +222,6 @@ async def _slash(ctx, phrase: str):
     await ctx.send(content="{}".format(phrase.replace("", " ")))
 
 
-
-@client.command()
-async def rate(ctx, *, whattorate=None):
-	if whattorate == None:
-		await ctx.send("wait, what am i gonna rate? I can't rate nothing")
-
-	botrate = randint(0, 100)
-	responses = [f"I'd say about {botrate}/100",
-	f"It's gonna be {botrate}/100 for me",
-	f"idk about the others but for me, it's a solid {botrate}/100",
-	f"That's a {botrate}/100 for me"]
-	if whattorate is not None:
-		await ctx.reply(random.choice(responses))
-
-@client.command()
-async def shorten(ctx, *, urltoshorten):
-	shortner = pyshorteners.Shortener()
-	x = shortner.tinyurl.short(urltoshorten)
-
-	await ctx.reply(f"|| {x} ||")
 
 #Main Brain
 keep_alive.keep_alive()
