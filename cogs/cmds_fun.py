@@ -231,8 +231,8 @@ class FunCmds(commands.Cog):
         embed = discord.Embed(title="Truth or Dare", description="Send `Truth` or `T` for truth\nSend `Dare` or `D` for dare", color=embedColor)
         await ctx.send(embed=embed)
         channel = ctx.channel
-        def check(m, user):
-            return user == ctx.author and m.channel == channel
+        def check(user):
+            return user == ctx.author and ctx.channel == channel
 
         ans = await self.client.wait_for('message', check=check, timeout=5.0)
 
