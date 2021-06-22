@@ -240,15 +240,15 @@ class FunCmds(commands.Cog):
 
         reaction, user = await self.client.wait_for('reaction_add', check=check)
 
-        truth = []
-        dares = []
+        truth = ["If you could be invisible, what is the first thing you would do?"]
+        dares = ["Send the weirdest photo you have"]
 
         try:
             if reaction.emoji == "🇹":
-                await ctx.reply("Random question")
+                await ctx.reply(random.choice(truth))
 
             elif reaction.emoji == "🇩":
-                await ctx.reply("Random dare")
+                await ctx.reply(random.choice(dares))
 
             else:
                 await message.send("Sorry, that is none of the options")

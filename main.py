@@ -11,7 +11,7 @@ from discord_slash.utils import manage_commands
 from datetime import datetime
 import random
 from random import randint
-import pyshorteners
+
 #Just importing some modules
 
 
