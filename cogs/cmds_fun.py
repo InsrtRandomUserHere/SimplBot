@@ -6,7 +6,7 @@ import asyncio
 import random
 from random import randint
 import datetime
-
+import choices
 
 snipe_message_content = None
 snipe_message_author = None
@@ -234,21 +234,19 @@ class FunCmds(commands.Cog):
 
         await message.add_reaction("🇹")
         await message.add_reaction("🇩")
-        channel = ctx.channel
+
         def check(reaction, user):
             return user == ctx.author and str(reaction.emoji)
 
         reaction, user = await self.client.wait_for('reaction_add', check=check)
 
-        truth = ["If you could be invisible, what is the first thing you would do?"]
-        dares = ["Send the weirdest photo you have"]
 
         try:
             if reaction.emoji == "🇹":
-                await ctx.reply(random.choice(truth))
+                await ctx.reply(random.choice(choices.truth))
 
             elif reaction.emoji == "🇩":
-                await ctx.reply(random.choice(dares))
+                await ctx.reply(random.choice(choices.dares))
 
             else:
                 await message.send("Sorry, that is none of the options")

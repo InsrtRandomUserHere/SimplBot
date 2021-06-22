@@ -188,7 +188,7 @@ Last updated: June 22. 2021
 -Link Shortener
 -Vote
 -Owo (Don't ask)
-        """
+```    """
     , color=embedColor)
 
     await ctx.send(embed=embed)
