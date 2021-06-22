@@ -278,7 +278,7 @@ class FunCmds(commands.Cog):
                     await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
 
             except:
-                print("Except add")
+                await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
 
         elif funcs == "-":
@@ -292,7 +292,7 @@ class FunCmds(commands.Cog):
                     await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
 
             except:
-                print("Except Sub")
+                await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
 
         elif funcs == "/":
@@ -307,7 +307,7 @@ class FunCmds(commands.Cog):
 
 
             except:
-                print("Except Div")
+                await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
         elif funcs == "*":
             await ctx.reply(f"{randint1} * {randint2} = ?")
@@ -320,7 +320,7 @@ class FunCmds(commands.Cog):
                     await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
 
             except:
-                print("Except passed in multiplication")
+                await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
 
 
