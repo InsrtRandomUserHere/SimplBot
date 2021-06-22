@@ -228,7 +228,7 @@ class FunCmds(commands.Cog):
     @commands.command(aliases=["tod"])
     async def truthordare(self, ctx):
 
-        embed = discord.Embed(title="Truth or Dare", description="Click 🇹 for truth and click 🇩 for dare", color=embedColor)
+        embed = discord.Embed(title="Truth or Dare", description="Click:\n🇹 - Truth\n🇩 - Dare", color=embedColor)
         message = await ctx.send(embed=embed)
 
         await message.add_reaction("🇹")
