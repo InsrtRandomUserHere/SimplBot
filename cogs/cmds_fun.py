@@ -13,8 +13,9 @@ embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 class FunCmds(commands.Cog):
 
-    def __init__(self, client):
+    def __init__(self, client, wait_for):
         self.client = client
+        self.wait_for = wait_for
 
 
     @commands.Cog.listener()

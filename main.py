@@ -203,7 +203,6 @@ async def _slash(ctx, phrase: str):
     await ctx.send(content="{}".format(phrase.replace("", " ")))
 
 
-
 #Main Brain
 keep_alive.keep_alive()
 token = os.environ.get("Token")
