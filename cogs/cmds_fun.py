@@ -296,14 +296,14 @@ class FunCmds(commands.Cog):
 
 
         elif funcs == "/":
-            await ctx.reply(f"{randint1} ÷ {randint2} = ?")
+            await ctx.reply(f"{randint1*randint2} ÷ {randint2} = ?")
             m = await self.client.wait_for('message', check=check)
             try:
-                if int(m.content) == int(randint1 / randint2):
+                if int(m.content) == int((randint1 * randint2)/randint2):
                     await m.reply("You are correct!")
 
                 else:
-                    await ctx.send(f"Sorry, but the answer was {randint1 / randint2}")
+                    await ctx.send(f"Sorry, but the answer was {(randint1 * randint2)/randint2}")
 
 
             except:
