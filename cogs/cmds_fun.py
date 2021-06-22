@@ -226,6 +226,7 @@ class FunCmds(commands.Cog):
         await message.add_reaction("🇧")
 
     @commands.command(aliases=["tod"])
+    @commands.cooldown(1, 5, BucketType.user)
     async def truthordare(self, ctx):
 
         embed = discord.Embed(title="Truth or Dare", description="Click:\n🇹 - Truth\n🇩 - Dare", color=embedColor)
