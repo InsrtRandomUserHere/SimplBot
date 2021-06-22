@@ -172,20 +172,6 @@ async def credits(ctx):
 async def evl(ctx, *, mes):
     await ctx.send(eval(mes))
 
-
-@client.command(aliases=["av", "pfp"])
-async def avatar(ctx, *, member:discord.Member=None):
-    if member == None:
-        embed = discord.Embed(title=f"{ctx.author}'s Avatar", color=embedColor)
-        embed.set_image(url=ctx.author.avatar_url)
-
-    else:
-        embed = discord.Embed(title=f"{member}'s Avatar", color=embedColor)
-        embed.set_image(url=member.avatar_url)
-
-    await ctx.reply(embed=embed)
-
-
 @client.command()
 async def updatelog(ctx):
     embed = discord.Embed(

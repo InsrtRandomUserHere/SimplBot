@@ -211,6 +211,19 @@ class UtilityCmds(commands.Cog):
             return
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=["av", "pfp"])
+    @commands.cooldown(1, 3, BucketType.user)
+    async def avatar(self, ctx, *, member: discord.Member = None):
+        if member == None:
+            embed = discord.Embed(title=f"{ctx.author}'s Avatar", color=embedColor)
+            embed.set_image(url=ctx.author.avatar_url)
+
+        else:
+            embed = discord.Embed(title=f"{member}'s Avatar", color=embedColor)
+            embed.set_image(url=member.avatar_url)
+
+        await ctx.reply(embed=embed)
+
 
 def setup(client):
     client.add_cog(UtilityCmds(client))
