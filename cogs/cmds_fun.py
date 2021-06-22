@@ -218,7 +218,7 @@ class FunCmds(commands.Cog):
         listofques = ["A. Test1\nB. Test2"]
         print("Passed line 218")
 
-        embed = discord.Embed(title="Would you rather?", color=embedColor, description=random.choice(listofques))
+        embed = discord.Embed(description=random.choice(listofques), title="Would you rather?", color=embedColor)
         print("Passed embed value")
         message = await ctx.send(embed)
         print("Passed message variable")
