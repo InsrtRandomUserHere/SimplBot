@@ -212,6 +212,18 @@ class FunCmds(commands.Cog):
         if whattorate is not None:
             await ctx.reply(random.choice(responses))
 
+    @commands.command(aliases=["wouldyourather"])
+    async def wyr(self, ctx):
+
+        listofques = ["A. Test1\nB. Test2"]
+
+        embed = discord.Embed(title="Would you rather?", color=embedColor, description=random.choice(listofques))
+        message = await ctx.send(embed)
+
+        message.add_reaction("🇦")
+        message.add_reaction("🇧")
+
+
 
 
 def setup(client):

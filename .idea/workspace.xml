@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="889f068b-b8ea-4540-9044-4e63239df37d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/cmds_fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/cmds_fun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
