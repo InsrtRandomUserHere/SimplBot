@@ -223,6 +223,26 @@ class FunCmds(commands.Cog):
         await message.add_reaction("🇦")
         await message.add_reaction("🇧")
 
+    @commands.command(aliases=["tod"])
+    async def truthordare(self, ctx):
+
+        embed = discord.Embed(title="Truth or Dare", description="Send `Truth` or `T` for truth\nSend `Dare` or `D` for dare", color=embedColor)
+        await ctx.send(embed=embed)
+        channel = ctx.channel
+        def check(m, user):
+            return user == ctx.author and m.channel == channel
+
+        ans = await self.wait_for('message', check=check, timeout=5.0)
+
+        if ans.lower == "t" or "truth":
+            await ctx.send("Random Question")
+
+        elif ans.lower == "d" or "dare":
+            await ctx.send("Random Dare")
+
+        else:
+            await ctx.send("Sorry, that is not in the options. Valid options are `T`, `Truth`, `D`, `Dare`")
+
 
 
 
