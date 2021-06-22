@@ -237,7 +237,11 @@ class FunCmds(commands.Cog):
         def check(reaction, user):
             return user == ctx.author and str(reaction.emoji)
 
-        reaction, user = await self.client.wait_for('reaction_add', timeout=5.0, check=check)
+        reaction, user = await self.client.wait_for('reaction_add', check=check)
+
+        truth = []
+        dares = []
+
         try:
             if reaction.emoji == "🇹":
                 await ctx.send("Random question")
