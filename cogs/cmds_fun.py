@@ -238,15 +238,18 @@ class FunCmds(commands.Cog):
             return user == ctx.author and str(reaction.emoji)
 
         reaction, user = await self.client.wait_for('reaction_add', timeout=5.0, check=check)
+        try:
+            if reaction.emoji == "🇹":
+                await ctx.send("Random question")
 
-        if reaction.emoji == "🇹":
-            await ctx.send("Random question")
+            elif reaction.emoji == "🇩":
+                await ctx.send("Random dare")
 
-        elif reaction.emoji == "🇩":
-            await ctx.send("Random dare")
+            else:
+                await ctx.send("Sorry, that is none of the options")
 
-        else:
-            await ctx.send("Sorry, that is none of the options")
+        except asyncio.TimeoutError:
+            await ctx.send("Sorry, you took to long to respond")
 
 
 
