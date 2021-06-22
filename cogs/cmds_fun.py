@@ -216,12 +216,16 @@ class FunCmds(commands.Cog):
     async def wyr(self, ctx):
 
         listofques = ["A. Test1\nB. Test2"]
+        print("Passed line 218")
 
         embed = discord.Embed(title="Would you rather?", color=embedColor, description=random.choice(listofques))
+        print("Passed embed value")
         message = await ctx.send(embed)
+        print("Passed message variable")
 
         message.add_reaction("🇦")
         message.add_reaction("🇧")
+        print("Passed add reaction")
 
 
 
