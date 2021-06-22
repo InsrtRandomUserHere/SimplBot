@@ -242,14 +242,18 @@ class FunCmds(commands.Cog):
 
 
         try:
+            tAmt = len(choices.truth)
+            randTruth = randint(0, tAmt)
+            dAmt = len(choices.dares)
+            randDare = randint(0, dAmt)
             if reaction.emoji == "🇹":
-                await ctx.reply(random.choice(choices.truth))
+                await ctx.reply(choices.truth[randTruth])
 
             elif reaction.emoji == "🇩":
-                await ctx.reply(random.choice(choices.dares))
+                await ctx.reply(choices.dares[randDare])
 
             else:
-                await message.send("Sorry, that is none of the options")
+                await message.reply("Sorry, that is none of the options")
 
         except asyncio.TimeoutError:
             await ctx.send("Sorry, you took to long to respond")
