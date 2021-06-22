@@ -41,6 +41,9 @@ class Help(commands.Cog):
                                 value="`ban`, `kick`, `clear`, `slowmode`",
                                 inline=False)
 
+                embed.add_field(name="» Slash commands « (Beta)",
+                                value="`ping`",
+                                inline=False)
 								
 
                 embed.add_field(name="» Stats «", value="`userinfo`, `serverstats`, `channelstats`, `stats`",

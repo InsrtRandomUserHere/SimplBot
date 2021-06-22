@@ -7,10 +7,12 @@ import os
 from discord_slash import cog_ext
 from discord_slash import SlashCommand
 from discord_slash import SlashContext
+from discord_slash.utils import manage_commands
 from datetime import datetime
 import random
-
-
+import urbandictionary as ud
+from random import randint
+import pyshorteners
 
 
 #Just importing some modules
@@ -27,7 +29,8 @@ intents = discord.Intents.default()
 client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
 slash = SlashCommand(client, auto_register=True)
 
-#client.load_extension('jishaku')
+
+client.load_extension('jishaku')
 
 #Getting uptime
 client.launch_time = datetime.utcnow()
@@ -82,23 +85,35 @@ async def help2(ctx):
     await ctx.send(embed=embed)
 
 
-#leave command
-async def leave(ctx):
-    await ctx.send("Leaving Server")
-    await ctx.guild.leave()
-
+<<<<<<< HEAD
 
 #Shutdown command
-@client.command(name="shutdow")
+@client.command(name="shutdown")
 @commands.is_owner()
 async def shutdownee(ctx):
     await ctx.send("Now shutting down")
     offlinelog = client.get_channel(790619786672734249)
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
+=======
+#leave command
+async def leave(ctx):
+    await ctx.send("Leaving Server")
+    await ctx.guild.leave()
+
+>>>>>>> origin/master
+
 
 
 @client.command()
+<<<<<<< HEAD
+@commands.is_owner()
+async def char(ctx, *, x):
+	await ctx.send(len(x))
+
+@client.command()
+=======
+>>>>>>> origin/master
 async def owo(ctx, *, phrase):
 	await ctx.send(phrase.replace("l", "w"))
 
@@ -162,8 +177,12 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
 
 #Just incase i need this
-"""@client.event
-async def on_message(msg):"""
+@client.event
+async def on_message(msg):
+	if msg.content == "F":
+		await msg.channel.send(f"{msg.author.mention} has paid respects")
+
+	await client.process_commands(msg)
 
 
 #This too
@@ -177,6 +196,7 @@ async def on_member_join(member):
 @client.command()
 async def credits(ctx):
 	embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
+	embed.add_field(name="Main Developer/Creator", value="InsrtRandomUserHere#4562", inline=False)
 	embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
 	embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
 
@@ -219,14 +239,18 @@ async def updatelog(ctx):
 		description="""
 ```diff
 Simple Bot Update Log!
-Last updated: Feb, 4. 2021
+Last updated: Feb, 5. 2021
 
+Minor updates
 +Re-worked 8 Ball command! (sb/8b)
 +Added Update log command, which is this
 +Added Credits command to see who contributed to the bot (sb/credits)
 +Added cooldowns to some commands
 +Transferred "Text Commands" part in help command to its own section
 +Added suggest command. If you have any suggestions to the bot, do "sb/suggest"!
+
+Major Update:
++Added Slash Commands! You need to re-invite the bot using the one with slash commands permission for it to work. Invite link is in invite command (sb/invite)
 
 -Removed "membercount" command
 -Removed the deleting of command usage in text commands which caused errors```
@@ -235,9 +259,37 @@ Last updated: Feb, 4. 2021
 
 	await ctx.send(embed=embed)
 
-@slash.slash(name="ping")
-async def _slash(ctx): # Normal usage.
+guild_ids = [719972123879407678]
+
+@slash.slash(name="ping", description="Sends the bot's ping!")
+async def _slash(ctx):
     await ctx.send(content=f"Pong! (`{round(client.latency*1000)}`ms)")
+
+@slash.slash(name="space", description="Spaces out the letters in your input", options=[manage_commands.create_option(name = "str", option_type=3, description="What you want to space out", required=True)])
+async def _slash(ctx, phrase: str):
+    await ctx.send(content="{}".format(phrase.replace("", " ")))
+
+
+
+@client.command()
+async def rate(ctx, *, whattorate=None):
+	if whattorate == None:
+		await ctx.send("wait, what am i gonna rate? I can't rate nothing")
+
+	botrate = randint(0, 100)
+	responses = [f"I'd say about {botrate}/100",
+	f"It's gonna be {botrate}/100 for me",
+	f"idk about the others but for me, it's a solid {botrate}/100",
+	f"That's a {botrate}/100 for me"]
+	if whattorate is not None:
+		await ctx.reply(random.choice(responses))
+
+@client.command()
+async def shorten(ctx, *, urltoshorten):
+	shortner = pyshorteners.Shortener()
+	x = shortner.tinyurl.short(urltoshorten)
+
+	await ctx.reply(f"|| {x} ||")
 
 #Main Brain
 keep_alive.keep_alive()
