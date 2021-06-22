@@ -74,7 +74,7 @@ class FunCmds(commands.Cog):
 
         else:
             await member.send(f"https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
-            await member.send(f"You were rickrolled by **{ctx.message.author}**!")		
+            await member.send(f"||You were rickrolled by **{ctx.message.author} ({ctx.author})**!||")
 
     # hack command that im too lazy to put in a cog
     # Obviously this command does not hack anybody
@@ -118,12 +118,17 @@ class FunCmds(commands.Cog):
             await message.edit(
                 content=f"Oh, you thought this was actually gonna hack {member.name}? Nope, this was a trap all along. You have now been reported to Discord for trying to abuse the API")
             await asyncio.sleep(10)
-            try:
-                await ctx.message.author.send(
-                    "Don't worry, you're not actually reported to Discord. The hack command is just a joke")
-            except:
-                await ctx.send(
-                    f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The hack command is just a joke")
+
+            chance1 = randint(1, 5)
+            chance2 = randint(1, 5)
+
+            if chance1 == chance2:
+                try:
+                    await ctx.message.author.send(
+                        "Don't worry, you're not actually reported to Discord. The hack command is just a joke")
+                except:
+                    await ctx.send(
+                        f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The hack command is just a joke")
 
     @commands.command()
     @commands.cooldown(1, 15, BucketType.user)
