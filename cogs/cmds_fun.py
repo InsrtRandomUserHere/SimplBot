@@ -229,25 +229,27 @@ class FunCmds(commands.Cog):
     async def truthordare(self, ctx):
 
         embed = discord.Embed(title="Truth or Dare", description="Send `Truth` or `T` for truth\nSend `Dare` or `D` for dare", color=embedColor)
-        await ctx.send(embed=embed)
+        message = await ctx.send(embed=embed)
+
+        message.add_reaction("🇹")
+        message.add_reaction("🇩")
         channel = ctx.channel
-        def check(m, user):
-            return user == ctx.author and ctx.channel == channel and m.content
+        def check(reaction, user):
+            return user == ctx.author and str(reaction.emoji)
 
-        ans = await self.client.wait_for('message', check=check, timeout=20.0, user=ctx.author)
+        a = reaction, user = await self.client.wait_for('reaction_add', timeout=60.0, check=check)
 
-        try:
-            if ans.lower == "t" or "truth":
-                await ctx.send("Random Question")
+        if a.str(reaction.emoji) == "🇹":
+            await ctx.send("Random question")
 
-            elif ans.lower == "d" or "dare":
-                await ctx.send("Random Dare")
+        elif a.str(reaction.emoji) == "🇩":
+            await ctx.send("Random dare")
 
-            else:
-                await ctx.send("Sorry, that is not in the options. Valid options are `T`, `Truth`, `D`, `Dare`")
+        else:
+            await ctx.send("Sorry, that is none of the options")
 
-        except asyncio.TimeoutError:
-            await ctx.send("You took too long to respond")
+
+
 
 
 
