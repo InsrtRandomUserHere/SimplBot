@@ -192,21 +192,16 @@ async def updatelog(ctx):
         description="""
 ```diff
 Simple Bot Update Log!
-Last updated: Feb, 5. 2021
+Last updated: June 22. 2021
 
-Minor updates
-+Re-worked 8 Ball command! (sb/8b)
-+Added Update log command, which is this
-+Added Credits command to see who contributed to the bot (sb/credits)
-+Added cooldowns to some commands
-+Transferred "Text Commands" part in help command to its own section
-+Added suggest command. If you have any suggestions to the bot, do "sb/suggest"!
++Added Commands:
++RR (Go try it)
++Rate
 
-Major Update:
-+Added Slash Commands! You need to re-invite the bot using the one with slash commands permission for it to work. Invite link is in invite command (sb/invite)
-
--Removed "membercount" command
--Removed the deleting of command usage in text commands which caused errors```
+-Removed Commands:
+-Link Shortener
+-Vote
+-Owo (Don't ask)
         """
     , color=embedColor)
 
