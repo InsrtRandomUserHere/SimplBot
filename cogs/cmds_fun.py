@@ -260,8 +260,7 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     async def math(self, ctx):
-        #funcs = random.choice(["+", "-", "/", "*"])
-        funcs = "+"
+        funcs = random.choice(["+", "-", "/", "*"])
         randint1 = randint(10, 100)
         randint2 = randint(10, 100)
 
@@ -277,6 +276,37 @@ class FunCmds(commands.Cog):
 
             except:
                 await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
+
+        elif funcs == "-":
+            await ctx.reply(f"{randint1} - {randint2} = ?")
+            m = await self.client.wait_for('message', check=check)
+            try:
+                if int(m.content) == int(randint1 - randint2):
+                    await m.reply("You are correct!")
+
+            except:
+                await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
+
+        elif funcs == "/":
+            await ctx.reply(f"{randint1} ÷ {randint2} = ?")
+            m = await self.client.wait_for('message', check=check)
+            try:
+                if int(m.content) == int(randint1 / randint2):
+                    await m.reply("You are correct!")
+
+            except:
+                await ctx.send(f"Sorry, but the answer was {randint1/randint2}")
+
+        elif funcs == "*":
+            await ctx.reply(f"{randint1} * {randint2} = ?")
+            m = await self.client.wait_for('message', check=check)
+            try:
+                if int(m.content) == int(randint1 * randint2):
+                    await m.reply("You are correct!")
+
+            except:
+                await ctx.send(f"Sorry, but the answer was {randint1*randint2}")
+
 
 
 
