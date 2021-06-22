@@ -223,8 +223,8 @@ class FunCmds(commands.Cog):
         message = await ctx.send(embed)
         print("Passed message variable")
 
-        message.add_reaction("🇦")
-        message.add_reaction("🇧")
+        await message.add_reaction("🇦")
+        await message.add_reaction("🇧")
         print("Passed add reaction")
 
 
