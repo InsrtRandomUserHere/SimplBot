@@ -245,13 +245,13 @@ class FunCmds(commands.Cog):
 
         try:
             if reaction.emoji == "🇹":
-                await ctx.send("Random question")
+                await ctx.reply("Random question")
 
             elif reaction.emoji == "🇩":
-                await ctx.send("Random dare")
+                await ctx.reply("Random dare")
 
             else:
-                await ctx.send("Sorry, that is none of the options")
+                await message.send("Sorry, that is none of the options")
 
         except asyncio.TimeoutError:
             await ctx.send("Sorry, you took to long to respond")
