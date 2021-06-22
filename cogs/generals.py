@@ -36,6 +36,12 @@ class GenStuff(commands.Cog):
         embed = discord.Embed(title='Simple Bot join logs', description=f"***{guild.name}*** has added **Simple Bot!**", color = embedColor)
         await channel.send(embed=embed)
 
+    @commands.Cog.listener()
+    async def on_guild_remove(self, guild):
+        channel = self.client.get_channel(790618964245348362)
+        embed = discord.Embed(title='Simple Bot leave logs', description=f"***{guild.name}*** has removed **Simple Bot**", color = embedColor)
+        await channel.send(embed=embed)
+
 
 
 
