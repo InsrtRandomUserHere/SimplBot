@@ -274,8 +274,12 @@ class FunCmds(commands.Cog):
                 if int(m.content) == int(randint1 + randint2):
                     await m.reply("You are correct!")
 
+                else:
+                    await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
+
             except:
-                await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
+                print("Except add")
+
 
         elif funcs == "-":
             await ctx.reply(f"{randint1} - {randint2} = ?")
@@ -284,8 +288,12 @@ class FunCmds(commands.Cog):
                 if int(m.content) == int(randint1 - randint2):
                     await m.reply("You are correct!")
 
+                else:
+                    await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
+
             except:
-                await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
+                print("Except Sub")
+
 
         elif funcs == "/":
             await ctx.reply(f"{randint1} ÷ {randint2} = ?")
@@ -294,8 +302,12 @@ class FunCmds(commands.Cog):
                 if int(m.content) == int(randint1 / randint2):
                     await m.reply("You are correct!")
 
+                else:
+                    await ctx.send(f"Sorry, but the answer was {randint1 / randint2}")
+
+
             except:
-                await ctx.send(f"Sorry, but the answer was {randint1/randint2}")
+                print("Except Div")
 
         elif funcs == "*":
             await ctx.reply(f"{randint1} * {randint2} = ?")
@@ -304,8 +316,11 @@ class FunCmds(commands.Cog):
                 if int(m.content) == int(randint1 * randint2):
                     await m.reply("You are correct!")
 
+                else:
+                    await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
+
             except:
-                await ctx.send(f"Sorry, but the answer was {randint1*randint2}")
+                print("Except passed in multiplication")
 
 
 
