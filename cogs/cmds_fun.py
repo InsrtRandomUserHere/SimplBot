@@ -32,11 +32,11 @@ class FunCmds(commands.Cog):
         else:
             db[str(user.id)] = 0
 
-        db.keys()
+        dict(db.keys())
         return True
 
     async def getData(self):
-        users = db.keys()
+        users = dict(db.keys())
         return users
 
     async def updateScore(self, user):
