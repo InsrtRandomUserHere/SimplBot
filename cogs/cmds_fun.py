@@ -359,10 +359,14 @@ class FunCmds(commands.Cog):
 
             except KeyError:
                 userscore = 0
-                
+
             embed = discord.Embed(title=f"Math Score: {member}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
 
+    @commands.command()
+    async def mathleaderboard(self, ctx):
+        users = db.keys()
+        print(db.keys())
 
 def setup(client):
     client.add_cog(FunCmds(client))
