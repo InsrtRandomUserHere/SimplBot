@@ -365,32 +365,11 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     async def mathleaderboard(self, ctx, x=1):
-        users = list(db.keys())
-        leader_board = {}
-        total = []
+        embed = discord.Embed
+        users = dict(db.keys())
+        for i, (user_id, amt) in enumerate(sorted(users.items(), key=lambda t: t[1])):
+            embed.add_field(name="Test", value="Test")
 
-        for user in users:
-            name = int(user)
-            total_amount = users[user]
-            leader_board[total_amount] = name
-            total.append(total_amount)
-
-        total = sorted(total, reverse=True)
-
-        em = discord.Embed(title=f"Top {x} Highest Scores")
-        index = 1
-
-        for amt in total:
-            id_ = leader_board[amt]
-            member = self.client.get_user(id_)
-            name = member.name
-            em.add_field(name=f"{index}. {name}", value=f"{amt}", inline=False)
-            if index == x:
-                break
-            else:
-                index += 1
-
-        await ctx.send(embed=em)
 
 def setup(client):
     client.add_cog(FunCmds(client))
