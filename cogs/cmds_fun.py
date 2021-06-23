@@ -6,17 +6,44 @@ import asyncio
 import random
 from random import randint
 import datetime
-import choices
+from data import choices
+from data import tempJsonFuncs
+import json
+from replit import db
 
 snipe_message_content = None
 snipe_message_author = None
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 
+
+
 class FunCmds(commands.Cog):
 
     def __init__(self, client):
+        self.tempJsonFuncs = tempJsonFuncs
         self.client = client
 
+    async def openAcc(self, user):
+        users = self.getData()
+
+        if str(user.id) in users:
+            return False
+
+        else:
+            db[str(user.id)] = 0
+
+        db.keys()
+        return True
+
+    async def getData(self):
+        users = db.keys()
+        return users
+
+    async def updateScore(self, user):
+
+        db[str(user.id)] += 1
+        score = db[str(user.id)]
+        return score
 
 
     @commands.Cog.listener()
@@ -269,6 +296,7 @@ class FunCmds(commands.Cog):
         funcs = random.choice(["+", "-", "/", "*"])
         randint1 = randint(10, 100)
         randint2 = randint(10, 100)
+        user = ctx.author
 
         def check(m):
             return m.content and m.channel == m.channel and m.author == ctx.author
@@ -279,6 +307,7 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 + randint2):
                     await m.reply("You are correct!")
+                    db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
@@ -329,6 +358,19 @@ class FunCmds(commands.Cog):
 
             except:
                 await m.reply("Sorry, but that has a string instead of integers (numbers)")
+
+    @commands.command()
+    @commands.cooldown(1, 5, BucketType.user)
+    async def mathscore(self, ctx, member:discord.Member=None):
+        if member == None:
+            await self.openAcc(ctx.author)
+            user = ctx.author
+            users = await self.getData()
+
+            scoreAmt = db[str(user.id)]
+
+            await ctx.send(scoreAmt)
+
 
 def setup(client):
     client.add_cog(FunCmds(client))
