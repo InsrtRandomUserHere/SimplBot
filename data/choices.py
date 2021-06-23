@@ -58,3 +58,8 @@ dares = ["Send the weirdest photo you have",
          "Eat a fruit",
          "Change your Discord user settings",
          "If you're using dark mode, use light mode for 30 seconds.\nIf you're using light mode, use dark mode for 30 seconds."]
+wyr = ["A. Be able to fly\nB. Be able to teleport",
+       "A. Cartoon protagonist\nB. Romance antagonist",
+       "A. Die at 20 without any regrets in life\nB. Die at 100 with a lot of regrets in life",
+       "A. Have your skin color change based on your emotion\nB. Have tattoos based on what you did yesterday",
+       "A. "]

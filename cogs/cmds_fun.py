@@ -281,12 +281,11 @@ class FunCmds(commands.Cog):
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int(randint1 + randint2):
-                    await m.reply("You are correct!")
                     if str(user.id) not in db.keys():
                         db[str(user.id)] = 1
                     else:
                         db[str(user.id)] += 1
-
+                        await m.reply(f"You are correct! Your score is now **{db[str(user.id)]}**")
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
 
@@ -299,11 +298,11 @@ class FunCmds(commands.Cog):
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int(randint1 - randint2):
-                    await m.reply("You are correct!")
                     if str(user.id) not in db.keys():
                         db[str(user.id)] = 1
                     else:
                         db[str(user.id)] += 1
+                        await m.reply(f"You are correct! Your score is now **{db[str(user.id)]}**")
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
@@ -319,12 +318,11 @@ class FunCmds(commands.Cog):
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int((randint1 * randint2)/randint3):
-                    await m.reply("You are correct!")
                     if str(user.id) not in db.keys():
                         db[str(user.id)] = 1
                     else:
                         db[str(user.id)] += 1
-
+                        await m.reply(f"You are correct! Your score is now **{db[str(user.id)]}**")
                 else:
                     await ctx.send(f"Sorry, but the answer was {(randint1 * randint2)/randint3}")
 
@@ -337,31 +335,25 @@ class FunCmds(commands.Cog):
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int(randint1 * randint2):
-                    await m.reply("You are correct!")
                     if str(user.id) not in db.keys():
                         db[str(user.id)] = 1
                     else:
                         db[str(user.id)] += 1
+                    await m.reply(f"You are correct! Your score is now **{db[str(user.id)]}**")
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
             except:
                 await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
-    @commands.command()
+    @commands.command(aliases=["score"])
     @commands.cooldown(1, 5, BucketType.user)
     async def mathscore(self, ctx, member:discord.Member=None):
-
         if member == None:
-
             userscore = db[str(ctx.author.id)]
-
             embed = discord.Embed(title=f"Math Score: {ctx.author}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
         else:
-
             userscore = db[str(member.id)]
-
-
             embed = discord.Embed(title=f"Math Score: {member}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
 

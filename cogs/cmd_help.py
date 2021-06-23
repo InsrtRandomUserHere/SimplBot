@@ -23,7 +23,7 @@ class Help(commands.Cog):
                     value='`ping`, `calculate`', inline=False)
 
                 embed.add_field(name="» Fun «",
-                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`",
+                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`, `TOD`, `WYR`, `Math`",
                                 inline=False)
 
                 embed.add_field(name="» Text Commands «", 
@@ -723,6 +723,77 @@ class Help(commands.Cog):
 
                 await ctx.reply(embed=embed, mention_author=False)
 
+    @_help.command(case_insensitive=True)
+    async def tod(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Truth or Dare', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Asks you either truth or dare and it sends either a question or a dare based on your response",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/tod```', inline=False)
+                embed.add_field(
+                    name='Aliases: ', value=f'```truthordare```', inline=False)
+
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def wyr(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Would you rather', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Asks you a would you rather question",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/wyr```', inline=False)
+                embed.add_field(
+                    name='Aliases: ', value=f'```wouldyourather```', inline=False)
+
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def math(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Math', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Asks you a math question. It may be easy, or it may be hard.",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/wyr```', inline=False)
+                embed.add_field(
+                    name='Aliases: ', value=f'```wouldyourather```', inline=False)
+
+                await ctx.reply(embed=embed, mention_author=False)
+
+    @_help.command(case_insensitive=True)
+    async def mathscore(self, ctx):
+        if ctx.invoked_subcommand is None:
+
+                embed = discord.Embed(
+                    title='Math Score', colour=embedColor)
+
+                embed.add_field(
+                    name='Info:',
+                    value="Sends the amount of questions you got correct in the math command (sb/math)",
+                    inline=False)
+                embed.add_field(
+                    name='Command:', value=f'```sb/mathscore <member>```', inline=False)
+                embed.add_field(
+                    name='Aliases: ', value=f'```score```', inline=False)
+
+                await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
 	client.add_cog(Help(client)) 
