@@ -365,7 +365,7 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     async def mathleaderboard(self, ctx, x=1):
-        users = db.keys()
+        users = list(db.keys())
         leader_board = {}
         total = []
 
