@@ -4,7 +4,7 @@ import datetime
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 lastUpdate = "February 4 2021"
-version = "1.11.7"
+version = "1.12.9"
 """Version Guide:
 Major build number: This indicates a major milestone in the game, increment this when going from beta to release, from release to major updates.
 

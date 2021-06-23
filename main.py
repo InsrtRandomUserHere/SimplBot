@@ -178,11 +178,16 @@ async def updatelog(ctx):
         description="""
 ```diff
 Simple Bot Update Log!
-Last updated: June 22. 2021
+Last updated: June 23. 2021
+Version: 1.12.9
 
 +Added Commands:
 +RR (Go try it)
 +Rate
++Would you rather (sb/wyr)
++Truth or dare (sb/tod)
++Math
++Math Score (sb/score)
 
 -Removed Commands:
 -Link Shortener
