@@ -349,11 +349,17 @@ class FunCmds(commands.Cog):
     @commands.cooldown(1, 5, BucketType.user)
     async def mathscore(self, ctx, member:discord.Member=None):
         if member == None:
-            userscore = db[str(ctx.author.id)]
+            if str(ctx.author.id) not in db.keys():
+                userscore = 0
+            else:
+                userscore = db[str(ctx.author.id)]
             embed = discord.Embed(title=f"Math Score: {ctx.author}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
         else:
-            userscore = db[str(member.id)]
+            if str(member.id) not in db.keys():
+                userscore = 0
+            else:
+                userscore = db[str(member.id)]
             embed = discord.Embed(title=f"Math Score: {member}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
 
