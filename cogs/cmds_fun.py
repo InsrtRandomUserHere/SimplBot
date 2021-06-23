@@ -24,7 +24,7 @@ class FunCmds(commands.Cog):
         self.client = client
 
     async def openAcc(self, user):
-        users = self.getData()
+        users = await self.getData()
 
         if str(user.id) in users:
             return False
