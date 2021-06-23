@@ -20,7 +20,7 @@ embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 intents = discord.Intents.default()
 client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
-slash = SlashCommand(client, auto_register=True)
+
 
 client.load_extension('jishaku')
 
@@ -192,15 +192,6 @@ Last updated: June 22. 2021
     , color=embedColor)
 
     await ctx.send(embed=embed)
-
-guild_ids = [719972123879407678]
-@slash.slash(name="ping", description="Sends the bot's ping!")
-async def _slash(ctx):
-    await ctx.send(content=f"Pong! (`{round(client.latency*1000)}`ms)")
-
-@slash.slash(name="space", description="Spaces out the letters in your input", options=[manage_commands.create_option(name = "str", option_type=3, description="What you want to space out", required=True)])
-async def _slash(ctx, phrase: str):
-    await ctx.send(content="{}".format(phrase.replace("", " ")))
 
 
 #Main Brain
