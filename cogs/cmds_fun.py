@@ -285,7 +285,10 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 + randint2):
                     await m.reply("You are correct!")
-                    db[str(user.id)] += 1
+                    if str(user.id) not in db.keys():
+                        db[str(user.id)] = 1
+                    else:
+                        db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 + randint2}")
@@ -300,7 +303,10 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 - randint2):
                     await m.reply("You are correct!")
-                    db[str(user.id)] += 1
+                    if str(user.id) not in db.keys():
+                        db[str(user.id)] = 1
+                    else:
+                        db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
@@ -317,7 +323,10 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int((randint1 * randint2)/randint3):
                     await m.reply("You are correct!")
-                    db[str(user.id)] += 1
+                    if str(user.id) not in db.keys():
+                        db[str(user.id)] = 1
+                    else:
+                        db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {(randint1 * randint2)/randint3}")
@@ -332,7 +341,10 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 * randint2):
                     await m.reply("You are correct!")
-                    db[str(user.id)] += 1
+                    if str(user.id) not in db.keys():
+                        db[str(user.id)] = 1
+                    else:
+                        db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
