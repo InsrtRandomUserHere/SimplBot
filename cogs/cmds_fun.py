@@ -345,11 +345,21 @@ class FunCmds(commands.Cog):
     async def mathscore(self, ctx, member:discord.Member=None):
 
         if member == None:
-            userscore = db[str(ctx.author.id)]
+            try:
+                userscore = db[str(ctx.author.id)]
+
+            except KeyError:
+                userscore = 0
+
             embed = discord.Embed(title=f"Math Score: {ctx.author}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
         else:
-            userscore = db[str(member.id)]
+            try:
+                userscore = db[str(member.id)]
+
+            except KeyError:
+                userscore = 0
+                
             embed = discord.Embed(title=f"Math Score: {member}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
 
