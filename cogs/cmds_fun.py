@@ -7,8 +7,6 @@ import random
 from random import randint
 import datetime
 from data import choices
-from data import tempJsonFuncs
-import json
 from replit import db
 
 snipe_message_content = None
@@ -20,7 +18,6 @@ embedColor = discord.Colour.from_rgb(107, 37, 249)
 class FunCmds(commands.Cog):
 
     def __init__(self, client):
-        self.tempJsonFuncs = tempJsonFuncs
         self.client = client
 
 
@@ -345,10 +342,8 @@ class FunCmds(commands.Cog):
                         db[str(user.id)] = 1
                     else:
                         db[str(user.id)] += 1
-
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
-
             except:
                 await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
