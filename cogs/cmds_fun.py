@@ -23,28 +23,6 @@ class FunCmds(commands.Cog):
         self.tempJsonFuncs = tempJsonFuncs
         self.client = client
 
-    async def openAcc(self, user):
-        users = await self.getData()
-
-        if str(user.id) in users:
-            return False
-
-        else:
-            db[str(user.id)] = 0
-
-        dict(db.keys())
-        return True
-
-    async def getData(self):
-        users = dict(db.keys())
-        return users
-
-    async def updateScore(self, user):
-
-        db[str(user.id)] += 1
-        score = db[str(user.id)]
-        return score
-
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
@@ -322,6 +300,7 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 - randint2):
                     await m.reply("You are correct!")
+                    db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 - randint2}")
@@ -338,6 +317,7 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int((randint1 * randint2)/randint3):
                     await m.reply("You are correct!")
+                    db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {(randint1 * randint2)/randint3}")
@@ -352,6 +332,7 @@ class FunCmds(commands.Cog):
             try:
                 if int(m.content) == int(randint1 * randint2):
                     await m.reply("You are correct!")
+                    db[str(user.id)] += 1
 
                 else:
                     await ctx.send(f"Sorry, but the answer was {randint1 * randint2}")
@@ -363,13 +344,8 @@ class FunCmds(commands.Cog):
     @commands.cooldown(1, 5, BucketType.user)
     async def mathscore(self, ctx, member:discord.Member=None):
         if member == None:
-            await self.openAcc(ctx.author)
-            user = ctx.author
-            users = await self.getData()
-
-            scoreAmt = db[str(user.id)]
-
-            await ctx.send(scoreAmt)
+            userscore = db[str(ctx.author.id)]
+            await ctx.send(userscore)
 
 
 def setup(client):
