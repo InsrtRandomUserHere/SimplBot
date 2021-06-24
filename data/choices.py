@@ -88,5 +88,7 @@ wyr = ["A. Be able to fly\nB. Be able to teleport",
 
 
 
-Trues = ["This is true"]
-Falses = ["This is false"]
+Trues = ["This is true",
+         "This is true2"]
+Falses = ["This is false",
+          "This is false2"]
