@@ -89,7 +89,7 @@ wyr = ["A. Be able to fly\nB. Be able to teleport",
 
 
 Trues = ["The 'Mona Lisa' painting has no eyebrows",
-         "The strongest muscle in the body",
+         "The tongue is strongest muscle in the body",
          "Discord HQ is located at San Francisco, California",
          "The Earth is tilted at 23.5°",
          "The first speeding ticket given was for going 8 mph",
