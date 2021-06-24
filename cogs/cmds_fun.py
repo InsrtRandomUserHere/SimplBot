@@ -367,15 +367,16 @@ class FunCmds(commands.Cog):
             return user == ctx.author and str(reaction.emoji)
 
         tAmt = len(choices.Trues)
-        randTrue = randint(1, tAmt)
+        randTrue = randint(0, tAmt)
         fAmt = len(choices.Falses)
-        randFalse = randint(1, fAmt)
+        randFalse = randint(0, fAmt)
 
         if j == "true":
             embed = discord.Embed(title="True or False?", description=f"{choices.Trues[randTrue]}\n\nClick if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
             message = await ctx.reply(embed=embed)
             await message.add_reaction("🇹")
             await message.add_reaction("🇫")
+            await ctx.send(choices.Trues[randTrue])
 
             reaction, user = await self.client.wait_for('reaction_add', check=check)
 
