@@ -88,7 +88,18 @@ wyr = ["A. Be able to fly\nB. Be able to teleport",
 
 
 
-Trues = ["This is true",
-         "This is true2"]
-Falses = ["This is false",
-          "This is false2"]
+Trues = ["The 'Mona Lisa' painting has no eyebrows",
+         "The strongest muscle in the body",
+         "Discord HQ is located at San Francisco, California",
+         "The Earth is tilted at 23.5°",
+         "The first speeding ticket given was for going 8 mph",
+         "The heads on Easter Island have bodies",
+         "The moon experiences moonquakes",
+         "The hottest place on Earth is in Libya",
+         "Rabbits can't puke",
+         "The most used word in the english language is the word 'The'"]
+Falses = ["Discord HQ is located at New York City",
+          "There are only 3 states of matter: solid, liquid, and gas",
+          "Humans only use 10% of their brains",
+          "Bats are blind",
+          "You can still get the 'Verified Bot Developer' badge on Discord"]

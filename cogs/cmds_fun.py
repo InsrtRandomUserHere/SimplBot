@@ -376,7 +376,6 @@ class FunCmds(commands.Cog):
             message = await ctx.reply(embed=embed)
             await message.add_reaction("🇹")
             await message.add_reaction("🇫")
-            await ctx.send(len(choices.Trues))
 
             reaction, user = await self.client.wait_for('reaction_add', check=check)
 
