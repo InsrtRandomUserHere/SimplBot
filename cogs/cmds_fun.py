@@ -372,7 +372,7 @@ class FunCmds(commands.Cog):
         randFalse = randint(0, fAmt)
 
         if j == "true":
-            embed = discord.Embed(title="True or False?", description="{choices.Falses[randFalse]}\n\nClick if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
+            embed = discord.Embed(title="True or False?", description=f"{choices.Trues[randTrue]}\n\nClick if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
             message = await ctx.reply(embed=embed)
             await message.add_reaction("🇹")
             await message.add_reaction("🇫")
