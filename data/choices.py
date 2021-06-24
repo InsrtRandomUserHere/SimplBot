@@ -62,4 +62,31 @@ wyr = ["A. Be able to fly\nB. Be able to teleport",
        "A. Cartoon protagonist\nB. Romance antagonist",
        "A. Die at 20 without any regrets in life\nB. Die at 100 with a lot of regrets in life",
        "A. Have your skin color change based on your emotion\nB. Have tattoos based on what you did yesterday",
-       "A. "]
+       ""]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trues = ["This is true"]
+Falses = ["This is false"]

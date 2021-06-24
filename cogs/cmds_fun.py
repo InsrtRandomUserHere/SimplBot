@@ -247,8 +247,6 @@ class FunCmds(commands.Cog):
             return user == ctx.author and str(reaction.emoji)
 
         reaction, user = await self.client.wait_for('reaction_add', check=check)
-
-
         try:
             tAmt = len(choices.truth)
             randTruth = randint(0, tAmt)
@@ -314,7 +312,6 @@ class FunCmds(commands.Cog):
         elif funcs == "/":
             randint3 = random.choice([randint1, randint2])
             await ctx.reply(f"{randint1*randint2} ÷ {randint3} = ?")
-
             m = await self.client.wait_for('message', check=check)
             try:
                 if int(m.content) == int((randint1 * randint2)/randint3):
@@ -325,8 +322,6 @@ class FunCmds(commands.Cog):
                         await m.reply(f"You are correct! Your score is now **{db[str(user.id)]}**")
                 else:
                     await ctx.send(f"Sorry, but the answer was {(randint1 * randint2)/randint3}")
-
-
             except:
                 await m.reply("Sorry, but that has a string instead of integers (numbers)")
 
@@ -363,12 +358,47 @@ class FunCmds(commands.Cog):
             embed = discord.Embed(title=f"Math Score: {member}", description=userscore, color=embedColor)
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def mathleaderboard(self, ctx, x=1):
-        embed = discord.Embed
-        users = dict(db.keys())
-        for i, (user_id, amt) in enumerate(sorted(users.items(), key=lambda t: t[1])):
-            embed.add_field(name="Test", value="Test")
+    @commands.command(aliases=["trueorfalse"])
+    @commands.cooldown(1, 5, BucketType.user)
+    async def tof(self, ctx):
+        j = random.choice(["true", "false"])
+
+        def check(reaction, user):
+            return user == ctx.author and str(reaction.emoji)
+
+        if j == "true":
+            embed = discord.Embed(title=choices.Trues[randint(0, len(choices.Trues))], description="Click if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
+            message = await ctx.reply(embed=embed)
+            await message.add_reaction("🇹")
+            await message.add_reaction("🇫")
+
+            reaction, user = await self.client.wait_for('reaction_add', check=check)
+
+            if str(reaction.emoji) == "🇹":
+                await message.reply("You are correct! This statement is true!")
+
+            else:
+                await message.reply("Sorry, but the statement is true")
+
+        if j == "false":
+            embed = discord.Embed(title=choices.Falses[randint(0, len(choices.Falses))], description="Click if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
+            message = await ctx.reply(embed=embed)
+            await message.add_reaction("🇹")
+            await message.add_reaction("🇫")
+
+            reaction, user = await self.client.wait_for('reaction_add', check=check)
+
+            if str(reaction.emoji) == "🇫":
+                await message.reply("You are correct! This statement is false!")
+
+            else:
+                await message.reply("Sorry, but the statement is false")
+
+
+
+
+
+
 
 
 def setup(client):

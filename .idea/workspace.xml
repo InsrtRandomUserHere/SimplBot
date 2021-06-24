@@ -20,12 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="889f068b-b8ea-4540-9044-4e63239df37d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cogs/cmds_fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/cmds_fun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/choices.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/choices.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,7 +46,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -91,21 +105,37 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1659" height="230" key="GridCell.Tab.0.bottom" timestamp="1624364586006">
+    <state x="514" y="336" key="#Notifications" timestamp="1624426359692">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.bottom/0.25.1680.966@0.25.1680.966" timestamp="1624364586006" />
-    <state width="1659" height="230" key="GridCell.Tab.0.center" timestamp="1624364586004">
+    <state x="514" y="336" key="#Notifications/0.25.1680.966@0.25.1680.966" timestamp="1624426359692" />
+    <state x="578" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1624439234690">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.center/0.25.1680.966@0.25.1680.966" timestamp="1624364586004" />
-    <state width="1659" height="230" key="GridCell.Tab.0.left" timestamp="1624364586004">
+    <state x="578" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.966@0.25.1680.966" timestamp="1624439234690" />
+    <state width="1659" height="230" key="GridCell.Tab.0.bottom" timestamp="1624370999736">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.left/0.25.1680.966@0.25.1680.966" timestamp="1624364586004" />
-    <state width="1659" height="230" key="GridCell.Tab.0.right" timestamp="1624364586005">
+    <state width="1659" height="230" key="GridCell.Tab.0.bottom/0.25.1680.966@0.25.1680.966" timestamp="1624370999736" />
+    <state width="1659" height="230" key="GridCell.Tab.0.center" timestamp="1624370999734">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.right/0.25.1680.966@0.25.1680.966" timestamp="1624364586005" />
+    <state width="1659" height="230" key="GridCell.Tab.0.center/0.25.1680.966@0.25.1680.966" timestamp="1624370999734" />
+    <state width="1659" height="230" key="GridCell.Tab.0.left" timestamp="1624370999733">
+      <screen x="0" y="25" width="1680" height="966" />
+    </state>
+    <state width="1659" height="230" key="GridCell.Tab.0.left/0.25.1680.966@0.25.1680.966" timestamp="1624370999733" />
+    <state width="1659" height="230" key="GridCell.Tab.0.right" timestamp="1624370999735">
+      <screen x="0" y="25" width="1680" height="966" />
+    </state>
+    <state width="1659" height="230" key="GridCell.Tab.0.right/0.25.1680.966@0.25.1680.966" timestamp="1624370999735" />
+    <state x="349" y="144" key="SettingsEditor" timestamp="1624436537246">
+      <screen x="0" y="25" width="1680" height="966" />
+    </state>
+    <state x="349" y="144" key="SettingsEditor/0.25.1680.966@0.25.1680.966" timestamp="1624436537246" />
+    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup" timestamp="1624428065035">
+      <screen x="0" y="25" width="1680" height="966" />
+    </state>
+    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup/0.25.1680.966@0.25.1680.966" timestamp="1624428065035" />
   </component>
 </project>
