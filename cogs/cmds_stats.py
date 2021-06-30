@@ -137,7 +137,7 @@ class Stats(commands.Cog):
         g = ctx.guild
 
         embed = discord.Embed(
-            title='Server Info:', colour=embedColor, timestamp=datetime.datetime.utcnow())
+            title=f'Server Info: {g.name}', colour=embedColor, timestamp=datetime.datetime.utcnow())
 
         total_text_channels = len(g.text_channels)
         total_voice_channels = len(g.voice_channels)
@@ -152,8 +152,7 @@ class Stats(commands.Cog):
         embed.add_field(name='Verification Level:', value=g.verification_level)
 
         embed.add_field(name='Boost Level:', value=g.premium_tier)
-        embed.add_field(
-            name='Amount of Boosts:', value=g.premium_subscription_count)
+        embed.add_field(name='Amount of Boosts:', value=g.premium_subscription_count)
         embed.add_field(name='Emoji Limit:', value=g.emoji_limit)
 
         embed.add_field(name='Owner:', value=g.owner.mention)
@@ -163,7 +162,8 @@ class Stats(commands.Cog):
 
         embed.add_field(name="Total Members:", value=f"{len(g.members)}")
         embed.add_field(name="Bots:", value=f"{len(g.members.bot)}")
-        embed.add_field(name="Users:", value=f"{len(g.members)-len(g.members.bot)}")
+        embed.add_field(name="Users:", value=f"{len([m for m in ctx.guild.members if not m.bot])}")
+
         embed.add_field(
             name='Created at:\n(YYYY-MM-DD)', value=g.created_at.date())
 
