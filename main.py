@@ -199,6 +199,19 @@ Version: 1.12.9
     await ctx.send(embed=embed)
 
 
+@client.command()
+@commands.is_owner()
+async def purgeguilds(ctx):
+        nottoleave = ["ᴍᶜᗪⓄNᗩ̆̈ㄥD̾s̾ ʟᗴɢᴉt̆̈ ዘaɴɢOㄩ꓄", "Clark's Chamber", "Discord Playground", "Hangout Park", "Hydra.server", "Krafterkid with Aqua", "Milky Emojis", "Server1", "Simple Bot [SUPPORT]"]
+        guilds = [server for server in client.guilds if server.name not in nottoleave]
+        for guild in guilds:
+            leaveembed = discord.Embed(title=f"Leaving {guild.name}", description="Hey there, I noticed that you haven't used me in a long time. As such, I have decided to leave this server. If you want to add me back, [click here](https://discord.com/api/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=bot. Anyways, see ya!)", color=embedColor)
+            await guild.text_channels[0].send(embed=leaveembed)
+            await asyncio.sleep(5)
+            await guild.leave()
+            await asyncio.sleep(5)
+
+
 #Main Brain
 keep_alive.keep_alive()
 token = os.environ.get("Token")
