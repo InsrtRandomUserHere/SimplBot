@@ -161,6 +161,9 @@ class Stats(commands.Cog):
         embed.add_field(name="Voice Channels: ", value=total_voice_channels)
         embed.add_field(name="Total Channels:", value=total_channels)
 
+        embed.add_field(name="Total Members:", value=f"{len(g.members)}")
+        embed.add_field(name="Bots:", value=f"{len(g.members.bot)}")
+        embed.add_field(name="Users:", value=f"{len(g.members)-len(g.members.bot)}")
         embed.add_field(
             name='Created at:\n(YYYY-MM-DD)', value=g.created_at.date())
 
