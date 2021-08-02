@@ -135,10 +135,10 @@ class UtilityCmds(commands.Cog):
 
         await member.kick(reason=f"{reason} - By: {ctx.message.author}")
         try:
-        	await member.send(f"You have been **Kicked** from **{ctx.message.guild}**\n\nReason: {reason}")
+            await member.send(f"You have been **Kicked** from **{ctx.message.guild}**\n\nReason: {reason}")
 
         finally:
-        	await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
@@ -151,10 +151,10 @@ class UtilityCmds(commands.Cog):
 
         await member.ban(reason=f"{reason} - By: {ctx.message.author}")
         try:
-        	await member.send(f"You have been **Banned** from **{ctx.message.guild}**\n\nReason: {reason}")
+            await member.send(f"You have been **Banned** from **{ctx.message.guild}**\n\nReason: {reason}")
 
         finally:
-        	await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
@@ -223,6 +223,12 @@ class UtilityCmds(commands.Cog):
             embed.set_image(url=member.avatar_url)
 
         await ctx.reply(embed=embed)
+
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    async def leave(self, ctx):
+        await ctx.send("Leaving Server")
+        await ctx.guild.leave()
 
 
 def setup(client):

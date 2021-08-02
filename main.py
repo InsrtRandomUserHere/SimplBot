@@ -14,13 +14,6 @@ client.load_extension('jishaku')
 client.launch_time = datetime.utcnow()
 client.remove_command('help')
 
-# Leave command MOVE TO UTILITY
-@client.command()
-@commands.has_permissions(kick_members=True)
-async def leave(ctx):
-    await ctx.send("Leaving Server")
-    await ctx.guild.leave()
-
 for file in os.listdir("cogs"):
     if file.endswith(".py"):
         name = file[:-3]
