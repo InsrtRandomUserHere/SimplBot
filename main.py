@@ -14,57 +14,6 @@ client.load_extension('jishaku')
 client.launch_time = datetime.utcnow()
 client.remove_command('help')
 
-
-# Cogs (Owner Only)
-@client.command()
-@commands.is_owner()
-async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
-    await ctx.send("Cog Loaded")
-
-
-@client.command()
-@commands.is_owner()
-async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
-    await ctx.send("Cog Unloaded")
-
-
-@client.command()
-@commands.is_owner()
-async def reload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
-    client.load_extension(f'cogs.{extension}')
-    await ctx.send("Cog Reloaded")
-
-
-for file in os.listdir("cogs"):
-    if file.endswith(".py"):
-        name = file[:-3]
-        client.load_extension(f"cogs.{name}")
-
-
-# Owner Help Menu
-@client.command()
-@commands.is_owner()
-async def help2(ctx):
-    embed = discord.Embed(title="Owner Help Menu", colour=embedColor)
-    embed.add_field(name="Cog File Names", value="```cmd_help.py\ncmds_general.py\ncmds_stats.py\ncmds_text.py"
-                                                 "\ncmds_utility.py\ngenerals.py``` ")
-    embed.add_field(name="Commands", value="```load <CogFile>\nunload <CogFile>\nreload <CogFile>```")
-    await ctx.send(embed=embed)
-
-
-# Shutdown command
-@client.command(name="shutdown")
-@commands.is_owner()
-async def shutdownee(ctx):
-    await ctx.send("Now shutting down")
-    offlinelog = client.get_channel(790619786672734249)
-    await offlinelog.send("🔴 Shutting down by command")
-    await client.logout()
-
-
 # Leave command MOVE TO UTILITY
 @client.command()
 @commands.has_permissions(kick_members=True)
@@ -72,12 +21,10 @@ async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
 
-
-@client.command()
-@commands.is_owner()
-async def commandcount(ctx):
-    commandsTotal = len(client.commands)
-    await ctx.send(f"{commandsTotal} commands!")
+for file in os.listdir("cogs"):
+    if file.endswith(".py"):
+        name = file[:-3]
+        client.load_extension(f"cogs.{name}")
 
 
 # Command Error Handlers
@@ -139,14 +86,7 @@ async def credits(ctx):
                     value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version "
                           "<:SpookyBot:772621287729659984>")
     embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
-
     await ctx.send(embed=embed)
-
-
-@client.command(name="eval")
-@commands.is_owner()
-async def evl(ctx, *, mes):
-    await ctx.send(eval(mes))
 
 
 @client.command(name="UpdateLog")
