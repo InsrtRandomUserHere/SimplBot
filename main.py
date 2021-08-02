@@ -73,7 +73,8 @@ async def on_command_error(ctx, error):
         embed = discord.Embed(title="Error",
                               description="Oh no! An error has occurred while trying to do this command. You can use "
                                           "the `sb/report` command to report this error. If you do report this bug, "
-                                          "also please include this:```{}```".format(error), color=embedColor)
+                                          "please include the error in the box below:```{}```".format(error),
+                              color=embedColor)
         embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
         await ctx.send(embed=embed)
 
