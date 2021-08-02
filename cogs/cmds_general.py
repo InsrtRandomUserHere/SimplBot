@@ -18,7 +18,7 @@ class GenCmds(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['8ball', '8b'])
-    async def _8ball(self, ctx, *, question):
+    async def _8ball(self, ctx):
         responses = [
             'As I see it, yes', 'Ask again later', 'Better not tell you now',
             'Cannot predict now', 'Concentrate and ask again', 'Don’t count on it',
@@ -27,16 +27,14 @@ class GenCmds(commands.Cog):
             'Reply hazy, try again', 'Signs point to yes', 'Very doubtful',
             'Without a doubt', 'Yes', 'Yes – definitely', ' You may rely on it'
         ]
-        await ctx.reply(f'{random.choice(responses)}\n\n ||Yes, this command has been re-worked. do sb/updatelog to see the complete list of updates||')
-
-
+        await ctx.reply(random.choice(responses))
 
     @commands.command()
     async def coinflip(self, ctx):
         responses = [f'Heads!', 'Tails!']
         msg = await ctx.reply('Flipping...')
         await asyncio.sleep(0.6)
-        await msg.edit(content=f'{random.choice(responses)}')
+        await msg.edit(content=random.choice(responses))
 
     @commands.command(aliases=['calculate'])
     async def calc(self, ctx, message):
@@ -44,7 +42,7 @@ class GenCmds(commands.Cog):
             ms = eval(message)
             mbed = discord.Embed(
                 title="Calculator",
-                description=f"The answer is: {ms}",
+                description=f"{ms}",
                 colour=embedColor)
 
             await ctx.send(embed=mbed)
@@ -53,6 +51,6 @@ class GenCmds(commands.Cog):
             await ctx.send(math.sqrt(ma))
 
 
-
 def setup(client):
     client.add_cog(GenCmds(client))
+    
