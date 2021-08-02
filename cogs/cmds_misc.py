@@ -28,8 +28,8 @@ class MiscCommands(commands.Cog):
             description="""
     ```diff
     Simple Bot Update Log!
-    Last updated: June 23. 2021
-    Version: 1.12.9
+    Last updated: Aug 2 2021
+    Version: 1.13.9
 
     +Added Commands:
     +RR (Go try it)
