@@ -34,7 +34,7 @@ class Stats(commands.Cog):
         if member == None:
             member = ctx.author
 
-        roles = [role for role in member.roles]
+        roles = [role for role in member.roles if role != "@@everyone"]
         user = ctx.author
         hype = [i[0].replace("_", " ").title() for i in user.public_flags
                 if i[1] and "hypesquad" in i[0]]

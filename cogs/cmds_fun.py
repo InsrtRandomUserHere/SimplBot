@@ -11,6 +11,7 @@ from replit import db
 
 snipe_message_content = None
 snipe_message_author = None
+snipe_message_guild = None
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 
@@ -23,12 +24,15 @@ class FunCmds(commands.Cog):
     async def on_message_delete(self, message):
         global snipe_message_content
         global snipe_message_author
+        global snipe_message_guild
 
         snipe_message_content = message.content
         snipe_message_author = message.author
+        snipe_message_guild = message.guild.name
         await asyncio.sleep(60)
         snipe_message_author = None
         snipe_message_content = None
+        snipe_message_guild = None
 
     @commands.command()
     @commands.is_owner()
@@ -46,15 +50,16 @@ class FunCmds(commands.Cog):
         await ctx.send(embed=em)
 
     @commands.command()
-    async def snipe(self, message):
+    async def snipe(self, ctx, message):
         if snipe_message_content == None:
             await message.channel.send("Theres nothing to snipe.")
         else:
-            embed = discord.Embed(description=f"{snipe_message_content}", timestamp=datetime.datetime.utcnow(), color=embedColor)
-            embed.set_author(name=f"{snipe_message_author}", icon_url=snipe_message_author.avatar_url)
-
-            await message.channel.send(embed=embed)
-            return
+            if snipe_message_guild == ctx.message.guild.name:
+                embed = discord.Embed(description=f"{snipe_message_content}", timestamp=datetime.datetime.utcnow(), color=embedColor)
+                embed.set_author(name=f"{snipe_message_author}", icon_url=snipe_message_author.avatar_url)
+                await ctx.send(embed)
+            else:
+                await ctx.send("There's nothing to snipe.")
 
     @commands.command()
     @commands.is_owner()
