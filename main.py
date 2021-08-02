@@ -202,7 +202,7 @@ Version: 1.12.9
 @client.command()
 @commands.is_owner()
 async def purgeguilds(ctx):
-        nottoleave = ["ᴍᶜᗪⓄNᗩ̆̈ㄥD̾s̾ ʟᗴɢᴉt̆̈ ዘaɴɢOㄩ꓄", "Clark's Chamber", "Discord Playground", "Hangout Park", "Hydra.server", "Krafterkid with Aqua", "Milky Emojis", "Server1", "Simple Bot [SUPPORT]"]
+        nottoleave = []
         guilds = [server for server in client.guilds if server.name not in nottoleave]
         guilds.sort()
         for guild in guilds:
