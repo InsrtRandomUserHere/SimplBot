@@ -130,12 +130,14 @@ class UtilityCmds(commands.Cog):
         embed = discord.Embed(title="User Kicked", color=discord.Color.from_rgb(0, 76, 255), timestamp=datetime.datetime.utcnow())
 
         embed.add_field(name='User:', value=member)
-        embed.add_field(name="Kicked by:", value=ctx.message.author.mention)
+        embed.add_field(name="Kicked by:", value=ctx.author.mention)
         embed.add_field(name="Reason:", value=reason, inline=False)
 
         await member.kick(reason=f"{reason} - By: {ctx.message.author}")
         try:
-            await member.send(f"You have been **Kicked** from **{ctx.message.guild}**\n\nReason: {reason}")
+            kick_embed = discord.Embed(title=f"You have been kicked from {ctx.message.guild}", color=discord.Colour.gold())
+            kick_embed.add_field(name="Reason", value=reason)
+            await member.send(embed=kick_embed)
 
         finally:
             await ctx.send(embed=embed)
@@ -146,12 +148,14 @@ class UtilityCmds(commands.Cog):
         embed = discord.Embed(title="User Banned", color=discord.Color.from_rgb(255, 0, 17), timestamp=datetime.datetime.utcnow())
 
         embed.add_field(name='User:', value=member)
-        embed.add_field(name="Banned by:", value=ctx.message.author.mention)
+        embed.add_field(name="Banned by:", value=ctx.author.mention)
         embed.add_field(name="Reason:", value=reason, inline=False)
 
         await member.ban(reason=f"{reason} - By: {ctx.message.author}")
         try:
-            await member.send(f"You have been **Banned** from **{ctx.message.guild}**\n\nReason: {reason}")
+            ban_embed = discord.Embed(title=f"You have been banned from {ctx.message.guild}", colour=discord.Colour.red())
+            ban_embed.add_field(name='Reason', value=reason)
+            await member.send(embed=ban_embed)
 
         finally:
             await ctx.send(embed=embed)
