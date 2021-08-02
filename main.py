@@ -1,36 +1,21 @@
-import keep_alive
-import discord
-from discord.ext import commands
-from discord.ext.commands import BucketType
 import asyncio
+import discord
 import os
-from discord_slash import cog_ext
-from discord_slash import SlashCommand
-from discord_slash import SlashContext
-from discord_slash.utils import manage_commands
+import keep_alive
 from datetime import datetime
-import random
-from random import randint
-
-#Just importing some modules
-
+from discord.ext import commands
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
-#The color for embeds
-
 intents = discord.Intents.default()
-client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"), intents=discord.Intents.all(), case_insensitive=True)
-
+client = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or("sb/", "Sb/", "sB/", "SB/"),
+                                 intents=discord.Intents.all(), case_insensitive=True)
 
 client.load_extension('jishaku')
-
-#Getting uptime
 client.launch_time = datetime.utcnow()
-
-#Removing default help command
 client.remove_command('help')
 
-#For loading in some cogs
+
+# Cogs (Owner Only)
 @client.command()
 @commands.is_owner()
 async def load(ctx, extension):
@@ -57,25 +42,20 @@ for file in os.listdir("cogs"):
     if file.endswith(".py"):
         name = file[:-3]
         client.load_extension(f"cogs.{name}")
-#End of loading of cogs
 
-#Owner Help Menu
+
+# Owner Help Menu
 @client.command()
 @commands.is_owner()
 async def help2(ctx):
-    embed = discord.Embed(
-        title="Owner Help Menu",
-        colour=embedColor
-    )
-    embed.add_field(
-        name="Cog File Names",
-        value="```cmd_help.py\ncmds_general.py\ncmds_stats.py\ncmds_text.py\ncmds_utility.py\ngenerals.py```"
-    )
+    embed = discord.Embed(title="Owner Help Menu", colour=embedColor)
+    embed.add_field(name="Cog File Names", value="```cmd_help.py\ncmds_general.py\ncmds_stats.py\ncmds_text.py"
+                                                 "\ncmds_utility.py\ngenerals.py``` ")
     embed.add_field(name="Commands", value="```load <CogFile>\nunload <CogFile>\nreload <CogFile>```")
-
     await ctx.send(embed=embed)
 
-#Shutdown command
+
+# Shutdown command
 @client.command(name="shutdown")
 @commands.is_owner()
 async def shutdownee(ctx):
@@ -83,20 +63,24 @@ async def shutdownee(ctx):
     offlinelog = client.get_channel(790619786672734249)
     await offlinelog.send("🔴 Shutting down by command")
     await client.logout()
-#leave command
 
+
+# Leave command MOVE TO UTILITY
 @client.command()
 @commands.has_permissions(kick_members=True)
 async def leave(ctx):
     await ctx.send("Leaving Server")
     await ctx.guild.leave()
 
+
 @client.command()
+@commands.is_owner()
 async def commandcount(ctx):
     commandsTotal = len(client.commands)
     await ctx.send(f"{commandsTotal} commands!")
 
-#Command Error Handlers
+
+# Command Error Handlers
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
@@ -106,7 +90,8 @@ async def on_command_error(ctx, error):
         await ctx.channel.purge(limit=1)
 
     elif isinstance(error, commands.CommandNotFound):
-        await ctx.send("Yeah, no. That command doesn't exist *yet*. If you want to make a command suggestion, do `sb/suggest`")
+        await ctx.send(
+            "Yeah, no. That command doesn't exist *yet*. If you want to make a command suggestion, do `sb/suggest`")
 
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send("You don't have the permissions to do that")
@@ -132,48 +117,40 @@ async def on_command_error(ctx, error):
         await ctx.send('I can\'t find that user :/')
 
     elif isinstance(error, commands.CommandOnCooldown):
-        embed = discord.Embed(title="You are on cooldown!", description=f"Woah! Slow down there pal! You're using this command too fast! Try this command again in **{error.retry_after:,.2f}** seconds", color=embedColor)
+        embed = discord.Embed(title="You are on cooldown!",
+                              description=f"Woah! Slow down there pal! You're using this command too fast! Try this "
+                                          f"command again in **{error.retry_after:,.2f}** seconds",
+                              color=embedColor)
         await ctx.send(embed=embed)
     else:
         embed = discord.Embed(title="Error",
-                              description="Oh no! An error has occured while trying to do this command. You can use the `sb/report` command to report this error. If you do report this bug, also please include this:```{}```".format(
-                                  error), color=embedColor)
+                              description="Oh no! An error has occurred while trying to do this command. You can use "
+                                          "the `sb/report` command to report this error. If you do report this bug, "
+                                          "also please include this:```{}```".format(error), color=embedColor)
         embed.set_thumbnail(url="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png")
         await ctx.send(embed=embed)
 
-#Just incase i need this
-@client.event
-async def on_message(msg):
-    if msg.content == "F":
-        await msg.channel.send(f"{msg.author.mention} has paid respects")
-
-    await client.process_commands(msg)
-
-
-#This too
-"""
-@client.event
-async def on_member_join(member):
-    global joined
-    joined += 1
-"""
 
 @client.command()
 async def credits(ctx):
     embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
     embed.add_field(name="Main Developer/Creator", value="InsrtRandomUserHere#4562", inline=False)
-    embed.add_field(name="Icon Creators:", value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version <:SpookyBot:772621287729659984>")
+    embed.add_field(name="Icon Creators:",
+                    value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version "
+                          "<:SpookyBot:772621287729659984>")
     embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
 
     await ctx.send(embed=embed)
+
 
 @client.command(name="eval")
 @commands.is_owner()
 async def evl(ctx, *, mes):
     await ctx.send(eval(mes))
 
-@client.command()
-async def updatelog(ctx):
+
+@client.command(name="UpdateLog")
+async def update_log(ctx):
     embed = discord.Embed(
         description="""
 ```diff
@@ -193,31 +170,11 @@ Version: 1.12.9
 -Link Shortener
 -Vote
 -Owo (Don't ask)
-```    """
-    , color=embedColor)
+```    """, color=embedColor)
 
     await ctx.send(embed=embed)
 
 
-@client.command()
-@commands.is_owner()
-async def purgeguilds(ctx):
-        nottoleave = []
-        guilds = [server for server in client.guilds if server.name not in nottoleave]
-        guilds.sort()
-        for guild in guilds:
-            leaveembed = discord.Embed(title=f"Leaving {guild.name}", description="Hey there, I noticed that you haven't used me in a long time. As such, I have decided to leave this server. If you want to add me back, [click here](https://discord.com/api/oauth2/authorize?client_id=759052573884809246&permissions=388182&scope=bot). Anyways, see ya!", color=embedColor)
-            try:
-                await guild.text_channels[0].send(embed=leaveembed)
-            except:
-                pass
-
-            await asyncio.sleep(5)
-            await guild.leave()
-            await asyncio.sleep(1)
-
-
-#Main Brain
 keep_alive.keep_alive()
 token = os.environ.get("Token")
 client.run(token)
