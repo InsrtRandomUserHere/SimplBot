@@ -1,799 +1,749 @@
 import discord
 from discord.ext import commands
-import json
 import datetime
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
+
 
 class Help(commands.Cog):
 
     def __init__(self, client):
         self.client = client
-        
 
     @commands.group(aliases=['help'], case_insensitive=True)
     async def _help(self, ctx):
         if ctx.invoked_subcommand is None:
-            
-                embed = discord.Embed(
-                    title='Simple Bot Help Menu!', colour=embedColor, timestamp=datetime.datetime.utcnow())
+            embed = discord.Embed(
+                title='Simple Bot Help Menu!', colour=embedColor, timestamp=datetime.datetime.utcnow())
 
-                embed.add_field(
-                    name='» General «',
-                    value='`ping`, `calculate`', inline=False)
+            embed.add_field(
+                name='» General «',
+                value='`ping`, `calculate`', inline=False)
 
-                embed.add_field(name="» Fun «",
-                                value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`, `TOD`, `WYR`, `Math`",
-                                inline=False)
+            embed.add_field(name="» Fun «",
+                            value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`, `TOD`, `WYR`, `Math`",
+                            inline=False)
 
-                embed.add_field(name="» Text Commands «", 
-								value="`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror`")
+            embed.add_field(name="» Text Commands «",
+                            value="`slant`, `3d`, `hashtag`, `fade`, `dot`, `bubble`, `mirror`")
 
-                embed.add_field(name="» Image «",
-                                value="`wendys`, `logic`, `worthless`, `burn`, `sleep`, `ID`",
-                                inline=False)
+            embed.add_field(name="» Image «",
+                            value="`wendys`, `logic`, `worthless`, `burn`, `sleep`, `ID`",
+                            inline=False)
 
-                embed.add_field(name="» Utility «",
-                                value="`invite`, `guildcount`, `support`, `report`, `snipe`, `avatar`",
-                                inline=False)
+            embed.add_field(name="» Utility «",
+                            value="`invite`, `guildcount`, `support`, `report`, `snipe`, `avatar`",
+                            inline=False)
 
-                embed.add_field(name="» Moderation «",
-                                value="`ban`, `kick`, `clear`, `slowmode`",
-                                inline=False)
+            embed.add_field(name="» Moderation «",
+                            value="`ban`, `kick`, `clear`, `slowmode`",
+                            inline=False)
 
-                embed.add_field(name="» Slash commands « (Beta)",
-                                value="`ping`",
-                                inline=False)
-								
+            embed.add_field(name="» Slash commands « (Beta)",
+                            value="`ping`",
+                            inline=False)
 
-                embed.add_field(name="» Stats «", value="`userinfo`, `serverstats`, `channelstats`, `stats`",
-                                inline=False)
-                embed.set_footer(text=f'Send: sb/help <command>')
+            embed.add_field(name="» Stats «", value="`userinfo`, `serverstats`, `channelstats`, `stats`",
+                            inline=False)
 
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(name="» Misc «", value="`Updatelog`, `Credits`, `Ping`",
+                            inline=False)
+            embed.set_footer(text=f'Send: sb/help <command>')
+
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def ping(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Ping', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Ping', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Sends your ping in milliseconds',
+                inline=False)
+            embed.add_field(name='Command:', value=f'```sb/ping```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Sends your ping in milliseconds',
-                    inline=False)
-                embed.add_field(name='Command:', value=f'```sb/ping```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def membercount(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Member count', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Member count', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Sends the amount of members in the server',
+                inline=False)
+            embed.add_field(name='Command:', value=f'```sb/membercount```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Sends the amount of members in the server',
-                    inline=False)
-                embed.add_field(name='Command:', value=f'```sb/membercount```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def calculate(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Calculate', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Calculate', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Calculates the equation that you send',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/calc <equation>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Calculates the equation that you send',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/calc <equation>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(aliases=['8b'], case_insensitive=True)
     async def _8b(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='8 Ball', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='8 Ball', colour=embedColor)
+            embed.add_field(
+                name='Info:', value='Sends an 8ball answer', inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/8b <question>```', inline=False)
 
-                embed.add_field(
-                    name='Info:', value='Sends an 8ball answer', inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/8b <question>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def coinflip(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Coin flip', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Coin flip', colour=embedColor)
+            embed.add_field(name='Info:', value='Flips a coin', inline=False)
+            embed.add_field(name='Command:', value=f'```sb/coinflip```', inline=False)
 
-                embed.add_field(name='Info:', value='Flips a coin', inline=False)
-                embed.add_field(name='Command:', value=f'```sb/coinflip```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def chat(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Chat', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Chat', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Make the bot send any message that you want',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/chat <message>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Make the bot send any message that you want',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/chat <message>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def clear(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Clear', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Clear', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Clears an amount of messages that you want',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/clear <amount>```', inline=False)
+            embed.add_field(
+                name='Note:',
+                value=
+                'You need to have the `manage messages` permission to do this command'
+            )
 
-                embed.add_field(
-                    name='Info:',
-                    value='Clears an amount of messages that you want',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/clear <amount>```', inline=False)
-                embed.add_field(
-                    name='Note:',
-                    value=
-                    'You need to have the `manage messages` permission to do this command'
-                )
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(aliases=['y/n'], case_insensitive=True)
     async def yn(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Yes or No', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Yes or No', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your question a yes or no poll',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/y/n <question>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your question a yes or no poll',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/y/n <question>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def invite(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Invite', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Invite', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value=
+                'Sends an invite link of me so you can invite me to your server!',
+                inline=False)
+            embed.add_field(name='Command:', value=f'```sb/invite```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value=
-                    'Sends an invite link of me so you can invite me to your server!',
-                    inline=False)
-                embed.add_field(name='Command:', value=f'```sb/invite```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def guildcount(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Server Count', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Server Count', colour=embedColor)
+            embed.add_field(
+                name='Info:', value="Sends how many servers I'm in", inline=False)
+            embed.add_field(name='Command:', value=f'```sb/guildcount```', inline=False)
 
-                embed.add_field(
-                    name='Info:', value="Sends how many servers I'm in", inline=False)
-                embed.add_field(name='Command:', value=f'```sb/guildcount```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def support(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Support Server', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Support Server', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Sends Simple Bot's Support Server",
+                inline=False)
+            embed.add_field(name='Command:', value=f'```sb/support```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Sends Simple Bot's Support Server",
-                    inline=False)
-                embed.add_field(name='Command:', value=f'```sb/support```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def report(self, ctx):
         if ctx.invoked_subcommand is None:
-                embed = discord.Embed(
-                    title='Report', colour=embedColor)
+            embed = discord.Embed(
+                title='Report', colour=embedColor)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Reports a bug about the bot and sends it to our support server',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/report <bug>```', inline=False)
+            embed.add_field(
+                name='Info:',
+                value='Reports a bug about the bot and sends it to our support server',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/report <bug>```', inline=False)
 
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def kick(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Kick', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Kick', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Kicks a user',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/kick <user> <reason>```', inline=False)
+            embed.add_field(
+                name='Note:',
+                value=
+                'You need to have the `Kick Members` permission to do this command'
+            )
 
-                embed.add_field(
-                    name='Info:',
-                    value='Kicks a user',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/kick <user> <reason>```', inline=False)
-                embed.add_field(
-                    name='Note:',
-                    value=
-                    'You need to have the `Kick Members` permission to do this command'
-                )
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def ban(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='ban', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='ban', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Bans a user',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/ban <user> <reason>```', inline=False)
+            embed.add_field(
+                name='Note:',
+                value=
+                'You need to have the `Ban Members` permission to do this command'
+            )
 
-                embed.add_field(
-                    name='Info:',
-                    value='Bans a user',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/ban <user> <reason>```', inline=False)
-                embed.add_field(
-                    name='Note:',
-                    value=
-                    'You need to have the `Ban Members` permission to do this command'
-                )
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def userinfo(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='User Info', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='User Info', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Shows a user's info",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/userinfo <user>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Shows a user's info",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/userinfo <user>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def serverstats(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Server Stats', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Server Stats', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Shows the server's stats",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/serverstats```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Shows the server's stats",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/serverstats```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def channelstats(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Channel Stats', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Channel Stats', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Shows the channel's stats",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/channelstats```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Shows the channel's stats",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/channelstats```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def stats(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Bot Stats', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Bot Stats', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Shows the bot's stats and info",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/stats```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Shows the bot's stats and info",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/stats```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def slant(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Slant', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Slant', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your text slanted',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/slant <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your text slanted',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/slant <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True, aliases=['3d'])
     async def _3d(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='3D', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='3D', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your text have a 3D effect',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/3d <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your text have a 3D effect',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/3d <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def hastag(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Hashtag', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Hashtag', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your text into a tagged effect.',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/hashtag <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your text into a tagged effect.',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/hashtag <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def fade(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Fade', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Fade', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your text into a fading effect.',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/fade <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your text into a fading effect.',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/fade <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def dot(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Dot', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Dot', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Makes your text into a dotted effect.',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/dot <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Makes your text into a dotted effect.',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/dot <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def bubble(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Bubble', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Bubble', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Puts your text in a bubble effect.',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/bubble <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Puts your text in a bubble effect.',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/bubble <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def digital(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Digital', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Digital', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value='Puts your text in a digital effect.',
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/digital <text>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value='Puts your text in a digital effect.',
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/digital <text>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def setprefix(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Set Prefix', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Set Prefix', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Changes the bot's prefix in this server",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/setprefix <prefix>```', inline=False)
+            embed.add_field(
+                name='Note:', value=f'You need to be an administrator to use this command', inline=False)
+            embed.add_field(
+                name='Aliases:', value=f'`changeprefix`, `set_prefix`', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Changes the bot's prefix in this server",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/setprefix <prefix>```', inline=False)
-                embed.add_field(
-                    name='Note:', value=f'You need to be an administrator to use this command', inline=False)
-                embed.add_field(
-                    name='Aliases:', value=f'`changeprefix`, `set_prefix`', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def slowmode(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Set Slowmode', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Set Slowmode', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Changes the current channel's slowmode",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/slowmode <seconds>```', inline=False)
+            embed.add_field(
+                name='Note:', value=f'You need to have the `Manage Messages` permission to use this command',
+                inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Changes the current channel's slowmode",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/slowmode <seconds>```', inline=False)
-                embed.add_field(
-                    name='Note:', value=f'You need to have the `Manage Messages` permission to use this command', inline=False)
-			
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def snipe(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Snipe', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Snipe', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Sends the last deleted messsage in the current channel",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/snipe```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Sends the last deleted messsage in the current channel",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/snipe```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def mirror(self, ctx):
         if ctx.invoked_subcommand is None:
-
-                embed = discord.Embed(
-                    title='Mirror', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Mirrors your text",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/mirror <phrase>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            embed = discord.Embed(
+                title='Mirror', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Mirrors your text",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/mirror <phrase>```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def hack(self, ctx):
         if ctx.invoked_subcommand is None:
-
-                embed = discord.Embed(
-                    title='Hack', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="**Tries** to hack the user you mention\n||Don't worry, we're not actually hacking someone. This is just for fun||",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/hack <member>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            embed = discord.Embed(
+                title='Hack', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="**Tries** to hack the user you mention\n||Don't worry, we're not actually hacking someone. This is just for fun||",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/hack <member>```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def wendys(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Sir, This is a Wendy\'s', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Sir, This is a Wendy\'s', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Puts your thought in the \"Sir, this is a Wendy's\" Meme",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/wendys <thought>```', inline=False)
-                embed.set_image(
-                    url="https://preview.redd.it/hebnnjrr53h41.jpg?auto=webp&s=12c85c1862c21e422d762a7b6507f4510b5cff10")
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Puts your thought in the \"Sir, this is a Wendy's\" Meme",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/wendys <thought>```', inline=False)
+            embed.set_image(
+                url="https://preview.redd.it/hebnnjrr53h41.jpg?auto=webp&s=12c85c1862c21e422d762a7b6507f4510b5cff10")
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def logic(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Intense Logic Thinking', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Intense Logic Thinking', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Wonder what their logic is",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/logic <NotALogic>```', inline=False)
+            embed.set_image(
+                url="https://i0.wp.com/boingboing.net/wp-content/uploads/2016/11/bcf.png?fit=680%2C445&ssl=1")
 
-                embed.add_field(
-                    name='Info:',
-                    value="Wonder what their logic is",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/logic <NotALogic>```', inline=False)
-                embed.set_image(
-                    url="https://i0.wp.com/boingboing.net/wp-content/uploads/2016/11/bcf.png?fit=680%2C445&ssl=1")
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def burn(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Hmmm, nah', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Hmmm, nah', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Puts your thought in the Spongbob burning paper meme",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/burn <thought>```', inline=False)
-                embed.set_image(
-                    url="https://i.imgflip.com/2bc2vf.jpg")
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Puts your thought in the Spongbob burning paper meme",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/burn <thought>```', inline=False)
+            embed.set_image(
+                url="https://i.imgflip.com/2bc2vf.jpg")
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def worthless(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Woah. This is worthless!', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Woah. This is worthless!', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Puts your thought in the \"Woah. This is worthless\" meme",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/worthless <worthlessThing>```', inline=False)
-                embed.set_image(
-                    url="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/4d3/template-this-is-worthless-0c6db91aec9c.jpg")
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Puts your thought in the \"Woah. This is worthless\" meme",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/worthless <worthlessThing>```', inline=False)
+            embed.set_image(
+                url="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/4d3/template-this-is-worthless-0c6db91aec9c.jpg")
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def sleep(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Are you going to sleep?', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Are you going to sleep?', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Puts your thought in the \"Are you going to sleep?\" meme",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/sleep <thought>```', inline=False)
-                embed.set_image(
-                    url="https://i.pinimg.com/originals/28/98/b9/2898b938072b51bcb319c6fbe1721381.jpg")
-                await ctx.reply(embed=embed, mention_author=False)
-
+            embed.add_field(
+                name='Info:',
+                value="Puts your thought in the \"Are you going to sleep?\" meme",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/sleep <thought>```', inline=False)
+            embed.set_image(
+                url="https://i.pinimg.com/originals/28/98/b9/2898b938072b51bcb319c6fbe1721381.jpg")
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def ID(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Discord User ID', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Discord User ID', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Makes an ID for a user you mention",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/ID <member>```', inline=False)
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Makes an ID for a user you mention",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/ID <member>```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def meme(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Meme', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Meme', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Sends a random meme from r/memes",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/meme```', inline=False)
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Sends a random meme from r/memes",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/meme```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def showerthought(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Shower Thought', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Shower Thought', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Sends a thought from r/showerthoughts",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/showerthoughts```', inline=False)
-                embed.add_field(
-                    name='Aliases', value=f'```st```', inline=False)
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Sends a thought from r/showerthoughts",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/showerthoughts```', inline=False)
+            embed.add_field(
+                name='Aliases', value=f'```st```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def avatar(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Avatar', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Avatar', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Sends the user's avatar",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/avatar <member>```', inline=False)
-                embed.add_field(
-                    name='Aliases', value=f'```\npfp\nav```', inline=False)
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Sends the user's avatar",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/avatar <member>```', inline=False)
+            embed.add_field(
+                name='Aliases', value=f'```\npfp\nav```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def rate(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Rate', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Rate', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Rates something that you say from 1-100",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/rate <anything>```', inline=False)
-                await ctx.reply(embed=embed, mention_author=False)
+            embed.add_field(
+                name='Info:',
+                value="Rates something that you say from 1-100",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/rate <anything>```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def rr(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='???', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='???', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Why not try it? :) It's optional to also mention a member on it",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/rr <member>```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Why not try it? :) It's optional to also mention a member on it",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/rr <member>```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def tod(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Truth or Dare', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Truth or Dare', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Asks you either truth or dare and it sends either a question or a dare based on your response",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/tod```', inline=False)
+            embed.add_field(
+                name='Aliases: ', value=f'```truthordare```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Asks you either truth or dare and it sends either a question or a dare based on your response",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/tod```', inline=False)
-                embed.add_field(
-                    name='Aliases: ', value=f'```truthordare```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def wyr(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Would you rather', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Would you rather', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Asks you a would you rather question",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/wyr```', inline=False)
+            embed.add_field(
+                name='Aliases: ', value=f'```wouldyourather```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Asks you a would you rather question",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/wyr```', inline=False)
-                embed.add_field(
-                    name='Aliases: ', value=f'```wouldyourather```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def math(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Math', colour=embedColor)
 
-                embed = discord.Embed(
-                    title='Math', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Asks you a math question. It may be easy, or it may be hard.",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/wyr```', inline=False)
+            embed.add_field(
+                name='Aliases: ', value=f'```wouldyourather```', inline=False)
 
-                embed.add_field(
-                    name='Info:',
-                    value="Asks you a math question. It may be easy, or it may be hard.",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/wyr```', inline=False)
-                embed.add_field(
-                    name='Aliases: ', value=f'```wouldyourather```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
     @_help.command(case_insensitive=True)
     async def mathscore(self, ctx):
         if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title='Math Score', colour=embedColor)
+            embed.add_field(
+                name='Info:',
+                value="Sends the amount of questions you got correct in the math command (sb/math)",
+                inline=False)
+            embed.add_field(
+                name='Command:', value=f'```sb/mathscore <member>```', inline=False)
+            embed.add_field(
+                name='Aliases: ', value=f'```score```', inline=False)
+            await ctx.reply(embed=embed, mention_author=False)
 
-                embed = discord.Embed(
-                    title='Math Score', colour=embedColor)
-
-                embed.add_field(
-                    name='Info:',
-                    value="Sends the amount of questions you got correct in the math command (sb/math)",
-                    inline=False)
-                embed.add_field(
-                    name='Command:', value=f'```sb/mathscore <member>```', inline=False)
-                embed.add_field(
-                    name='Aliases: ', value=f'```score```', inline=False)
-
-                await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
-	client.add_cog(Help(client)) 
+    client.add_cog(Help(client))

@@ -46,6 +46,11 @@ class MiscCommands(commands.Cog):
     ```""", color=embedColor)
         await ctx.send(embed)
 
+    @commands.command()
+    async def ping(self, ctx):
+        embed = discord.Embed(title=f"{round(self.client.latency * 1000)} ms", color=embedColor)
+        await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(MiscCommands(client))

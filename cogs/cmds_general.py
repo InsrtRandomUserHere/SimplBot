@@ -12,11 +12,6 @@ class GenCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def ping(self, ctx):
-        embed = discord.Embed(title=f"{round(self.client.latency * 1000)} ms", color=embedColor)
-        await ctx.send(embed=embed)
-
     @commands.command(aliases=['8ball', '8b'])
     async def _8ball(self, ctx):
         responses = [

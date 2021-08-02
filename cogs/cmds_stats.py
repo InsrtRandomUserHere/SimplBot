@@ -156,7 +156,7 @@ class Stats(commands.Cog):
         embed.add_field(name="Users:", value=total_members - bots)
 
         embed.add_field(
-            name='Created at:\n(YYYY-MM-DD)', value=g.created_at.date())
+            name='Creation Date:\n(YYYY-MM-DD)', value=g.created_at.date())
 
         embed.set_thumbnail(url=g.icon_url)
 
