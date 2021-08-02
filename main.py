@@ -78,43 +78,6 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
 
 
-@client.command()
-async def credits(ctx):
-    embed = discord.Embed(title="Simple Bot Credits", color=embedColor)
-    embed.add_field(name="Main Developer/Creator", value="InsrtRandomUserHere#4562", inline=False)
-    embed.add_field(name="Icon Creators:",
-                    value="Pythex#0001 - Normal Icon <:SimpleBot:772643241304260618>\nbean#4066 - Halloween Version "
-                          "<:SpookyBot:772621287729659984>")
-    embed.add_field(name="Command Ideas:", value="ItzHatsu#2515 (Shoot command)")
-    await ctx.send(embed=embed)
-
-
-@client.command(name="UpdateLog")
-async def update_log(ctx):
-    embed = discord.Embed(
-        description="""
-```diff
-Simple Bot Update Log!
-Last updated: June 23. 2021
-Version: 1.12.9
-
-+Added Commands:
-+RR (Go try it)
-+Rate
-+Would you rather (sb/wyr)
-+Truth or dare (sb/tod)
-+Math
-+Math Score (sb/score)
-
--Removed Commands:
--Link Shortener
--Vote
--Owo (Don't ask)
-```    """, color=embedColor)
-
-    await ctx.send(embed=embed)
-
-
 keep_alive.keep_alive()
 token = os.environ.get("Token")
 client.run(token)
