@@ -14,25 +14,21 @@ snipe_message_author = None
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 
 
-
 class FunCmds(commands.Cog):
 
     def __init__(self, client):
         self.client = client
 
-
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         global snipe_message_content
         global snipe_message_author
-        # Variables outside a function have to be declared as global in order to be changed
 
         snipe_message_content = message.content
         snipe_message_author = message.author
         await asyncio.sleep(60)
         snipe_message_author = None
         snipe_message_content = None
-
 
     @commands.command()
     @commands.is_owner()
@@ -62,12 +58,12 @@ class FunCmds(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def fsnipe(self, ctx, member:discord.Member, *, mes):
-            await ctx.message.channel.purge(limit=1)
-            embed = discord.Embed(description=f"{mes}", timestamp=datetime.datetime.utcnow(), color=embedColor)
-            embed.set_author(name=f"{member}", icon_url=member.avatar_url)
+    async def fsnipe(self, ctx, member: discord.Member, *, mes):
+        await ctx.message.channel.purge(limit=1)
+        embed = discord.Embed(description=f"{mes}", timestamp=datetime.datetime.utcnow(), color=embedColor)
+        embed.set_author(name=f"{member}", icon_url=member.avatar_url)
 
-            await ctx.send(embed=embed)
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["say"])
     @commands.cooldown(1, 15, BucketType.user)
@@ -77,8 +73,8 @@ class FunCmds(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(1, 5, BucketType.user)
-    async def rr(self, ctx, member : discord.Member=None):
+    @commands.cooldown(1, 15, BucketType.user)
+    async def rr(self, ctx, member: discord.Member = None):
         if member == None:
             await ctx.author.send("https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
 
@@ -86,8 +82,6 @@ class FunCmds(commands.Cog):
             await member.send(f"https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ")
             await member.send(f"||You were rickrolled by **{ctx.message.author} ({ctx.author})**!||")
 
-    # hack command that im too lazy to put in a cog
-    # Obviously this command does not hack anybody
     @commands.command()
     @commands.cooldown(1, 15, BucketType.user)
     async def hack(self, ctx, member: discord.Member = None):
@@ -95,7 +89,6 @@ class FunCmds(commands.Cog):
         guess = random.choice(attempt)
         author = ctx.message.author
         name = member.name.replace(" ", "")
-
 
         if member == None:
             await ctx.send("Who are we hacking? Mention someone to hack")
@@ -126,7 +119,8 @@ class FunCmds(commands.Cog):
             message = await ctx.send(f"Attempting to hack {member}...")
             await asyncio.sleep(4)
             await message.edit(
-                content=f"Oh, you thought this was actually gonna hack {member.name}? Nope, this was a trap all along. You have now been reported to Discord for trying to abuse the API")
+                content=f"Oh, you thought this was actually gonna hack {member.name}? Nope, this was a trap all "
+                        f"along. You have now been reported to Discord for trying to abuse the API")
             await asyncio.sleep(10)
 
             chance1 = randint(1, 5)
@@ -138,7 +132,8 @@ class FunCmds(commands.Cog):
                         "Don't worry, you're not actually reported to Discord. The hack command is just a joke")
                 except:
                     await ctx.send(
-                        f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The hack command is just a joke")
+                        f"Hey {ctx.message.author.mention}. Don't worry, you're not actually reported to Discord. The "
+                        f"hack command is just a joke")
 
     @commands.command()
     @commands.cooldown(1, 15, BucketType.user)
@@ -154,8 +149,8 @@ class FunCmds(commands.Cog):
             await ctx.send("You need to get some help man")
 
         if member is not None and member is not author and outcome == "dodges":
-            message = await ctx.send(
-                f"{author.mention} Tried to shoot {member.mention} but {member.name} managed to dodge the bullet!")
+            await ctx.send(f"{author.mention} Tried to shoot {member.mention} but {member.name} managed to dodge the "
+                           f"bullet!")
 
         elif member is not None and member is not author and outcome == "Survived":
             message = await ctx.send(f"Oh no! {author.mention} just shot {member.mention}!")
@@ -172,13 +167,13 @@ class FunCmds(commands.Cog):
                 content=f"{member.mention} **" + randomDeathMessage + f"** {author.mention} after seeing {author.mention} get arrested")
             await asyncio.sleep(3)
             await ctx.send(
-                f"After being in jail for a while, {author.mention} found out that an admin of this server saw the scene and called the police")
+                f"After being in jail for a while, {author.mention} found out that an admin of this server saw the "
+                f"scene and called the police")
 
         if member is not None and member is not author and outcome == "shot":
             message = await ctx.send(f"{author.mention} shot {member}...")
             await asyncio.sleep(3)
             await message.edit(content=f"Looks like {member} didn't stood a chance against that bullet")
-
 
     @commands.command()
     @commands.cooldown(1, 3, BucketType.user)
@@ -342,7 +337,7 @@ class FunCmds(commands.Cog):
 
     @commands.command(aliases=["score"])
     @commands.cooldown(1, 5, BucketType.user)
-    async def mathscore(self, ctx, member:discord.Member=None):
+    async def mathscore(self, ctx, member :discord.Member = None):
         if member == None:
             if str(ctx.author.id) not in db.keys():
                 userscore = 0
@@ -372,7 +367,9 @@ class FunCmds(commands.Cog):
         randFalse = randint(0, fAmt)
 
         if j == "true":
-            embed = discord.Embed(title="True or False?", description=f"{choices.Trues[randTrue]}\n\nClick if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
+            embed = discord.Embed(title="True or False?", description=f"{choices.Trues[randTrue]}\n\nClick if you "
+                                                                      f"think the statement is:\n🇹 - True\n🇫 - "
+                                                                      f"False", color=embedColor)
             message = await ctx.reply(embed=embed)
             await message.add_reaction("🇹")
             await message.add_reaction("🇫")
@@ -386,7 +383,9 @@ class FunCmds(commands.Cog):
                 await message.reply("Sorry, but the statement is true")
 
         if j == "false":
-            embed = discord.Embed(title="True or False?", description=f"{choices.Falses[randFalse]}\n\nClick if you think the statement is:\n🇹 - True\n🇫 - False", color=embedColor)
+            embed = discord.Embed(title="True or False?", description=f"{choices.Falses[randFalse]}\n\nClick if you "
+                                                                      f"think the statement is:\n🇹 - True\n🇫 - "
+                                                                      f"False", color=embedColor)
             message = await ctx.reply(embed=embed)
             await message.add_reaction("🇹")
             await message.add_reaction("🇫")
