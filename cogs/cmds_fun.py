@@ -183,6 +183,8 @@ class FunCmds(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 3, BucketType.user)
     async def meme(self, ctx):
+        pinned_posts = ["Be Original. Original Wednesday frog memes are not banned, The two exact copies of these are "
+                        "just reposts. Reposts have always been against the rules. Edits of these are allowed"]
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://www.reddit.com/r/memes/hot.json") as response:
                 j = await response.json()
@@ -190,13 +192,18 @@ class FunCmds(commands.Cog):
         data = j["data"]["children"][random.randint(0, 25)]["data"]
         image_url = data["url"]
         title = data["title"]
-        em = discord.Embed(title=title, color=embedColor)
-        em.set_image(url=image_url)
-        em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=em)
+        if title not in pinned_posts:
+            em = discord.Embed(title=title, color=embedColor)
+            em.set_image(url=image_url)
+            em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
+            await ctx.send(embed=em)
+        else:
+            data = j["data"]["children"][random.randint(0, 25)]["data"]
 
     @commands.command(aliases=["st"])
+    @commands.cooldown(1, 5, BucketType.user)
     async def showerthought(self, ctx):
+        pinned_posts = ["IMPORTANT PSA: No, you did not win a gift card."]
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://www.reddit.com/r/showerthoughts/hot.json") as response:
                 j = await response.json()
@@ -204,14 +211,17 @@ class FunCmds(commands.Cog):
         data = j["data"]["children"][random.randint(0, 25)]["data"]
         image_url = data["url"]
         title = data["title"]
-        em = discord.Embed(title=title, color=embedColor)
-        em.set_image(url=image_url)
-        em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=em)
+        if title not in pinned_posts:
+            em = discord.Embed(title=title, color=embedColor)
+            em.set_image(url=image_url)
+            em.set_footer(text=f"Requested by {ctx.message.author}", icon_url=ctx.message.author.avatar_url)
+            await ctx.send(embed=em)
+        else:
+            data = j["data"]["children"][random.randint(0, 25)]["data"]
 
     @commands.command()
-    async def rate(self, ctx, *, whattorate=None):
-        if whattorate == None:
+    async def rate(self, ctx, *, whattorate = None):
+        if whattorate is None:
             await ctx.send("wait, what am i gonna rate? I can't rate nothing")
 
         botrate = randint(0, 100)

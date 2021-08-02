@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="889f068b-b8ea-4540-9044-4e63239df37d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cogs/cmds_fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/cmds_fun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,9 +143,9 @@
       <screen x="0" y="25" width="1680" height="966" />
     </state>
     <state x="349" y="144" key="SettingsEditor/0.25.1680.966@0.25.1680.966" timestamp="1624690599152" />
-    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup" timestamp="1624428065035">
+    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup" timestamp="1627883237457">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
-    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup/0.25.1680.966@0.25.1680.966" timestamp="1624428065035" />
+    <state x="505" y="237" width="670" height="676" key="search.everywhere.popup/0.25.1680.966@0.25.1680.966" timestamp="1627883237457" />
   </component>
 </project>
