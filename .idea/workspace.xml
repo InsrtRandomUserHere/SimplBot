@@ -21,7 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="889f068b-b8ea-4540-9044-4e63239df37d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/cmds_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/cmds_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/economy" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +108,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="474" y="190" key="#Inspections" timestamp="1627878860168">
+      <screen x="0" y="25" width="1680" height="966" />
+    </state>
+    <state x="474" y="190" key="#Inspections/0.25.1680.966@0.25.1680.966" timestamp="1627878860168" />
     <state x="514" y="336" key="#Notifications" timestamp="1624426359692">
       <screen x="0" y="25" width="1680" height="966" />
     </state>
