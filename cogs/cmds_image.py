@@ -6,6 +6,7 @@ from io import BytesIO
 
 embedColor = discord.Colour.from_rgb(107, 37, 249)
 
+
 class ImageCmds(commands.Cog):
 
     def __init__(self, client):
@@ -187,8 +188,8 @@ class ImageCmds(commands.Cog):
             await ctx.send("Your sentence is longer than 36 characters. Go under that limit!")
 
     @commands.command()
-    @commands.cooldown(1,5, BucketType.user)
-    async def wanted(self, ctx, user: discord.Member=None):
+    @commands.cooldown(1, 5, BucketType.user)
+    async def wanted(self, ctx, user: discord.Member = None):
         if user == None:
             user = ctx.author
 
@@ -205,8 +206,8 @@ class ImageCmds(commands.Cog):
         await ctx.reply(file=discord.File("OtherImages/Output/Wanted.png"))
 
     @commands.command()
-    @commands.cooldown(1,5, BucketType.user)
-    async def grave(self, ctx, user: discord.Member=None):
+    @commands.cooldown(1, 5, BucketType.user)
+    async def grave(self, ctx, user: discord.Member = None):
         if user == None:
             user = ctx.author
 
@@ -215,7 +216,6 @@ class ImageCmds(commands.Cog):
         data = BytesIO(await asset.read())
         pfp = Image.open(data)
         pfp = pfp.resize((150, 150))
-        draw = ImageDraw.Draw(Template)
 
         Template.paste(pfp, (58, 60))
         Template.save("OtherImages/Output/grave1.png")
@@ -223,15 +223,11 @@ class ImageCmds(commands.Cog):
         await ctx.reply(file=discord.File("OtherImages/Output/grave1.png"))
 
     @commands.command()
-    @commands.cooldown(1,5, BucketType.user)
+    @commands.cooldown(1, 5, BucketType.user)
     async def wasted(self, ctx, user: discord.Member=None):
         if user == None:
             user = ctx.author
-
-		
         await ctx.reply(f"https://some-random-api.ml/canvas/wasted/?avatar={user.avatar_url_as(format='png')}")
-
-
 
 
 def setup(client):
