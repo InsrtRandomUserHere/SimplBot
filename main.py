@@ -54,7 +54,7 @@ async def on_command_error(ctx, error):
         return
 
     elif isinstance(error, commands.NotOwner):
-        await ctx.send('You are not the owner. Only InsrtRandomUserHere#0001 can use this command')
+        await ctx.send(f'You are not the owner. Only {client.get_user(414838687919243283)} can use this command')
 
     elif isinstance(error, commands.NSFWChannelRequired):
         await ctx.send(
