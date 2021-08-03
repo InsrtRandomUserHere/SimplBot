@@ -16,9 +16,6 @@ class Help(commands.Cog):
             embed = discord.Embed(
                 title='Simple Bot Help Menu!', colour=embedColor, timestamp=datetime.datetime.utcnow())
 
-            embed.add_field(
-                name='» General «',
-                value='`ping`, `calculate`', inline=False)
 
             embed.add_field(name="» Fun «",
                             value="`8b`, `coinflip`, `chat`, `y/n`, `hack`, `meme`, `showerthought`, `rate`, `RR`, `TOD`, `WYR`, `Math`",
@@ -39,14 +36,10 @@ class Help(commands.Cog):
                             value="`ban`, `kick`, `clear`, `slowmode`",
                             inline=False)
 
-            embed.add_field(name="» Slash commands « (Beta)",
-                            value="`ping`",
-                            inline=False)
-
             embed.add_field(name="» Stats «", value="`userinfo`, `serverstats`, `channelstats`, `stats`",
                             inline=False)
 
-            embed.add_field(name="» Misc «", value="`Updatelog`, `Credits`, `Ping`",
+            embed.add_field(name="» Misc «", value="`Updatelog`, `Credits`, `Ping`, `Calculate`",
                             inline=False)
             embed.set_footer(text=f'Send: sb/help <command>')
 
